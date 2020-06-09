@@ -11,7 +11,7 @@
   Vermittlungen von Mitfahr-und Lieferdienstleistungen
 </p>
 
-## Feature
+## Features
 
 Depending on your setup, you can include Bootstrap Icons in a handful of ways.
 
