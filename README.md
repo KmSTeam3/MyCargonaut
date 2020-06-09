@@ -10,3 +10,13 @@
 <p align="center">
   Vermittlungen von Mitfahr-und Lieferdienstleistungen
 </p>
+
+## Feature
+
+Depending on your setup, you can include Bootstrap Icons in a handful of ways.
+
+- Registrierung von „Cargonauten“ (Nutzern): Name, Geburtsdatum, Profilbild, E-Mail, Passwort
+- Profilansicht: Inkl. Bewertung von anderen Cargonauten
+- Angebot/Gesuch erstellen
+- Tracking
+- Bewertung nach Abschluss der Fahrt
