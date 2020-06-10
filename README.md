@@ -20,3 +20,20 @@ Depending on your setup, you can include Bootstrap Icons in a handful of ways.
 - Angebot/Gesuch erstellen
 - Tracking
 - Bewertung nach Abschluss der Fahrt
+
+
+## Getting Started
+
+```
+1. cd myCargonaut 
+```
+
+```
+2. npm i
+```
+
+```
+3. ionic serve
+```
+
+<p> Client is served at http://localhost:8100 </p>
