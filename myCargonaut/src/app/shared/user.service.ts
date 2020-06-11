@@ -30,8 +30,23 @@ export class UserService {
   }
 
   getUserList(){
-    this.userListRef = this.db.list('/users/');
+    this.userListRef = this.db.list('/users');
     return this.userListRef;
+  }
+
+  updateUser(id, user: User){
+    return this.userRef.update({
+      fName: user.fName,
+      lName: user.lName,
+      birthday: user.birthday,
+      email: user.email,
+      password: user.password
+    });
+  }
+
+  deleteUser(id: string){
+    this.userRef = this.db.object('/users/' + id);
+    this.userRef.remove();
   }
 
 }
