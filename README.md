@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Demactus/MyCargonaut.svg?branch=dev)](https://travis-ci.com/Demactus/MyCargonaut)
+[![Build Status](https://travis-ci.com/KmSTeam3/MyCargonaut.svg?branch=dev)](https://travis-ci.com/KmSTeam3/MyCargonaut)
 <p align="center">
     <img src="https://user-images.githubusercontent.com/25102414/84172668-8e66f480-aa7c-11ea-9acf-ce8ebbe3cc3c.png" alt="MyCargonaut Logo">
   </a>
