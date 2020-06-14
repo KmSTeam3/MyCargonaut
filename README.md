@@ -35,3 +35,8 @@
 ```
 
 <p> Client is served at http://localhost:8100 </p>
+
+
+## Domänenmodellierung
+
+![Domänendiagramm](Docu/MyCargonaut%20Domain%20Model.jpg)
