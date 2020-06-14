@@ -13,8 +13,6 @@
 
 ## Features
 
-Depending on your setup, you can include Bootstrap Icons in a handful of ways.
-
 - Registrierung von „Cargonauten“ (Nutzern): Name, Geburtsdatum, Profilbild, E-Mail, Passwort
 - Profilansicht: Inkl. Bewertung von anderen Cargonauten
 - Angebot/Gesuch erstellen
