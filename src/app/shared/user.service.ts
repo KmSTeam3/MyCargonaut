@@ -38,8 +38,9 @@ export class UserService {
   }
 
   // create
-  persist(user: User){
-    return this.userCollection.add(UserService.prepare(user));
+  persist(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string){
+    const user: User = new User(id, title, fName, lName, street, housenumber, postalcode, city, email);
+    return this.userCollection.doc(user.id).set(UserService.prepare(user));
   }
 
   update(user: User){

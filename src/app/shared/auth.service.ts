@@ -19,8 +19,7 @@ export class AuthService {
           .then(
               res => {
                 resolve(res);
-                // TODO
-                // this.userservice.persist(value.email, value.username, res.user.uid);
+                this.userservice.persist(res.user.uid, value.title, value.fname, value.lname, value.street, value.housenumber, value.postalcode, value.city, value.email);
               },
               err => reject(err));
     }));
