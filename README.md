@@ -40,3 +40,8 @@
 ## Domänenmodellierung
 
 ![Domänendiagramm](Docu/MyCargonaut%20Domain%20Model.jpg)
+
+
+Link zum Protoypen. Die XD Herunterladen und auf den obrigen rechten Playbutton drücken 
+
+https://1drv.ms/u/s!Al6jUSRARqq4hpdYmiE9fFUSrGRHZA?e=7L5iJ4
