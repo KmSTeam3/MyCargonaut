@@ -10,10 +10,10 @@ import {User} from '../shared/user';
 export class HomePage {
 
   constructor(private userService: UserService) {
-    this.getUserList();
+    // this.getUserList();
   }
 
-  getUserList(){
+  /*getUserList(){
     this.userService.getUserList().valueChanges().subscribe(res => {console.log(res); } );
   }
 
@@ -33,5 +33,5 @@ export class HomePage {
   // to do
   updateUser(){
 
-  }
+  }*/
 }

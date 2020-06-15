@@ -1,16 +1,26 @@
+/**
+ * Class representing a user
+ */
 export class User {
-    $key: string;
+    id: string;
+    title: string;
     fName: string;
     lName: string;
-    birthday: string;
+    street: string;
+    housenumber: number;
+    postalcode: number;
+    city: string;
     email: string;
-    password: string;
 
-    constructor(fName: string, lName: string, birthday: string, email: string, password: string){
+
+    constructor(title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string) {
+        this.title = title;
         this.fName = fName;
         this.lName = lName;
-        this.birthday = birthday;
+        this.street = street;
+        this.housenumber = housenumber;
+        this.postalcode = postalcode;
+        this.city = city;
         this.email = email;
-        this.password = password;
     }
 }
