@@ -39,9 +39,6 @@ export class AuthService {
   }
 
   SignOut() {
-    return this.auth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['enter-app']);
-    });
+    return this.auth.signOut();
   }
 }

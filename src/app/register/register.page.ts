@@ -83,7 +83,6 @@ export class RegisterPage implements OnInit {
         // TODO Eventuell direkte Weiterleitung nach Registrierung
         /*this.authservice.login(value).then(res1 => {
           this.router.navigate(['game-select']);
-          console.log(res1);
         });*/
       }, err => {
         this.successMessage = '';
