@@ -43,8 +43,7 @@
 
 ## Klassendiagramm
 
-![Klassendiagramm](./Docu/myCargonaut%Klassendiagramm.svg)
-<img src="./Docu/myCargonaut%Klassendiagramm.svg">
+![Klassendiagramm](Docu/myCargonaut%Klassendiagramm.svg)
 
 ## Prototype
 
