@@ -1,0 +1,46 @@
+.error-message {
+  font-size: small;
+  color: red;
+}
+
+.success-message {
+  font-size: small;
+  color: green;
+}
+
+
+.form-control {
+  border: 2px solid lightgray;
+  border-radius: 7px;
+  padding-left: 1% !important;
+}
+
+.background {
+  background-image: url("https://www.logistik-express.com/wp-content/uploads/2019/11/AdobeStock%E2%80%93Sasint-222311949.jpeg");
+}
+
+.regForm{
+  background: white;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+ion-content{
+  --background: url("https://www.logistik-express.com/wp-content/uploads/2019/11/AdobeStock%E2%80%93Sasint-222311949.jpeg");
+}
+
+h1 {
+  color: #3B6863;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+ion-button {
+  --border-radius: 100px;
+}
+
+.side {
+  padding-right: 20px;
+  padding-left: 20px;
+
+}

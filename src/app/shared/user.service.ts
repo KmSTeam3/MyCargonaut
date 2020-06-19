@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import {
+  Action,
+  AngularFirestore,
+  AngularFirestoreCollection,
+  DocumentChangeAction,
+  DocumentSnapshot
+} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -8,45 +17,59 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 })
 export class UserService {
 
-  userListRef: AngularFireList<any>;
-  userRef: AngularFireObject<any>;
+  userCollection: AngularFirestoreCollection<User>;
 
-  constructor(private db: AngularFireDatabase) { }
-
-  //create 
-  createUser(user: User){
-    return this.userListRef.push({
-      fName: user.fName,
-      lName: user.lName,
-      email: user.email,
-      password: user.password,
-      birthday: user.birthday
-    });
+  static prepare(user: User): User {
+    const copy = {...user};
+    delete copy.id;
+    copy.title = copy.title || null;
+    copy.fName = copy.fName || null;
+    copy.lName = copy.lName || null;
+    copy.street = copy.street || null;
+    copy.housenumber = copy.housenumber || null;
+    copy.postalcode = copy.postalcode || null;
+    copy.city = copy.city || null;
+    copy.email = copy.email || null;
+    return copy;
   }
 
-  getUser(id: string){
-    this.userRef = this.db.object('/users/' + id);
-    return this.userRef;
+  constructor(private afs: AngularFirestore) {
+    this.userCollection = afs.collection<User>('user');
   }
 
-  getUserList(){
-    this.userListRef = this.db.list('/users');
-    return this.userListRef;
+  // create
+  persist(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string){
+    const user: User = new User(id, title, fName, lName, street, housenumber, postalcode, city, email);
+    return this.userCollection.doc(user.id).set(UserService.prepare(user));
   }
 
-  updateUser(id, user: User){
-    return this.userRef.update({
-      fName: user.fName,
-      lName: user.lName,
-      birthday: user.birthday,
-      email: user.email,
-      password: user.password
-    });
+  update(user: User){
+    this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 
-  deleteUser(id: string){
-    this.userRef = this.db.object('/users/' + id);
-    this.userRef.remove();
+  delete(user: User){
+    this.userCollection.doc(user.id).delete();
+  }
+
+  getUser(id: string): Observable<User>{
+    return this.userCollection.doc(id).get().pipe(
+        map(a => {
+          const data = a.data();
+          data.id = a.id;
+          return {...data} as User;
+        })
+    );
+  }
+
+  findAll(): Observable<User[]> {
+    const changeActions: Observable<DocumentChangeAction<User>[]> = this.userCollection.snapshotChanges();
+    return changeActions.pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
+          return {...data} as User;
+        }))
+    );
   }
 
 }
