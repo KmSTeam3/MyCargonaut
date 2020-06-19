@@ -41,6 +41,12 @@
 
 ![Domänendiagramm](Docu/MyCargonaut%20Domain%20Model.jpg)
 
+## Klassendiagramm
+
+![Klassendiagramm](Docu/myCargonaut%Klassendiagramm.jpg)
+
+
+## Prototype
 
 Link zum Protoypen. Die XD Herunterladen und auf den obrigen rechten Playbutton drücken 
 
