@@ -13,8 +13,8 @@ export class RouteSearchPage implements OnInit {
 
   VALIDATION_MESSAGES = {
     postalCode: [
-      {type: 'required', message: 'Postleitzahl ist erforderlich.' },
-      { type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten' }
+      {type: 'required', message: 'Postleitzahl ist erforderlich.'},
+      {type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten'}
     ],
     datum: [
       {type: 'required', message: 'Datum ist erforderlich.'},
@@ -22,13 +22,15 @@ export class RouteSearchPage implements OnInit {
   };
 
 
-
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder) {
   }
 
-  searchForm(value){
-    console.log(value);
+  ngOnInit() {
+    this.validationsForm = this.formBuilder.group({
+      postalcode: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
   }
 }

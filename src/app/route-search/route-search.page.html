@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row class="heading">
       <ion-col size="4"></ion-col>
       <ion-col>
         <h1>Reise per Cargonaut</h1>
@@ -14,201 +14,84 @@
       <ion-col size="4"></ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col class="searchForm">
+    <ion-row class="formRow">
+      <ion-col>
         <form class="form" [formGroup]="validationsForm" >
-
-          <ion-row >
+          <ion-row>
 
             <ion-col>
               <ion-row>
-                <ion-col>
-                  <ion-item lines="none">
-                    <h3>Anzahl:</h3>
-                  </ion-item>
-                </ion-col>
+                    <h3 opacity="1">Anzahl:</h3>
               </ion-row>
 
-              <ion-row>
-                <ion-item lines="none">
+              <ion-row class="form-control">
                   <ion-select placeholder="1">
                     <ion-select-option value="1">1</ion-select-option>
                     <ion-select-option value="2">2</ion-select-option>
                     <ion-select-option value="3">3</ion-select-option>
                     <ion-select-option value="4">4</ion-select-option>
                   </ion-select>
-                </ion-item>
               </ion-row>
             </ion-col>
-
+            <ion-col size="1"></ion-col>
             <ion-col>
               <ion-row>
-                <ion-item lines="none">
-                  <h3>von:</h3>
-                </ion-item>
+                <h3 style="opacity: revert">von:</h3>
               </ion-row>
 
-              <ion-row>
-                <ion-item lines="none">
+              <ion-row class="form-control">
                   <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
-                </ion-item>
                 <div class="validation-errors">
-                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES."
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
                 </div>
               </ion-row>
             </ion-col>
-
+<ion-col size="1"></ion-col>
             <ion-col>
-              <ion-item lines="none">
-                <h3>nach:</h3>
-              </ion-item>
+              <ion-row>
+                <h3 style="opacity: revert">nach:</h3>
+              </ion-row>
+
+              <ion-row class="form-control">
+                  <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+              </ion-row>
+            </ion-col>
+<ion-col size="1"></ion-col>
+            <ion-col>
+              <ion-row>
+                <h3 style="opacity: revert">Datum:</h3>
+              </ion-row>
+
+              <ion-row class="form-control">
+                  <ion-input type="text" required placeholder="TT.MM.YYYY"></ion-input>
+              </ion-row>
             </ion-col>
 
-            <ion-col>
-              <ion-item lines="none">
-                <h3>Datum:</h3>
-              </ion-item>
-            </ion-col>
           </ion-row>
-
-
-
-
-
-
-
-
         </form>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col size="3">
-        ion-col [size="3"]
+      <ion-col size="5"></ion-col>
+      <ion-col size="2">
+        <ion-button expand="block">Angaben zu Objekt</ion-button>
       </ion-col>
-      <ion-col>
-        ion-col
-      </ion-col>
-      <ion-col size="3">
-        ion-col [size="3"]
-      </ion-col>
+      <ion-col size="4"> </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col size="3">
-        ion-col [size="3"]
-      </ion-col>
-      <ion-col size="3" offset="3">
-        ion-col [size="3"] [offset="3"]
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
-      <ion-col class="ion-align-self-start">
-        ion-col [start]
-      </ion-col>
-      <ion-col class="ion-align-self-center">
-        ion-col [center]
-      </ion-col>
-      <ion-col class="ion-align-self-end">
-        ion-col [end]
-      </ion-col>
-      <ion-col>
-        ion-col
-        <br>#
-        <br>#
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-align-items-start">
-      <ion-col>
-        [start] ion-col
-      </ion-col>
-      <ion-col>
-        [start] ion-col
-      </ion-col>
-      <ion-col class="ion-align-self-end">
-        [start] ion-col [end]
-      </ion-col>
-      <ion-col>
-        ion-col
-        <br>#
-        <br>#
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-align-items-center">
-      <ion-col>
-        [center] ion-col
-      </ion-col>
-      <ion-col>
-        [center] ion-col
-      </ion-col>
-      <ion-col>
-        [center] ion-col
-      </ion-col>
-      <ion-col>
-        ion-col
-        <br>#
-        <br>#
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-align-items-end">
-      <ion-col>
-        [end] ion-col
-      </ion-col>
-      <ion-col class="ion-align-self-start">
-        [end] ion-col [start]
-      </ion-col>
-      <ion-col>
-        [end] ion-col
-      </ion-col>
-      <ion-col>
-        ion-col
-        <br>#
-        <br>#
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12" size-sm>
-        ion-col [size="12"] [size-sm]
-      </ion-col>
-      <ion-col size="12" size-sm>
-        ion-col [size="12"] [size-sm]
-      </ion-col>
-      <ion-col size="12" size-sm>
-        ion-col [size="12"] [size-sm]
-      </ion-col>
-      <ion-col size="12" size-sm>
-        ion-col [size="12"] [size-sm]
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12" size-md>
-        ion-col [size="12"] [size-md]
-      </ion-col>
-      <ion-col size="12" size-md>
-        ion-col [size="12"] [size-md]
-      </ion-col>
-      <ion-col size="12" size-md>
-        ion-col [size="12"] [size-md]
-      </ion-col>
-      <ion-col size="12" size-md>
-        ion-col [size="12"] [size-md]
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="6" size-lg offset="3">
-        ion-col [size="6"] [size-lg] [offset="3"]
-      </ion-col>
-      <ion-col size="3" size-lg>
-        ion-col [size="3"] [size-lg]
-      </ion-col>
-    </ion-row>
   </ion-grid>
 </ion-content>
