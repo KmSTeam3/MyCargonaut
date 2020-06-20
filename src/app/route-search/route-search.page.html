@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>routeSearch</ion-title>
+    <ion-title>
+      <img alt="logo" height="40" src="src/assets/CargoLogo.PNG">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4"></ion-col>
+        <h1>Reise per Cargonaut</h1>
+        <ion-col size="4"></ion-col>
+        <ion-col class="search-form" size="4">
+          <form class="form" (ngSubmit)="searchForm()"></form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

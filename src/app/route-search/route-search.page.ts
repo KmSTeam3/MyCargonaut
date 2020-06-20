@@ -12,4 +12,7 @@ export class RouteSearchPage implements OnInit {
   ngOnInit() {
   }
 
+  searchForm(value){
+    console.log(value);
+  }
 }
