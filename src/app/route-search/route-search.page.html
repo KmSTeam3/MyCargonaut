@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <img src="assets/CargoLogo.PNG">
+      <ion-buttons slot="primary">
+          <ion-button>Login</ion-button>
+          <ion-button>Registieren</ion-button>
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -39,7 +44,7 @@
                 <h3 style="opacity: revert">von:</h3>
               </ion-row>
 
-              <ion-row class="form-control">
+              <ion-row class="formControl">
                   <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">

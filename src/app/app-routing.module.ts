@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'transport-search',
     loadChildren: () => import('./transport-search/transport-search.module').then( m => m.TransportSearchPageModule)
   },
+  {
+    path: 'search-result',
+    loadChildren: () => import('./search-result/search-result.module').then( m => m.SearchResultPageModule)
+  },
 
 ];
 

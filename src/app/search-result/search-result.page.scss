@@ -1,0 +1,60 @@
+img {
+  margin-top: 8px;
+  margin-left: 15px;
+  margin-bottom: 8px;
+  height: 57px;
+}
+
+ion-list {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+
+.formControl {
+  border: 2px solid rgba(2, 92, 83, 0.9);
+  border-radius: 7px;
+  padding-left: 1% !important;
+  background-color: white;
+}
+
+ion-item {
+  --padding-bottom: 5px;
+  margin-top: 15px;
+  border: 2px solid rgba(2, 92, 83, 0.9);
+  border-radius: 7px;
+  padding-left: 1% !important;
+}
+ion-select{
+  border-radius: 7px;
+  border: 2px solid
+}
+
+ion-list-header {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(2, 92, 83, 0.9);
+}
+
+html.ios {
+  --ion-default-font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif
+}
+
+html.md {
+  --ion-default-font: "Roboto", "Helvetica Neue", sans-serif
+}
+
+body.backdrop-no-scroll {
+  overflow: hidden
+}
+
+audio, canvas, progress, video {
+  vertical-align: baseline
+}
+
+root{
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
+
+//------------------------------------------------------

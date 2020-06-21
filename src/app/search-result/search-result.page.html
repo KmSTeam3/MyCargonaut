@@ -1,0 +1,156 @@
+<ion-header>
+    <ion-toolbar>
+        <img src="assets/CargoLogo.PNG">
+        <ion-buttons slot="primary">
+            <ion-button>Login</ion-button>
+            <ion-button>Registieren</ion-button>
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+
+    <ion-list>
+        <ion-list-header>
+            Aktuelle Angebote...
+            <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Filter..." >
+                <ion-select-option value="1">Distance</ion-select-option>
+                <ion-select-option value="2">Price</ion-select-option>
+                <ion-select-option value="3">Rating</ion-select-option>
+            </ion-select>
+
+        </ion-list-header>
+
+
+        <ion-item-sliding>
+            <ion-item lines="none">
+                <ion-avatar slot="start">
+                    <img src="/assets/icon/avatar-han.png">
+                </ion-avatar>
+                <ion-label>
+                    <ion-text color="primary">
+                        <h2>Han</h2>
+                    </ion-text>
+                    <h3>Look, kid...</h3>
+                    <p>I've got enough on my plate as it is, and I...</p>
+                </ion-label>
+                <ion-label>
+                    <ion-text>
+                        <p>von: XY</p>
+                        <p>nach: XY</p>
+                        <p>mit: Fahrzeug</p>
+                    </ion-text>
+                </ion-label>
+
+                <ion-button size="large" shape="block" slot="end">
+                   12.34
+                    <ion-icon name="logo-bitcoin"></ion-icon>
+                </ion-button>
+
+            </ion-item>
+
+            <ion-item-options side="start">
+                <ion-item-option color="primary">Accept Route</ion-item-option>
+            </ion-item-options>
+
+            <ion-item-options side="end">
+                <ion-item-option color="danger">Dismiss offering</ion-item-option>
+            </ion-item-options>
+
+
+        </ion-item-sliding>
+
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="assets/icon/avatar-luke.png">
+            </ion-avatar>
+            <ion-label>
+                <h2>Luke</h2>
+                <h3>Your thoughts betray you</h3>
+                <p>I feel the good in you, the conflict...</p>
+            </ion-label>
+            <ion-label>
+                <ion-text>
+                    <p>von: XY</p>
+                    <p>nach: XY</p>
+                    <p>mit: Fahrzeug</p>
+                </ion-text>
+            </ion-label>
+            <ion-item slot="end">
+                <ion-text>
+                    <h1>12.34€</h1>
+                </ion-text>
+            </ion-item>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="assets/icon/avatar-ben.png">
+            </ion-avatar>
+            <ion-label>
+                <h2>Ben</h2>
+                <h3>Move Along</h3>
+                <p>These aren't the droids you're looking for...</p>
+            </ion-label>
+            <ion-label>
+                <ion-text>
+                    <p>von: XY</p>
+                    <p>nach: XY</p>
+                    <p>mit: Fahrzeug</p>
+                </ion-text>
+            </ion-label>
+            <ion-item slot="end">
+                <ion-text>
+                    <h1>12.34€</h1>
+                </ion-text>
+            </ion-item>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="assets/icon/avatar-leia.png">
+            </ion-avatar>
+            <ion-label>
+                <h2>Leia</h2>
+                <h3>You're My Only Hope</h3>
+                <p>I've placed information vital to the survival...</p>
+            </ion-label>
+            <ion-label>
+                <ion-text>
+                    <p>von: XY</p>
+                    <p>nach: XY</p>
+                    <p>mit: Fahrzeug</p>
+                </ion-text>
+            </ion-label>
+            <ion-item slot="end">
+                <ion-text>
+                    <h1>12.34€</h1>
+                </ion-text>
+            </ion-item>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="assets/icon/avatar-yoda.png">
+            </ion-avatar>
+            <ion-label>
+                <h2>Yoda</h2>
+                <h3>Size matters not</h3>
+                <p>Do or do not. There is no try...</p>
+            </ion-label>
+            <ion-label>
+                <ion-text>
+                    <p>von: XY</p>
+                    <p>nach: XY</p>
+                    <p>mit: Fahrzeug</p>
+                </ion-text>
+            </ion-label>
+            <ion-item slot="end">
+                <ion-text>
+                    <h1>12.34€</h1>
+                </ion-text>
+            </ion-item>
+        </ion-item>
+    </ion-list>
+</ion-content>
