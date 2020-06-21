@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-vehicle.page.scss'],
 })
 export class ManageVehiclePage implements OnInit {
-  user1: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1','teststreet', 1, 12345, 'testcity', 'test@test.de');
+  user1: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
   vehicle1: Vehicle = new Vehicle('LKW 1', this.user1, 100, 1000, 100, 4, 4);
   vehicle2: Vehicle = new Vehicle('LKW 2', this.user1, 100, 1000, 100, 4, 4);
 
