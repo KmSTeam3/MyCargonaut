@@ -8,6 +8,7 @@ before_script:
 
 script:
   — ionic build --prod -- --base-href ./
+ - ng test
 
 deploy:
   - provider: pages
