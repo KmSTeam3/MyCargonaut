@@ -1,10 +1,36 @@
+<ion-menu
+        side="end"
+        menuId="first"
+        contentId="main-content"
+>
+
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="navigateToProfile()">Profil</ion-item>
+      <ion-item >Sendungen</ion-item>
+      <ion-item (click)="navigateToMangeVehicle()" >Fahrzeuge</ion-item>
+      <ion-item (click)="navigateToRouteSearch()"  >Routensuche</ion-item>
+      <ion-item (click)="navigateToTransportSearch()" >Transportsuche</ion-item>
+      <ion-item (click)="navigateToSearchResult()">Suchergebnisse</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+
+
+<div class="ion-page" id="main-content">
 <ion-header>
     <ion-toolbar>
-        <img src="assets/CargoLogo.PNG">
+        <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+      <ion-buttons slot="primary">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="ion-content">
     <ion-grid>
         <ion-row class="heading">
             <ion-col size="2"></ion-col>
@@ -159,3 +185,4 @@
 
     </ion-grid>
 </ion-content>
+</div>

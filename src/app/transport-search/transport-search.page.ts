@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-transport-search',
@@ -22,7 +23,7 @@ export class TransportSearchPage implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.validationsForm = this.formBuilder.group({
@@ -32,5 +33,35 @@ export class TransportSearchPage implements OnInit {
       ])),
     });
   }
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
 
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
+  }
+
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
+
+  navigateToHome(){
+    this.router.navigate(['/home']);
+  }
 }
