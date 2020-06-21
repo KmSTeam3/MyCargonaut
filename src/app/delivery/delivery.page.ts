@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ModalDeliveryPage} from "../modal-delivery/modal-delivery.page";
+import {Test} from "tslint";
 
 
 @Component({
@@ -9,20 +10,31 @@ import {ModalDeliveryPage} from "../modal-delivery/modal-delivery.page";
   styleUrls: ['./delivery.page.scss'],
 })
 export class DeliveryPage implements OnInit {
+  dataReturned: any;
 
-  constructor(private modal: ModalController) { }
+  constructor(public modalController: ModalController) { }
 
-  async showModal(){
-   /* const modal = await this.modalCtrl({
-      //component: SettingsComponent
-    })  */
-  }
+  async openModal(){
+    const modal = await this.modalController.create({
+      component: ModalDeliveryPage,
+      componentProps:{
+        "paramID": 133,
+        "paramTitle": "Test Title"
+      }
 
-  openModal(){
-   // this.modal.create(ModalDeliveryPage)
-  }
+  });
 
-  ngOnInit() {
-  }
+ modal.onDidDismiss().then((dataReturned) =>{
+ if(dataReturned !== null){
+   this.dataReturned = dataReturned.data;
+ }
+  });
+
+    return await modal.present();
+
+
+}
+ngOnInit(): void {
+}
 
 }

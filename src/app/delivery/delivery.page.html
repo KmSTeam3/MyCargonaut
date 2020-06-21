@@ -1,18 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>My Routen</ion-title>
+<!-- home.page.html -->
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>
+      Ionic App
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <h1> Say hi to papa</h1>
+  <ion-button (click)="openModal()">Open Modal</ion-button>
 
-  <!-- fab placed to the (vertical) center and end -->
-  <ion-fab vertical="center" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  
+
 
 </ion-content>
