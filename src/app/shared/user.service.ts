@@ -43,12 +43,13 @@ export class UserService {
     return this.userCollection.doc(user.id).set(UserService.prepare(user));
   }
 
-  update(user: User){
-    this.userCollection.doc(user.id).update(UserService.prepare(user));
+  update(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string){
+    const user: User = new User(id, title, fName, lName, street, housenumber, postalcode, city, email);
+    return this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 
-  delete(user: User){
-    this.userCollection.doc(user.id).delete();
+  delete(userid: string){
+    this.userCollection.doc(userid).delete();
   }
 
   getUser(id: string): Observable<User>{
