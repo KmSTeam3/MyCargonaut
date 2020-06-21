@@ -38,14 +38,16 @@
             <ion-row class="heading">
                 <ion-col size="2"></ion-col>
                 <ion-col>
-                    <h1>Verschicke alles von A nach Z</h1>
+                    <div class="ion-text-center">
+                        <h1>Verschicke alles von A nach Z</h1>
+                    </div>
                 </ion-col>
                 <ion-col size="2"></ion-col>
             </ion-row>
         </ion-grid>
 
         <ion-row>
-            <ion-col class="optionCol">
+            <ion-col class="optionCol" (click)="navigateToRouteSearch()">
 
                 <ion-row>
                     <ion-col>
@@ -53,8 +55,6 @@
                             <h2>Verschicke dich!</h2>
                         </div>
                     </ion-col>
-
-
                 </ion-row>
 
                 <ion-row>
@@ -66,32 +66,63 @@
                 <ion-row>
                     <ion-col>
                         <div class="ion-text-center">
-                            <h3>Lasse dich von useren Cagonauten transportieren</h3>
+                            <h3>Lasse dich von unseren Cagonauten transportieren</h3>
                         </div>
                     </ion-col>
-
-
                 </ion-row>
 
             </ion-col>
 
-            <ion-col class="optionCol">
+            <ion-col class="optionCol" (click)="navigateToRouteSearch()">
 
                 <ion-row>
-                    <ion-text>
-                        <h2>Verschicke beides!</h2>
-                    </ion-text>
+                    <ion-col>
+                        <div class="ion-text-center">
+                            <h2>Verschicke beides!</h2>
+                        </div>
+                    </ion-col>
                 </ion-row>
 
                 <ion-row>
                     <img src="assets/Box und User.png">
                 </ion-row>
 
+                <ion-row>
+                    <ion-col>
+                        <div class="ion-text-center">
+                            <h3>Lasse dich UND deine Besitztümer von unseren Cagonauten transportieren</h3>
+                        </div>
+                    </ion-col>
+                </ion-row>
 
 
 
             </ion-col>
-            <ion-col class="optionCol"><img src="assets/Box.png"></ion-col>
+
+            <ion-col class="optionCol" (click)="navigateToTransportSearch()">
+                <ion-row>
+                    <ion-col>
+                        <div class="ion-text-center">
+                            <h2>Verschicke Was!</h2>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <img src="assets/Box.png">
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <div class="ion-text-center">
+                            <h3>Lasse deine Besitztümer von unseren Cagonauten transportieren</h3>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+            </ion-col>
 
         </ion-row>
     </ion-content>
