@@ -64,4 +64,8 @@ export class SearchResultPage implements OnInit {
   navigateToProfile(){
     this.router.navigate(['/profile']);
   }
+
+  navigateToHome(){
+    this.router.navigate(['/home']);
+  }
 }

@@ -55,4 +55,8 @@ export class ManageVehiclePage implements OnInit {
   navigateToProfile(){
     this.router.navigate(['/profile']);
   }
+
+  navigateToHome(){
+    this.router.navigate(['/home']);
+  }
 }
