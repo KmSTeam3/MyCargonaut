@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddVehiclePageRoutingModule } from './add-vehicle-routing.module';
 
 import { AddVehiclePage } from './add-vehicle.page';
-import { ModalPage } from './modal/modal.page';
-import { ModalPageModule } from './modal/modal.module';
+
 
 @NgModule({
   imports: [
