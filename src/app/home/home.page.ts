@@ -61,6 +61,10 @@ export class HomePage {
     this.router.navigate(['/search-result']);
   }
 
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
+
   openFirst(){
     this.menu.enable(true, 'first');
     this.menu.open('first');

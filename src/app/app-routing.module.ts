@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./search-result/list-result/list-result.module').then(m => m.ListResultPageModule)
   },
 
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
 
 ];
 

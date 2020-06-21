@@ -38,4 +38,27 @@ export class RouteSearchPage implements OnInit {
   navigateToSearchResult(){
     this.router.navigate(['/search-result']);
   }
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
 }
