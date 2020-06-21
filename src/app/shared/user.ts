@@ -2,6 +2,7 @@
  * Class representing a user
  */
 export class User {
+
     id: string;
     title: string;
     fName: string;
@@ -11,6 +12,7 @@ export class User {
     postalcode: number;
     city: string;
     email: string;
+    rating: number;
 
 
     constructor(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string) {
@@ -24,4 +26,13 @@ export class User {
         this.city = city;
         this.email = email;
     }
+
+    getRating(): number {
+        return this.rating;
+    }
+
+    setRating(value: number) {
+        this.rating = value;
+    }
+
 }
