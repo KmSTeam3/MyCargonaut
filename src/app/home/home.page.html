@@ -1,24 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu
+  side="end"
+  menuId="first"
+  contentId="main-content"
+>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="navigateToProfile()">Profil</ion-item>
+      <ion-item >Sendungen</ion-item>
+      <ion-item (click)="navigateToMangeVehicle()" >Fahrzeuge</ion-item>
+      <ion-item (click)="navigateToRouteSearch()"  >Routensuche</ion-item>
+      <ion-item (click)="navigateToTransportSearch()" >Transportsuche</ion-item>
+      <ion-item (click)="navigateToSearchResult()">Suchergebnisse</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-buttons
+        slot="end"
+        class="headerText"
+        *ngIf="!this.userService.isLoggedIn"
+      >
+        <ion-button (click)="navigateToLogin()">Login</ion-button>
+        <ion-button (click)="navigateToRegister()">Registieren</ion-button>
+      </ion-buttons>
+      <ion-menu-button auto-hide="false" slot="end" class="headerText" *ngIf="this.userService.isLoggedIn"></ion-menu-button>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-      <ion-label>test</ion-label>
-      <ion-input placeholder="Enter Input"></ion-input>
+  
+  <ion-content [fullscreen]="true">
+    <ion-grid>
+      <ion-row class="heading">
+        <ion-col size="2"></ion-col>
+        <ion-col>
+          <h1>Verschicke alles von A nach Z</h1>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+    </ion-grid>
 
-      <ion-button color="primary" (click)="createUser()" >Create User</ion-button>
-  </div>
- 
-    
-</ion-content>
+    <ion-row>
+      <ion-col class="optionCol"><img src="assets/user.png"> </ion-col>
+      <ion-col class="optionCol"><img src="assets/Box und User.png"></ion-col>
+      <ion-col class="optionCol"><img src="assets/Box.png"></ion-col>
+    </ion-row>
+  </ion-content>
+</div>

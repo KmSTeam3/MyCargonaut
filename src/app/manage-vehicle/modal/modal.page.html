@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add a new Vehicle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content ion-align-self-center>
+  <ion-item>
+    <ion-input placeholder="name"  >[name]="name"</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="load" >[load]="load"</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="maxLoad" >[maxLoad]="maxLoad"</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="volume" >[volume]="volume"</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="seats"  >[seats]="seats"</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="maxSeats"  >[maxSeats]="maxSeats"</ion-input>
+  </ion-item>
+
+  <ion-button color="success" (click)="saveModal()" >save</ion-button>
+  <ion-button color="danger" (click)="dismissModal()">cancel</ion-button>
+</ion-content>

@@ -43,7 +43,7 @@
 
 ## Klassendiagramm
 
-![Klassendiagramm](https://user-images.githubusercontent.com/25102414/85120392-797c2500-b223-11ea-8e04-63f84290694f.png)
+![myCargonaut Klassendiagramm](https://user-images.githubusercontent.com/38430166/85233946-85760b80-b40a-11ea-8106-6b6cf4299084.jpeg)
 
 ## Prototype
 

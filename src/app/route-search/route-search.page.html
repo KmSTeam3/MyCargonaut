@@ -1,0 +1,122 @@
+<ion-menu
+        side="end"
+        menuId="first"
+        contentId="main-content"
+>
+
+    <ion-content>
+        <ion-list>
+            <ion-item (click)="navigateToProfile()">Profil</ion-item>
+            <ion-item >Sendungen</ion-item>
+            <ion-item (click)="navigateToMangeVehicle()" >Fahrzeuge</ion-item>
+            <ion-item (click)="navigateToRouteSearch()"  >Routensuche</ion-item>
+            <ion-item (click)="navigateToTransportSearch()" >Transportsuche</ion-item>
+            <ion-item (click)="navigateToSearchResult()">Suchergebnisse</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+<ion-header>
+  <ion-toolbar>
+    <img src="assets/CargoLogo.PNG">
+      <ion-buttons slot="primary">
+          <ion-button>Login</ion-button>
+          <ion-button>Registieren</ion-button>
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="ion-content">
+  <ion-grid>
+    <ion-row class="heading">
+      <ion-col size="4"></ion-col>
+      <ion-col>
+        <h1>Reise per Cargonaut</h1>
+      </ion-col>
+      <ion-col size="4"></ion-col>
+    </ion-row>
+
+    <ion-row class="formRow">
+      <ion-col>
+        <form class="form" [formGroup]="validationsForm" >
+          <ion-row>
+
+            <ion-col>
+              <ion-row>
+                    <h3 opacity="1">Anzahl:</h3>
+              </ion-row>
+
+              <ion-row class="formControl">
+                  <ion-select placeholder="1">
+                    <ion-select-option value="1">1</ion-select-option>
+                    <ion-select-option value="2">2</ion-select-option>
+                    <ion-select-option value="3">3</ion-select-option>
+                    <ion-select-option value="4">4</ion-select-option>
+                  </ion-select>
+              </ion-row>
+            </ion-col>
+            <ion-col size="1"></ion-col>
+            <ion-col>
+              <ion-row>
+                <h3 style="opacity: revert">von:</h3>
+              </ion-row>
+
+              <ion-row class="formControl">
+                  <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+              </ion-row>
+            </ion-col>
+<ion-col size="1"></ion-col>
+            <ion-col>
+              <ion-row>
+                <h3 style="opacity: revert">nach:</h3>
+              </ion-row>
+
+              <ion-row class="formControl">
+                  <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+              </ion-row>
+            </ion-col>
+<ion-col size="1"></ion-col>
+            <ion-col>
+              <ion-row>
+                <h3 style="opacity: revert">Datum:</h3>
+              </ion-row>
+
+              <ion-row class="formControl">
+                  <ion-input type="text" required placeholder="TT.MM.YYYY"></ion-input>
+              </ion-row>
+            </ion-col>
+
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="5"></ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" (click)="navigateToSearchResult()">Angaben zu Objekt</ion-button>
+      </ion-col>
+      <ion-col size="4"> </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+</div>
