@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
 import {Vehicle} from '../shared/vehicle';
@@ -18,7 +18,7 @@ export class SearchResultPage implements OnInit {
   passengerList: Person[] = [];
   person: Person = new Person(1, this.user2, '789101112');
   date: Date = new Date('1933-04-20');
-  shipment: Shipment;
+  @Input() shipment: Shipment;
 
   listShipments: Shipment[] = [];
 

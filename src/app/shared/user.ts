@@ -27,12 +27,12 @@ export class User {
         this.email = email;
     }
 
-    getRating(): number {
-        return this.rating;
-    }
+   // getRating(): number {
+   //     return this.rating;
+   // }
 
-    setRating(value: number) {
-        this.rating = value;
-    }
+   // setRating(value: number) {
+   //     this.rating = value;
+   // }
 
 }
