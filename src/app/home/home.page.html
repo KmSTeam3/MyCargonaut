@@ -1,24 +1,30 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+            <ion-buttons slot="end" class="headerText">
+                <ion-button>Login</ion-button>
+                <ion-button>Registieren</ion-button>
+            </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
 
-  <div id="container">
-      <ion-label>test</ion-label>
-      <ion-input placeholder="Enter Input"></ion-input>
+      <ion-row class="heading">
+          <ion-col size="2"></ion-col>
+          <ion-col>
+              <h1>Verschicke alles von A nach Z</h1>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+      </ion-row>
+  </ion-grid>
 
-      <ion-button color="primary" (click)="createUser()" >Create User</ion-button>
-  </div>
- 
+    <ion-row>
+        <ion-col class="optionCol">
+
+        </ion-col>
+        <ion-col class="optionCol"></ion-col>
+        <ion-col class="optionCol"></ion-col>
+    </ion-row>
     
 </ion-content>
