@@ -10,13 +10,13 @@ import { User } from 'src/app/shared/user';
 })
 export class ModalPage implements OnInit {
 
-   @Input() name: string;
-   @Input() holder: User;
-   @Input() load: number;
-   @Input() maxLoad: number;
-   @Input() volume: number;
-   @Input() seats: number;
-   @Input() maxSeats: number;
+   name: string;
+   holder: User;
+   load: number;
+   maxLoad: number;
+   volume: number;
+   seats: number;
+   maxSeats: number;
 
   constructor(public modal: ModalController) { }
 
@@ -24,10 +24,11 @@ export class ModalPage implements OnInit {
   }
 
   saveModal(){
-    const vehicle: Vehicle = new Vehicle(this.name, this.holder, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
+    const testuser: User = new User("123456789", "Herr", "Test", "Tester", "teststraße", 3, 12345, "tcity", "test@test.de");
+    const vehicle: Vehicle = new Vehicle(this.name, "testuser", this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
 
-    //this.modal.dismiss(vehicle);
-    console.log( 'saved! ' + this.name + ' ' + this.load);
+    console.log(vehicle);
+    this.modal.dismiss();
   }
 
   dismissModal(){
