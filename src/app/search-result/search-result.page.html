@@ -20,5 +20,5 @@
             </ion-select>
 
         </ion-list-header>
-    <app-search-result *ngFor="let result"
+    <app-search-result *ngFor="let shipment of this.listShipments" [shipment]="shipment"></app-search-result>
 </ion-content>

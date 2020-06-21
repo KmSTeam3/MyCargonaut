@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Shipment} from '../../shared/shipment';
 
 @Component({
   selector: 'app-list-result',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-result.page.scss'],
 })
 export class ListResultPage implements OnInit {
+
+  @Input() shipment: Shipment;
 
   constructor() { }
 

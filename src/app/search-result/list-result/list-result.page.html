@@ -13,16 +13,16 @@
       </ion-avatar>
       <ion-label>
         <ion-text color="primary">
-          <h2>Han</h2>
+          <h2>{{shipment.cargonaut}}</h2>
         </ion-text>
-        <h3>Look, kid...</h3>
-        <p>I've got enough on my plate as it is, and I...</p>
+        <h3>{{shipment.cargonaut.rating}}</h3>
+        <p>bis Datum: {{shipment.date}}</p>
       </ion-label>
       <ion-label>
         <ion-text>
-          <p>von: XY</p>
-          <p>nach: XY</p>
-          <p>mit: Fahrzeug</p>
+          <p>von: {{shipment.start}}</p>
+          <p>nach: {{shipment.goal}}</p>
+          <p>mit: {{shipment.vehicle.name}}</p>
         </ion-text>
       </ion-label>
 

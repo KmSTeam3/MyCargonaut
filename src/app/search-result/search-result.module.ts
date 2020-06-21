@@ -8,6 +8,7 @@ import { SearchResultPageRoutingModule } from './search-result-routing.module';
 
 import { SearchResultPage } from './search-result.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
