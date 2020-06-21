@@ -1,4 +1,4 @@
-import { ModalAddPage } from './modal-add/modal-add.page';
+import { ModalPage } from './modal/modal.page';
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
@@ -13,9 +13,13 @@ export class AddVehiclePage {
 
   async presentModal(){
     const modal = await this.modalController.create({
-      component: ModalAddPage
+      component: ModalPage
     });
     return await modal.present();
+  }
+
+   dismissModal(){
+    this.modalController.dismiss();
   }
 
 }

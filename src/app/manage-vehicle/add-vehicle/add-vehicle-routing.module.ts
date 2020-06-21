@@ -9,8 +9,8 @@ const routes: Routes = [
     component: AddVehiclePage
   },
   {
-    path: 'modal-add',
-    loadChildren: () => import('../add-Vehicle/modal-add/modal-add.module').then( m => m.ModalAddPageModule)
+    path: 'modal',
+    loadChildren: () => import('../add-Vehicle/modal/modal.module').then( m => m.ModalPageModule)
   }
 ];
 
