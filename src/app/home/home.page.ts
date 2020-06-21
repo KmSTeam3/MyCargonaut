@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { Component } from '@angular/core';
 import {User} from '../shared/user';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,7 @@ import {User} from '../shared/user';
 })
 export class HomePage {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router, private menu: MenuController) {
     // this.getUserList();
   }
 
@@ -34,4 +36,36 @@ export class HomePage {
   updateUser(){
 
   }*/
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
+  }
+
+  openFirst(){
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+
+
 }
+

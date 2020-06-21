@@ -1,3 +1,4 @@
+import { UserService } from './../shared/user.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/auth.service';
@@ -26,12 +27,19 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  constructor(private authservice: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private authservice: AuthService, private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
 
 
   login(value){
     this.authservice.login(value).then(() => {
       console.log('Login erfolgreich');
+      if(this.authservice.checkAuthState()){
+        this.userService.setLogin();
+      }else{
+        this.userService.setLogout();
+      }
+
+      this.router.navigate(['/home']);
         }
     );
   }
