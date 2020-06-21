@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'manage-vehicle',
     loadChildren: () => import('./manage-vehicle/manage-vehicle.module').then( m => m.ManageVehiclePageModule)
-  }
+  },
   {
     path: 'route-search',
     loadChildren: () => import('./route-search/route-search.module').then( m => m.RouteSearchPageModule)
