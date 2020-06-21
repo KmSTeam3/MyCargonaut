@@ -58,4 +58,7 @@ export class RouteSearchPage implements OnInit {
   navigateToTransportSearch(){
     this.router.navigate(['/transport-search']);
   }
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
 }

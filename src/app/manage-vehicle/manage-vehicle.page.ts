@@ -27,4 +27,32 @@ export class ManageVehiclePage implements OnInit {
   goToAdd(){
     this.router.navigate(['/manage-vehicle/add-vehicle']);
   }
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
+  }
+
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
 }

@@ -48,11 +48,11 @@ export class ProfilePage implements OnInit {
     ]
   };
 
-  constructor(private userservice: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
     // TODO userID aus URL holen oder von eingeloggtem User
     this.subscription = this.authservice.checkAuthState().subscribe((value => {
       this.userID = value.uid;
-      this.userservice.getUser(this.userID).subscribe((user) => {
+      this.userService.getUser(this.userID).subscribe((user) => {
         if (user){
           this.validationsForm.patchValue({
             title: user.title,
@@ -93,7 +93,7 @@ export class ProfilePage implements OnInit {
 
 
   updateProfile(value){
-    this.userservice.update(this.userID, value.title, value.fname, value.lname, value.street, value.housenumber, value.postalcode, value.city, value.email)
+    this.userService.update(this.userID, value.title, value.fname, value.lname, value.street, value.housenumber, value.postalcode, value.city, value.email)
         .then(() => {
           this.successMessage = 'Profil erfolgreich geupdatet';
     }, () => {
@@ -105,6 +105,33 @@ export class ProfilePage implements OnInit {
     this.authservice.SignOut().then(() => {
       this.router.navigate(['login']);
     });
+  }
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
+  }
+
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
   }
 
 }
