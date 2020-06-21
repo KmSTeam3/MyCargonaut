@@ -1,4 +1,4 @@
-img{
+img {
   margin-top: 8px;
   margin-left: 15px;
   margin-bottom: 8px;
@@ -6,20 +6,21 @@ img{
 }
 
 h1 {
-  color: white;
+  color: #ffffff;
   font-size: 60px;
   font-weight: bold;
 }
 
-h3{
+h3 {
   color: #fdfdfd;
   font-weight: bold;
 }
 
-ion-content{
+ion-content {
   --background:  url("/../../assets/Transportart.jpg") no-repeat  center / cover;
 }
-.formRow{
+
+.formRow {
   background: #000000;
   border-radius: 20px;
   margin-left: 400px;
@@ -28,12 +29,13 @@ ion-content{
 }
 
 .formControl {
-  border: 2px solid lightgray;
+  background-color:  #ffffff;
+  border: 2px solid #d3d3d3;
   border-radius: 7px;
   padding-left: 1% !important;
-  background-color: white;
+
 }
 
-.text{
-  color: white;
+.text {
+  color: #ffffff;
 }
