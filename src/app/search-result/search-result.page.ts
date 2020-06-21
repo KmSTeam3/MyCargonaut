@@ -37,4 +37,27 @@ export class SearchResultPage implements OnInit {
     this.listShipments.push(this.shipment);
   }
 
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
+
+  navigateToMangeVehicle(){
+    this.router.navigate(['/manage-vehicle']);
+  }
+
+  navigateToRouteSearch(){
+    this.router.navigate(['/route-search']);
+  }
+
+  navigateToTransportSearch(){
+    this.router.navigate(['/transport-search']);
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
+  }
 }
