@@ -31,9 +31,9 @@ export class SearchResultPage implements OnInit {
 
   ngOnInit() {
     this.passengerList[0] = this.person;
+    this.user.rating = 1;
     this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
     console.log(this.listShipments);
-    this.listShipments.push(this.shipment);
     this.listShipments.push(this.shipment);
   }
 

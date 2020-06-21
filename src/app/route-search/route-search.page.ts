@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-route-search',
   templateUrl: './route-search.page.html',
@@ -22,7 +23,7 @@ export class RouteSearchPage implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,5 +33,9 @@ export class RouteSearchPage implements OnInit {
         Validators.required
       ])),
     });
+  }
+
+  navigateToSearchResult(){
+    this.router.navigate(['/search-result']);
   }
 }
