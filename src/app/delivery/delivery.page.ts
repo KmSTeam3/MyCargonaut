@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {ModalDeliveryPage} from "../modal-delivery/modal-delivery.page";
+
 
 @Component({
   selector: 'app-delivery',
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeliveryPage implements OnInit {
 
-  constructor() { }
+  constructor(private modal: ModalController) { }
+
+  async showModal(){
+   /* const modal = await this.modalCtrl({
+      //component: SettingsComponent
+    })  */
+  }
+
+  openModal(){
+   // this.modal.create(ModalDeliveryPage)
+  }
 
   ngOnInit() {
   }
