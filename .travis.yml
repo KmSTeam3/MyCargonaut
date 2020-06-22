@@ -17,9 +17,9 @@ before_script:
 
 jobs:
   include:
-    - stage: test
-      script: ionic build --prod -- --base-href ./
     - stage: build
+      script: ionic build --prod -- --base-href ./
+    - stage: test
       script: npm run test
 
 deploy:
