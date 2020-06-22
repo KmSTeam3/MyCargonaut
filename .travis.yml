@@ -7,12 +7,9 @@ before_script:
   — npm ci
 
 script:
-  — >
-  ionic build
-  --prod
-  --
-  --base-href ./
   - npm run test
+  — ionic build --prod -- --base-href ./
+
 
 deploy:
   - provider: pages
