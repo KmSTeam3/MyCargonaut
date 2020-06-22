@@ -1,6 +1,16 @@
 language: node_js
 node_js:
   - "14.1.0"
+addons:
+  apt:
+    sources:
+      - google.chrome
+    packages:
+      - google-chrome-stable
+
+cache:
+  directories:
+    - ./node_modules
 
 before_script:
   — npm install -g ionic
@@ -9,7 +19,7 @@ before_script:
 jobs:
   include:
     - stage: test
-      script: npm run test
+      script: npm run test --browsers=ChromeHeadlessNoSandbox
     - stage: build
       script: ionic build --prod -- --base-href ./
 
