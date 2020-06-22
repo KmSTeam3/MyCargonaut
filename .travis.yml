@@ -6,10 +6,12 @@ before_script:
   — npm install -g ionic
   — npm ci
 
-script:
-  - npm run test
-  — ionic build --prod -- --base-href ./
-
+jobs:
+  include:
+    - stage: test
+      script: npm run test
+    - stage: build
+      script: ionic build --prod -- --base-href ./
 
 deploy:
   - provider: pages
