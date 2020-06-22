@@ -11,7 +11,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private userService: UserService, private router: Router, private menu: MenuController) {
+  constructor(public userService: UserService, private router: Router, private menu: MenuController) {
     // this.getUserList();
   }
 
