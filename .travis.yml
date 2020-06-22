@@ -19,7 +19,7 @@ before_script:
 jobs:
   include:
     - stage: test
-      script: npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+      script: npm run test
     - stage: build
       script: ionic build --prod -- --base-href ./
 

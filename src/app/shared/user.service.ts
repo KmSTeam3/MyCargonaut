@@ -16,8 +16,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  
-  isLoggedIn: boolean = false;
+
+  isLoggedIn = false;
   userCollection: AngularFirestoreCollection<User>;
 
   static prepare(user: User): User {
