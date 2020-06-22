@@ -16,7 +16,7 @@ h3 {
   font-weight: bold;
 }
 
-ion-content {
+#ion-content {
   --background:  url("/../../assets/Transportart.jpg") no-repeat  center / cover;
 }
 
@@ -36,6 +36,16 @@ ion-content {
 
 }
 
+:root {
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
+
 .text {
   color: #ffffff;
+}
+
+#regBtn {
+  --color: white;
+  --background: rgba(2, 92, 83, 0.9);
 }

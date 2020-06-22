@@ -24,12 +24,14 @@
 <div class="ion-page" id="main-content">
 <ion-header>
   <ion-toolbar>
+    <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
     <ion-buttons slot="end" >
       <ion-button (click)="signOut()">
         <ion-icon name="log-out-outline"></ion-icon>
+        <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
       </ion-button>
     </ion-buttons>
-    <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
+
   </ion-toolbar>
 </ion-header>
 

@@ -25,7 +25,7 @@ export class ModalPage implements OnInit {
 
   saveModal(){
     const testuser: User = new User("123456789", "Herr", "Test", "Tester", "teststraße", 3, 12345, "tcity", "test@test.de");
-    const vehicle: Vehicle = new Vehicle(this.name, "testuser", this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
+    const vehicle: Vehicle = new Vehicle(this.name, testuser, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
 
     console.log(vehicle);
     this.modal.dismiss();

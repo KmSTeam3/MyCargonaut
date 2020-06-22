@@ -1,17 +1,24 @@
 h1 {
   color: white;
-  font-size: 50px;
+  font-size: 60px;
   font-weight: bold;
 }
 
-h2{
+h2 {
   color: white;
+  font-size: 35px;
   font-weight: bold;
-  font-size: 40px;
 }
+
+h3 {
+  color: white;
+}
+
+
+
 
 .heading{
-  margin-top: 110px;
+  margin-top: 70px;
 }
 
 ion-toolbar{
@@ -19,7 +26,7 @@ ion-toolbar{
   --ion-color-base: transparent !important;
 }
 
-ion-content{
+#ion-content{
   --background: url(/../../assets/hannes-egler-nT4k2JDtwTQ-unsplash.jpg)no-repeat center center / cover;
 }
 
@@ -31,7 +38,7 @@ ion-content{
 .optionCol{
   background: #000000;
   border-radius: 20px;
-  margin-top: 30px;
+  margin-top: 15px;
   margin-left: 60px;
   margin-right: 60px;
   opacity: 0.7;

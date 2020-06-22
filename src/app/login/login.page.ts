@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   login(value){
     this.authservice.login(value).then(() => {
       console.log('Login erfolgreich');
-      if(this.authservice.checkAuthState()){
+      if (this.authservice.checkAuthState()){
         this.userService.setLogin();
       }else{
         this.userService.setLogout();
@@ -59,6 +59,10 @@ export class LoginPage implements OnInit {
         Validators.required
       ]))
     });
+  }
+
+  navigateToHome(){
+    this.router.navigate(['/home']);
   }
 
 }

@@ -17,7 +17,7 @@ export class SearchResultPage implements OnInit {
   vehicle: Vehicle = new Vehicle('LKW 1', this.user, 100, 1000, 100, 4, 4);
   passengerList: Person[] = [];
   person: Person = new Person(1, this.user2, '789101112');
-  date: Date = new Date('1933-04-20');
+  date: Date = new Date('2020-06-22');
   shipment: Shipment;
 
   listShipments: Shipment[] = [];
@@ -63,5 +63,9 @@ export class SearchResultPage implements OnInit {
 
   navigateToProfile(){
     this.router.navigate(['/profile']);
+  }
+
+  navigateToHome(){
+    this.router.navigate(['/home']);
   }
 }
