@@ -15,6 +15,11 @@ import { ListVehiclePage } from './list-vehicle.page';
     IonicModule,
     ListVehiclePageRoutingModule
   ],
-  declarations: [ListVehiclePage]
+  declarations: [ListVehiclePage],
+  exports: [
+    ListVehiclePage
+  ]
 })
+
+
 export class ListVehiclePageModule {}

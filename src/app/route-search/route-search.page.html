@@ -19,10 +19,10 @@
 <div class="ion-page" id="main-content">
 <ion-header>
   <ion-toolbar>
-    <img src="assets/CargoLogo.PNG">
+      <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
       <ion-buttons slot="primary">
-          <ion-button>Login</ion-button>
-          <ion-button>Registieren</ion-button>
+          <ion-button (click)="navigateToLogin()">Login</ion-button>
+          <ion-button id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
           <ion-menu-button auto-hide="false"></ion-menu-button>
       </ion-buttons>
   </ion-toolbar>

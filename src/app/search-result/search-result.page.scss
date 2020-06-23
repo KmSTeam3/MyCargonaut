@@ -6,6 +6,7 @@ img {
 }
 
 ion-list {
+  margin-top: 15px;
   margin-left: 70px;
   margin-right: 70px;
 }
@@ -48,6 +49,11 @@ audio, canvas, progress, video {
 root{
   --ion-safe-area-top: 20px;
   --ion-safe-area-bottom: 22px;
+}
+
+#regBtn {
+  --color: white;
+  --background: rgba(2, 92, 83, 0.9);
 }
 
 //------------------------------------------------------

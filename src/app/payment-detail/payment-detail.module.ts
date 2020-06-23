@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ModalPageRoutingModule } from './modal-routing.module';
+import { PaymentDetailPageRoutingModule } from './payment-detail-routing.module';
 
-import { ModalPage } from './modal.page';
+import { PaymentDetailPage } from './payment-detail.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalPageRoutingModule
+    PaymentDetailPageRoutingModule
   ],
-  declarations: [ModalPage],
-  exports: [ModalPage]
+  declarations: [PaymentDetailPage]
 })
-export class ModalPageModule {}
+export class PaymentDetailPageModule {}
