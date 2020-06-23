@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { map } from 'rxjs/operators';
 import { User } from './user';
 import { Injectable } from '@angular/core';
@@ -12,12 +13,13 @@ import { Observable } from 'rxjs';
 export class VehicleService {
 
   vehicleCollection: AngularFirestoreCollection<Vehicle>;
+  userCollection: AngularFirestoreCollection<User>;
 
   static prepare(vehicle: Vehicle): Vehicle {
     const copy = {...vehicle};
-    delete copy.$id;
+
     copy.name = copy.name || null;
-    copy.holder = copy.holder || null;
+    copy.holderId = copy.holderId || null;
     copy.load = copy.load || null;
     copy.maxLoad = copy.maxLoad || null;
     copy.maxSeats = copy.maxSeats || null;
@@ -25,41 +27,44 @@ export class VehicleService {
     copy.volume = copy.volume || null;
     return copy;
   }
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private userService: UserService) {
+    let userId: string = 'zllP1FQQQoMnlSL0Memkcy0PkPo2';
     this.vehicleCollection = afs.collection<Vehicle>('vehicle');
+    this.userCollection = afs.collection<User>('user');
    }
 
-  persist(name: string, holder: User, load: number, maxLoad: number, volume: number, seats: number, maxSeats: number ){
-    const vehicle = new Vehicle(name, holder, load, maxLoad, volume, seats, maxSeats);
-    return this.vehicleCollection.doc(vehicle.$id).set(VehicleService.prepare(vehicle));
+  persist(licensePlate: string, name: string, holderId: string, load: number, maxLoad: number, volume: number, seats: number, maxSeats: number ){
+    const vehicle = new Vehicle(licensePlate, name, holderId, load, maxLoad, volume, seats, maxSeats);
+    return this.userCollection.doc(holderId).collection('vehicle').doc(vehicle.licensePlate).set(VehicleService.prepare(vehicle));
   }
 
   update(vehicle: Vehicle){
-    this.vehicleCollection.doc(vehicle.$id).update(VehicleService.prepare(vehicle));
+    this.vehicleCollection.doc(vehicle.licensePlate).update(VehicleService.prepare(vehicle));
 
   }
 
   delete(vehicle: Vehicle){
-    this.vehicleCollection.doc(vehicle.$id).delete();
+    this.vehicleCollection.doc(vehicle.licensePlate).delete();
   }
 
-  getVehicle(id: string){
-    return this.vehicleCollection.doc(id).get().pipe(
-      map(a => {
-        const data = a.data();
-        data.id = a.id;
-        return {...data} as Vehicle;
-      })
-    );
+  getVehicle(licensePlate: string){
+    return this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle', ref => ref.where('licensePlate', '==', licensePlate))
+    //.pipe(
+    //  map(a => {
+    //    const data = a.data() as Vehicle;
+    //    data.licensePlate = a.id;
+    //    return {...data};
+    //  })
+    //);
   }
 
   findAll(): Observable<Vehicle[]> {
-    const changeActions: Observable<DocumentChangeAction<Vehicle>[]> = this.vehicleCollection.snapshotChanges();
+    const changeActions = this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').snapshotChanges();
     return changeActions.pipe(
         map(actions => actions.map(a => {
-          const data = a.payload.doc.data();
-          data.$id = a.payload.doc.id;
-          return {...data} as Vehicle;
+          const data = a.payload.doc.data() as Vehicle;
+          data.licensePlate = a.payload.doc.id;
+          return {...data};
         }))
     );
   }

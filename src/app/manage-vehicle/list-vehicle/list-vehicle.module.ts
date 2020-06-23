@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ListVehiclePageRoutingModule } from './list-vehicle-routing.module';
 
 import { ListVehiclePage } from './list-vehicle.page';
+import { EditVehiclePage } from '../edit-vehicle/edit-vehicle.page';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ListVehiclePage } from './list-vehicle.page';
     IonicModule,
     ListVehiclePageRoutingModule
   ],
-  declarations: [ListVehiclePage],
+  declarations: [ListVehiclePage, EditVehiclePage],
   exports: [
     ListVehiclePage
   ]
