@@ -29,7 +29,7 @@
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <img id="" src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+      <img id="logo" src="assets/CargoLogo.PNG" (click)="navigateToHome()">
       <ion-buttons slot="primary">
         <ion-menu-button auto-hide="false"></ion-menu-button>
       </ion-buttons>
@@ -38,15 +38,36 @@
 
   <ion-content class="padding" id="ion-content">
     <ion-card>
-      <img src="assets/CardImg/advance-card-bttf.png" />
+
       <ion-card-header>
-        <ion-card-subtitle>Destination</ion-card-subtitle>
-        <ion-card-title>Madison, WI</ion-card-title>
+        <ion-card-subtitle>am TT.MM.YYYY</ion-card-subtitle>
+        <ion-card-title>Objekt von X nach Y schicken</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img src="assets/CardImg/advance-card-bttf.png" />
+            </ion-col>
+            <ion-col>
+              <p>für</p>
+              <h2>12,34€</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p>durch Firma XY mit Fahrzeug XY verschicken.</p>
+              <p>Voraussichtliche Lieferzeit: 4-5 Werktage.</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
+      <ion-footer>
+        <ion-button>Zahlungsmittel wählen</ion-button>
+      </ion-footer>
     </ion-card>
+
+
   </ion-content>
 </div>
 
