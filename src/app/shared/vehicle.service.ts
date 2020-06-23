@@ -47,15 +47,16 @@ export class VehicleService {
     this.vehicleCollection.doc(vehicle.licensePlate).delete();
   }
 
-  getVehicle(licensePlate: string){
-    return this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle', ref => ref.where('licensePlate', '==', licensePlate))
-    //.pipe(
-    //  map(a => {
-    //    const data = a.data() as Vehicle;
-    //    data.licensePlate = a.id;
-    //    return {...data};
-    //  })
-    //);
+  getVehicle(licensePlate: string): Observable<Vehicle>{
+    return this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').doc(licensePlate)
+    .get().pipe(
+      map(
+          a => {
+          const data = a.data() as Vehicle;
+          data.licensePlate = a.id;
+          return {... data};
+          })
+      );
   }
 
   findAll(): Observable<Vehicle[]> {
