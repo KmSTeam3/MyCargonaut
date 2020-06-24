@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class ManageVehiclePage implements OnInit {
 
   listVehicle: Vehicle[] = [];
-
+  holderId: string;
   constructor(private router: Router, private vehicleService: VehicleService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -24,6 +24,7 @@ export class ManageVehiclePage implements OnInit {
   setUserId(){
     this.authService.checkAuthState().subscribe( (user) => {
        this.renderList( user.uid);
+       this.holderId = user.uid;
       });
    }
 

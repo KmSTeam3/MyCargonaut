@@ -30,7 +30,7 @@
 
 <ion-content>
 
-  <app-add-vehicle></app-add-vehicle>
+  <app-add-vehicle [holderId]="holderId" ></app-add-vehicle>
   <app-list-vehicle *ngFor="let vehicle of this.listVehicle" [vehicle]="vehicle"></app-list-vehicle>
 
 </ion-content>

@@ -23,6 +23,7 @@ export class ModalPage implements OnInit {
   constructor(public modal: ModalController, private vehicleService: VehicleService, private toastController: ToastController) { }
 
   ngOnInit() {
+    console.log(this.holderId);
   }
 
   async presentToast(msg: string){
@@ -34,8 +35,7 @@ export class ModalPage implements OnInit {
   }
 
   saveModal(){
-    const testuser: User = new User("123456789", "Herr", "Test", "Tester", "teststraße", 3, 12345, "tcity", "test@test.de");
-    this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
+    //this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
 
     const vehicle: Vehicle = new Vehicle(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
     console.log(vehicle);
