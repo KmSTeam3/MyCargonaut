@@ -19,7 +19,11 @@ const routes: Routes = [
   {
     path: 'list-vehicle',
     loadChildren: () => import('./list-vehicle/list-vehicle.module').then( m => m.ListVehiclePageModule)
+  },  {
+    path: 'delete-vehicle',
+    loadChildren: () => import('./delete-vehicle/delete-vehicle.module').then( m => m.DeleteVehiclePageModule)
   }
+
 ];
 
 @NgModule({

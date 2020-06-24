@@ -1,5 +1,5 @@
 import { ModalPage } from "../modal/modal.page";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 
 @Component({
@@ -8,11 +8,16 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["./add-vehicle.page.scss"],
 })
 export class AddVehiclePage {
+  @Input() holderId: string;
+
   constructor(public modalController: ModalController) {}
 
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalPage,
+      componentProps: {
+        holderId: this.holderId
+      }
     });
     return await modal.present();
   }

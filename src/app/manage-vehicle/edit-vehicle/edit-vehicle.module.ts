@@ -15,6 +15,7 @@ import { EditVehiclePage } from './edit-vehicle.page';
     IonicModule,
     EditVehiclePageRoutingModule
   ],
-  declarations: [EditVehiclePage]
+  declarations: [EditVehiclePage],
+  exports: [EditVehiclePage]
 })
 export class EditVehiclePageModule {}

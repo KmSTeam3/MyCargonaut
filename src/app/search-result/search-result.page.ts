@@ -14,7 +14,7 @@ export class SearchResultPage implements OnInit {
 
   user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
   user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  vehicle: Vehicle = new Vehicle('LKW 1', this.user, 100, 1000, 100, 4, 4);
+  vehicle: Vehicle = new Vehicle('32156487','LKW 1', "this.user", 100, 1000, 100, 4, 4);
   passengerList: Person[] = [];
   person: Person = new Person(1, this.user2, '789101112');
   date: Date = new Date('2020-06-22');

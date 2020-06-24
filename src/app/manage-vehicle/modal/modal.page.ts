@@ -1,5 +1,6 @@
+import { VehicleService } from './../../shared/vehicle.service';
 import { Vehicle } from './../../shared/vehicle';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from 'src/app/shared/user';
 
@@ -10,24 +11,41 @@ import { User } from 'src/app/shared/user';
 })
 export class ModalPage implements OnInit {
 
-   @Input() name: string;
-   @Input() holder: User;
-   @Input() load: number;
-   @Input() maxLoad: number;
-   @Input() volume: number;
-   @Input() seats: number;
-   @Input() maxSeats: number;
+   licensePlate: string;
+   name: string;
+   holderId: string;
+   load: number;
+   maxLoad: number;
+   volume: number;
+   seats: number;
+   maxSeats: number;
 
-  constructor(public modal: ModalController) { }
+  constructor(public modal: ModalController, private vehicleService: VehicleService, private toastController: ToastController) { }
 
   ngOnInit() {
+    console.log(this.holderId);
+  }
+
+  async presentToast(msg: string){
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 
   saveModal(){
-    const vehicle: Vehicle = new Vehicle(this.name, this.holder, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
+    //this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
 
-    //this.modal.dismiss(vehicle);
-    console.log( 'saved! ' + this.name + ' ' + this.load);
+    const vehicle: Vehicle = new Vehicle(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
+    console.log(vehicle);
+    if (this.licensePlate && this.name && this.holderId && this.load && this.maxLoad && this.volume && this.seats && this.maxSeats){
+      this.vehicleService.persist(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
+      this.presentToast('Fahrzeug erstellt!');
+      this.modal.dismiss();
+    }else{
+      this.presentToast('Es müssen alle Felder ausgefüllt werden.');
+    }
   }
 
   dismissModal(){
