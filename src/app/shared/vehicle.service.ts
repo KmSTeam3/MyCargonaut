@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { map } from 'rxjs/operators';
 import { User } from './user';
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Vehicle } from './vehicle';
 import { Observable } from 'rxjs';
 

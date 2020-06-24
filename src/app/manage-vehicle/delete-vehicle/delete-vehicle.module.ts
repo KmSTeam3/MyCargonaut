@@ -15,6 +15,7 @@ import { DeleteVehiclePage } from './delete-vehicle.page';
     IonicModule,
     DeleteVehiclePageRoutingModule
   ],
-  declarations: [DeleteVehiclePage]
+  declarations: [DeleteVehiclePage],
+  exports: [DeleteVehiclePage]
 })
 export class DeleteVehiclePageModule {}
