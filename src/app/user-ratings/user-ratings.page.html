@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>user-ratings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-card *ngFor="let rating of ratings">
+      <ion-card-header>{{rating.points}}</ion-card-header>
+      <ion-card-content>{{rating.description}}</ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

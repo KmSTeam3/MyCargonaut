@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'rating-create',
     loadChildren: () => import('./rating-create/rating-create.module').then( m => m.RatingCreatePageModule)
   },
+  {
+    path: 'user-ratings',
+    loadChildren: () => import('./user-ratings/user-ratings.module').then( m => m.UserRatingsPageModule)
+  },
 
 
 ];
