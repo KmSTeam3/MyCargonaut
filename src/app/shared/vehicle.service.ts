@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { map } from 'rxjs/operators';
 import { User } from './user';
@@ -27,9 +28,8 @@ export class VehicleService {
     copy.volume = copy.volume || null;
     return copy;
   }
-  constructor(private afs: AngularFirestore, private userService: UserService) {
-    let userId: string = 'zllP1FQQQoMnlSL0Memkcy0PkPo2';
-    this.vehicleCollection = afs.collection<Vehicle>('vehicle');
+
+  constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection = afs.collection<User>('user');
    }
 
@@ -39,16 +39,15 @@ export class VehicleService {
   }
 
   update(vehicle: Vehicle){
-    this.vehicleCollection.doc(vehicle.licensePlate).update(VehicleService.prepare(vehicle));
-
+    this.userCollection.doc(vehicle.holderId).collection('vehicle').doc(vehicle.licensePlate).update(VehicleService.prepare(vehicle));
   }
 
-  delete(vehicle: Vehicle){
-    this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').doc(vehicle.licensePlate).delete();
+  delete(vehicle: Vehicle, uId: string){
+    this.userCollection.doc(uId).collection('vehicle').doc(vehicle.licensePlate).delete();
   }
 
-  getVehicle(licensePlate: string): Observable<Vehicle>{
-    return this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').doc(licensePlate)
+  getVehicle(licensePlate: string, id: string): Observable<Vehicle>{
+    return this.userCollection.doc(id).collection('vehicle').doc(licensePlate)
     .get().pipe(
       map(
           a => {
@@ -59,8 +58,8 @@ export class VehicleService {
       );
   }
 
-  findAll(): Observable<Vehicle[]> {
-    const changeActions = this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').snapshotChanges();
+  findAll(uId: string): Observable<Vehicle[]> {
+    const changeActions = this.userCollection.doc(uId).collection('vehicle').snapshotChanges();
     return changeActions.pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Vehicle;

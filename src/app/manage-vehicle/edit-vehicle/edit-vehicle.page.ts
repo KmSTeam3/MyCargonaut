@@ -12,13 +12,14 @@ import { Vehicle } from 'src/app/shared/vehicle';
 export class EditVehiclePage implements OnInit {
 
   @Input() id: string;
+  @Input() uId: string;
   vehicle: Vehicle;
 
   constructor(public modalController: ModalController, private vehicleService: VehicleService) {
   }
 
   ngOnInit() {
-    this.getVehicle(this.id);
+    this.getVehicle(this.id, this.uId);
   }
 
   async presentModal() {
@@ -38,10 +39,10 @@ export class EditVehiclePage implements OnInit {
     return await modal.present();
   }
 
-  getVehicle(licensePlate: string){
-     this.vehicleService.getVehicle(licensePlate).subscribe(data => {
+  getVehicle(licensePlate: string, id: string){
+     this.vehicleService.getVehicle(licensePlate, id).subscribe(data => {
       //console.log( data);
-      this.vehicle = data
+      this.vehicle = data;
     });
   }
 
