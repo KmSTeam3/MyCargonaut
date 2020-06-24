@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Vehicle } from 'src/app/shared/vehicle';
-import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-vehicle',

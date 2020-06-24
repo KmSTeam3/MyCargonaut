@@ -1,3 +1,4 @@
+import { DeleteVehiclePage } from './../delete-vehicle/delete-vehicle.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +17,7 @@ import { EditVehiclePage } from '../edit-vehicle/edit-vehicle.page';
     IonicModule,
     ListVehiclePageRoutingModule
   ],
-  declarations: [ListVehiclePage, EditVehiclePage],
+  declarations: [ListVehiclePage, EditVehiclePage, DeleteVehiclePage],
   exports: [
     ListVehiclePage
   ]

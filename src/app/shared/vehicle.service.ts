@@ -44,7 +44,7 @@ export class VehicleService {
   }
 
   delete(vehicle: Vehicle){
-    this.vehicleCollection.doc(vehicle.licensePlate).delete();
+    this.userCollection.doc('zllP1FQQQoMnlSL0Memkcy0PkPo2').collection('vehicle').doc(vehicle.licensePlate).delete();
   }
 
   getVehicle(licensePlate: string): Observable<Vehicle>{
