@@ -1,12 +1,24 @@
-.background {
-  --background-image: url("src/assets/RegisterAndRouten.jpg");
-  width: 100%;
-}
-
-
 ion-content{
   --background: url("https://www.logistik-express.com/wp-content/uploads/2019/11/AdobeStock%E2%80%93Sasint-222311949.jpeg");
 }
+
+
+ion-card-header{
+  color: red;
+
+}
+
+ion-card{
+  background-color: white;
+  color: black;
+}
+
+
+
+ion-title{
+  background-color: white;
+}
+
 
 
 

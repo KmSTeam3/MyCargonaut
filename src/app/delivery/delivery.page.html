@@ -1,17 +1,37 @@
 <!-- home.page.html -->
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-    <ion-title>
-      MyCargonaut
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark
+">
+        <ion-title>
+            <img alt="logo" height="40" src="./assets/CargoLogo.PNG">
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <ion-button (click)="openModal()">Open Modal</ion-button>
 
-  
+    <ion-card color="dark" style="height: 100%" >
 
+        <ion-card-header>
+            <ion-card-title>
+                My Routen
+            </ion-card-title>
+        </ion-card-header>
+
+
+        <ion-label c>
+            <ion-fab-button lass="ion-padding" (click)="openModal()">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-label>
+
+        <ion-card-content>
+
+
+        </ion-card-content>
+
+
+    </ion-card>
 
 </ion-content>

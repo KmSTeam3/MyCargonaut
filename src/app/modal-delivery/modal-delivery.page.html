@@ -1,20 +1,90 @@
 <!-- my-modal.page.html -->
 <ion-header>
-  <ion-toolbar color="danger">
-    <ion-title>my-modal</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-title>Neue Lieferung hinzufügen</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<!-- [(ngModel)]="finish"   //insert into <ion-input> -->
+
+<ion-content class="ion-padding" color="dark">
+    <ion-row>
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">von</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">nach</ion-label>
+                <ion-input type="text" ></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-item color="dark">
+        <ion-label>Datum</ion-label>
+        <ion-input type="date" ></ion-input>
+    </ion-item>
+
+    <ion-item color="dark">
+        <ion-label position="floating">Fahrzeug</ion-label>
+        <ion-input type="text" ></ion-input>
+    </ion-item>
 
 
+    <ion-row>
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">verfügbare Länge in cm</ion-label>
+                <ion-input type="number" ></ion-input>
+            </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">verfügbare Höhe in cm</ion-label>
+                <ion-input type="number"  ></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">verfügbares Gewicht</ion-label>
+                <ion-input type="number" ></ion-input>
+            </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">€ pro Kg</ion-label>
+                <ion-input type="number" ></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">Sitzplätze</ion-label>
+                <ion-input type="number" ></ion-input>
+            </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+            <ion-item color="dark">
+                <ion-label position="floating">€ pro Sitzplatz</ion-label>
+                <ion-input type="number" ></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
 
 
-
-
-
-        <ion-button (click)="closeModal()">Close Modal</ion-button>
-
+    <ion-button color="success" >save</ion-button>
+    <ion-button color="danger" (click)="closeModal()">cancel</ion-button>
 
 
 </ion-content>
