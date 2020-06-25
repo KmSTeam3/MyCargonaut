@@ -17,12 +17,7 @@ export class DeliveryPage implements OnInit {
   async openModal(){
     const modal = await this.modalController.create({
       component: ModalDeliveryPage,
-      componentProps:{
-        "paramID": 133,
-        "paramTitle": "Test Title"
-      }
-
-  });
+    });
 
  modal.onDidDismiss().then((dataReturned) =>{
  if(dataReturned !== null){
