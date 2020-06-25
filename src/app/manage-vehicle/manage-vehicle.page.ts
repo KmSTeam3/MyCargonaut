@@ -15,7 +15,7 @@ export class ManageVehiclePage implements OnInit {
 
   listVehicle: Vehicle[] = [];
   holderId: string;
-  constructor(private router: Router, private vehicleService: VehicleService, private authService: AuthService) { }
+  constructor( private vehicleService: VehicleService, private authService: AuthService, private router?: Router) { }
 
   ngOnInit() {
     this.setUserId();

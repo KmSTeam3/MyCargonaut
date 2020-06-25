@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ManageVehiclePage } from './manage-vehicle.page';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: ManageVehiclePage
@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'list-vehicle',
     loadChildren: () => import('./list-vehicle/list-vehicle.module').then( m => m.ListVehiclePageModule)
-  },  {
+  },
+  {
     path: 'delete-vehicle',
     loadChildren: () => import('./delete-vehicle/delete-vehicle.module').then( m => m.DeleteVehiclePageModule)
   }
