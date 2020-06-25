@@ -1,74 +1,65 @@
-
-<ion-menu
-        side="end"
-        menuId="first"
-        contentId="main-content"
->
-
-  <ion-content>
-    <ion-list>
-      <ion-item (click)="navigateToProfile()">
-        <ion-label>
-          Profil
-        </ion-label>
-      </ion-item>
-      <ion-item>Sendungen</ion-item>
-      <ion-item (click)="navigateToMangeVehicle()">Fahrzeuge</ion-item>
-      <ion-item (click)="navigateToRouteSearch()">Routensuche</ion-item>
-      <ion-item (click)="navigateToTransportSearch()">Transportsuche</ion-item>
-      <ion-item (click)="navigateToSearchResult()">Suchergebnisse</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-
-
-
-
-
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <img id="logo" src="assets/CargoLogo.PNG" (click)="navigateToHome()">
-      <ion-buttons slot="primary">
-        <ion-menu-button auto-hide="false"></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content class="padding" id="ion-content">
-    <ion-card>
+     <ion-grid>
+       <ion-row>
+         <ion-col>
+           <ion-title>
+             <ion-item detail="false" lines="none" >
+               <ion-label class="ion-text-wrap">
+                 <h1>Objekt von X nach Y schicken</h1>
+                 <h2>am TT.MM.YY</h2>
+               </ion-label>
 
-      <ion-card-header>
-        <ion-card-subtitle>am TT.MM.YYYY</ion-card-subtitle>
-        <ion-card-title>Objekt von X nach Y schicken</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <img src="assets/CardImg/advance-card-bttf.png" />
-            </ion-col>
-            <ion-col>
-              <p>für</p>
-              <h2>12,34€</h2>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <p>durch Firma XY mit Fahrzeug XY verschicken.</p>
-              <p>Voraussichtliche Lieferzeit: 4-5 Werktage.</p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-      <ion-footer>
-        <ion-button>Zahlungsmittel wählen</ion-button>
-      </ion-footer>
-    </ion-card>
+             </ion-item>
+           </ion-title>
+         </ion-col>
+       </ion-row>
+
+       <ion-row>
+         <ion-col size="1"></ion-col>
+         <ion-col>
+           <ion-item lines="none">
+             <ion-avatar>
+               <img src="assets/icon/avatar-yoda.png">
+
+             </ion-avatar>
+             <ion-label slot="end">
+               <ion-text>
+
+                 <ion-text>
+                   <h2>für</h2>
+                   <h1 id="price">12,34€</h1>
+                 </ion-text>
+               </ion-text>
+             </ion-label>
+           </ion-item>
+
+           <ion-item lines="none">
+             <ion-icon name="star-outline"></ion-icon>
+             <ion-icon name="star-outline"></ion-icon>
+             <ion-icon name="star-outline"></ion-icon>
+             <ion-icon name="star-outline"></ion-icon>
+           </ion-item>
+
+           <ion-item button="true" lines="none">
+             <ion-label class="ion-text-wrap"><h3>durch Firma XY mit Fahrzeug XY verschicken.</h3>
+             <h3>Voraussichtliche Lieferzeit: 4-5 Werktage.</h3>
+             </ion-label>
+           </ion-item>
+         </ion-col>
+       </ion-row>
+       <ion-row id="payBtn">
+        <ion-col></ion-col>
+         <ion-col>
+
+             <ion-button size="large">Zahlungsmittel wählen</ion-button>
+
+
+         </ion-col>
+       </ion-row>
+
+     </ion-grid>
 
 
   </ion-content>
-</div>
 
 

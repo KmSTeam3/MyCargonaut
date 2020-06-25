@@ -31,7 +31,7 @@ export class ManageVehiclePage implements OnInit {
   renderList(id: string){
     this.vehicleService.findAll(id).forEach(vehicle => {
       this.listVehicle = vehicle;
-      console.log(vehicle)
+      console.log(vehicle);
     });
   }
 

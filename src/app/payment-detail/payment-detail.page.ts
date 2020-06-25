@@ -5,8 +5,10 @@ import {Router} from '@angular/router';
   selector: 'app-payment-detail',
   templateUrl: './payment-detail.page.html',
   styleUrls: ['./payment-detail.page.scss'],
+
 })
 export class PaymentDetailPage implements OnInit {
+
 
   constructor(private router: Router) { }
 
