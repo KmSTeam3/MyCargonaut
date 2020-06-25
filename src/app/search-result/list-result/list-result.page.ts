@@ -27,14 +27,15 @@ export class ListResultPage implements OnInit {
       component:  PaymentDetailPage,
       cssClass: 'paymentModal',
       componentProps: {
-        shipment: this.shipment
+        shipment: this.shipment,
+        modalController: this.modalController
       }
     });
     return await modal.present();
   }
 
   async dismissModal() {
-    this.modalController.dismiss();
+    await this.modalController.dismiss();
   }
 
 }

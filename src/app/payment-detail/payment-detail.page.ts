@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-payment-detail',
@@ -9,8 +10,10 @@ import {Router} from '@angular/router';
 })
 export class PaymentDetailPage implements OnInit {
 
+  @Input() modalController: ModalController;
+  constructor(private router: Router) {
 
-  constructor(private router: Router) { }
+  }
 
   ngOnInit() {
   }
@@ -47,7 +50,14 @@ export class PaymentDetailPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  navigateToPaymentChoice(){
+  async dismissModal(modalController: ModalController) {
+    await modalController.dismiss();
+  }
+
+  navigateToPaymentChoice(modalController: ModalController){
+    this.dismissModal(modalController);
+
     this.router.navigate(['/payment-choice']);
+
   }
 }
