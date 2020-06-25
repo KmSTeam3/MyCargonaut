@@ -51,10 +51,7 @@ export class RatingService {
     let user: User;
     this.subscription1 = this.findAll(userID).subscribe((value => {
      ratings = value;
-     for (const rating of ratings){
-       average += rating.points;
-     }
-     average = average / ratings.length;
+     average = this.calcAverage(ratings);
      this.subscription2 = this.userservice.getUser(userID).subscribe((value1 => {
        user = value1;
        user.rating = average;
@@ -64,6 +61,15 @@ export class RatingService {
      this.subscription1.unsubscribe();
    }));
 
+  }
+
+  calcAverage(ratings: Rating[]): number{
+      let average = 0;
+      for (const rating of ratings){
+          average += rating.points;
+      }
+      average = average / ratings.length;
+      return  average;
   }
 
 
