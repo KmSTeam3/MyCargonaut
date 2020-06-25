@@ -2,12 +2,22 @@ import { TestBed } from '@angular/core/testing';
 
 import { RatingService } from './rating.service';
 import {Rating} from './rating';
+import {IonicModule} from '@ionic/angular';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {environment} from '../../environments/environment';
 
 describe('RatingService', () => {
   let service: RatingService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        IonicModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule
+      ]
+    });
     service = TestBed.inject(RatingService);
   });
 
