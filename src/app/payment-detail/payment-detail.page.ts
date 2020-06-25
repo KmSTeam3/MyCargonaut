@@ -47,4 +47,7 @@ export class PaymentDetailPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  navigateToPaymentChoice(){
+    this.router.navigate(['/payment-choice']);
+  }
 }
