@@ -43,13 +43,19 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'rating-create',
     loadChildren: () => import('./rating-create/rating-create.module').then( m => m.RatingCreatePageModule)
   },
   {
     path: 'user-ratings',
     loadChildren: () => import('./user-ratings/user-ratings.module').then( m => m.UserRatingsPageModule)
+  },
+
+  {
+    path: 'payment-detail',
+    loadChildren: () => import('./payment-detail/payment-detail.module').then( m => m.PaymentDetailPageModule)
   },
 
 

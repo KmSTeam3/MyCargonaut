@@ -16,6 +16,9 @@ import { AddVehiclePage } from './add-vehicle.page';
     IonicModule,
     AddVehiclePageRoutingModule
   ],
+  exports: [
+    AddVehiclePage
+  ],
   declarations: [AddVehiclePage]
 })
 export class AddVehiclePageModule {}
