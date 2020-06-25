@@ -1,3 +1,5 @@
+import { EditVehiclePageModule } from './edit-vehicle/edit-vehicle.module';
+import { EditVehiclePage } from './edit-vehicle/edit-vehicle.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +20,7 @@ import { AddVehiclePageModule } from './add-vehicle/add-vehicle.module';
     IonicModule,
     ManageVehiclePageRoutingModule,
     ListVehiclePageModule,
-    AddVehiclePageModule,
+    AddVehiclePageModule
   ],
   declarations: [ManageVehiclePage],
   exports: [ListVehiclePageModule, AddVehiclePageModule]

@@ -1,3 +1,6 @@
+import { AuthService } from './../shared/auth.service';
+import { map } from 'rxjs/operators';
+import { VehicleService } from './../shared/vehicle.service';
 import { User } from './../shared/user';
 import { Vehicle } from './../shared/vehicle';
 import { Router } from '@angular/router';
@@ -9,19 +12,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-vehicle.page.scss'],
 })
 export class ManageVehiclePage implements OnInit {
-  user1: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  vehicle1: Vehicle = new Vehicle('LKW 1', this.user1, 100, 1000, 100, 4, 4);
-  vehicle2: Vehicle = new Vehicle('LKW 2', this.user1, 100, 1000, 100, 4, 4);
 
   listVehicle: Vehicle[] = [];
-
-
-  constructor(private router: Router) { }
+  holderId: string;
+  constructor( private vehicleService: VehicleService, private authService: AuthService, private router?: Router) { }
 
   ngOnInit() {
-    console.log(this.listVehicle);
-    this.listVehicle.push(this.vehicle1);
-    this.listVehicle.push(this.vehicle2);
+    this.setUserId();
+  }
+
+  setUserId(){
+    this.authService.checkAuthState().subscribe( (user) => {
+       this.renderList( user.uid);
+       this.holderId = user.uid;
+      });
+   }
+
+  renderList(id: string){
+    this.vehicleService.findAll(id).forEach(vehicle => {
+      this.listVehicle = vehicle;
+      console.log(vehicle)
+    });
   }
 
   goToAdd(){
