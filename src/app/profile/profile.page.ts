@@ -93,7 +93,8 @@ export class ProfilePage implements OnInit {
 
 
   updateProfile(value){
-    this.userService.update(this.userID, value.title, value.fname, value.lname, value.street, value.housenumber, value.postalcode, value.city, value.email)
+    const user: User = new User(this.userID, value.title, value.fName, value.lName, value.street, value.housenumber, value.postalcode, value.city, value.email);
+    this.userService.update(user)
         .then(() => {
           this.successMessage = 'Profil erfolgreich geupdatet';
     }, () => {

@@ -16,8 +16,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  
-  isLoggedIn: boolean = false;
+
+  isLoggedIn = false;
   userCollection: AngularFirestoreCollection<User>;
 
   static prepare(user: User): User {
@@ -45,8 +45,7 @@ export class UserService {
     return this.userCollection.doc(user.id).set(UserService.prepare(user));
   }
 
-  update(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string){
-    const user: User = new User(id, title, fName, lName, street, housenumber, postalcode, city, email);
+  update(user: User){
     return this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 
