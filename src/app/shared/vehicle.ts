@@ -1,18 +1,19 @@
 import { User } from './user';
 export class Vehicle{
 
-    $id: string;
+    licensePlate: string;
     name: string;
-    holder: User;
+    holderId: string;
     load: number;
     maxLoad: number;
     volume: number;
     seats: number;
     maxSeats: number;
 
-    constructor(name: string, holder: User, load: number, maxLoad, volume: number, seats: number, maxSeats: number){
+    constructor(licensePlate: string, name: string, holderId: string, load: number, maxLoad, volume: number, seats: number, maxSeats: number){
+        this.licensePlate = licensePlate;
         this.name = name;
-        this.holder = holder;
+        this.holderId = holderId;
         this.load = load;
         this.maxLoad = maxLoad;
         this.volume = volume;
