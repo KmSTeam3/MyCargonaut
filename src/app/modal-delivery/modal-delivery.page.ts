@@ -6,6 +6,9 @@ import {
 } from '@ionic/angular';
 import {DeliveryService} from "../shared/delivery.service";
 import {Delivery} from "../shared/delivery";
+import { AuthService } from './../shared/auth.service';
+
+
 
 
 @Component({
@@ -14,6 +17,7 @@ import {Delivery} from "../shared/delivery";
     styleUrls: ['./modal-delivery.page.scss'],
 })
 export class ModalDeliveryPage implements OnInit {
+
     from: string;
     too: string;
     vehicle: string;
@@ -24,7 +28,16 @@ export class ModalDeliveryPage implements OnInit {
     priceperkg: number;
     seats: number;
     priceperseat: number;
+    ownerId: string;
 
+
+
+    setUserId(){
+        this.authService.checkAuthState().subscribe( (user) => {
+            //  this.renderList( user.uid);
+              this.ownerId = user.uid;
+        });
+    }
 
     modalTitle: string;
     modelId: number;
@@ -34,6 +47,7 @@ export class ModalDeliveryPage implements OnInit {
         private navParams: NavParams,
         private toastController: ToastController,
         private deliverService: DeliveryService,
+        private authService: AuthService,
     ) {
     }
 
@@ -41,6 +55,7 @@ export class ModalDeliveryPage implements OnInit {
         /*  console.table(this.navParams);
           this.modelId = this.navParams.data.paramID;
           this.modalTitle = this.navParams.data.paramTitle; */
+        this.setUserId();
     }
 
     async presentToast(msg: string) {
@@ -52,12 +67,15 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     saveModal() {
-        const delivery: Delivery = new Delivery(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat);
+        alert(this.ownerId)
+        const delivery: Delivery = new Delivery(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId);
         console.log(delivery);
         if (this.from&& this.too&& this.date&& this.length&& this.height&& this.weight&& this.priceperkg&& this.seats&& this.priceperseat){
-            this.presentToast('added Delivery');
+
             this.deliverService.persist(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat);
 
+            this.closeModal();
+            this.presentToast('added Delivery');
         }else {
             this.presentToast('fuck');
         }

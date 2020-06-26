@@ -8,8 +8,9 @@ export class Delivery{
     priceperkg: number;
     seat: number;
     priceperSeat: number;
+    ownerId: string;
 
-    constructor(from: string, too:string, date:Date, length:number, height:number, weight:number, priceperkg:number, seat:number, priceperSeat:number){
+    constructor(from: string, too:string, date:Date, length:number, height:number, weight:number, priceperkg:number, seat:number, priceperSeat:number, ownerId:string){
         this.from = from;
         this.too = too;
         this.date= date;
@@ -19,6 +20,7 @@ export class Delivery{
         this.priceperkg= priceperkg;
         this.seat= seat;
         this.priceperSeat= priceperSeat;
+        this.ownerId= ownerId;
 
     }
 }
