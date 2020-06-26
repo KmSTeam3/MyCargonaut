@@ -37,9 +37,9 @@ export class DeliveryService {
   constructor(private afs: AngularFirestore, private  userService: UserService, private AuthService: AuthService) {
     this.deliveryCollection = afs.collection<Delivery>('delivery');
   }
-  persist(from:string, too:string, date: Date, length:number, height:number, weight:number, priceperkg:number,seat:number, priceperSeat:number ){
+  persist(from:string, too:string, date: Date, length:number, height:number, weight:number, priceperkg:number,seat:number, priceperSeat:number,ownerId:string){
     console.log(from,too,date,length,height,weight,priceperkg,priceperSeat)
-    const delivery = new Delivery(from,too,date,length,height,weight,priceperkg,seat,priceperSeat);
+    const delivery = new Delivery(from,too,date,length,height,weight,priceperkg,seat,priceperSeat,ownerId);
     return this.deliveryCollection.doc(from).set(DeliveryService.prepare(delivery));
   }
 

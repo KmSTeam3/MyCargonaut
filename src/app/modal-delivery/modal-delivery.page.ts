@@ -30,12 +30,15 @@ export class ModalDeliveryPage implements OnInit {
     priceperseat: number;
     ownerId: string;
 
+    currentID:string;
+
 
 
     setUserId(){
         this.authService.checkAuthState().subscribe( (user) => {
             //  this.renderList( user.uid);
-              this.ownerId = user.uid;
+              this.currentID = user.uid;
+              this.ownerId= this.currentID;
         });
     }
 
@@ -67,12 +70,11 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     saveModal() {
-        alert(this.ownerId)
-        const delivery: Delivery = new Delivery(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId);
+        const delivery: Delivery = new Delivery(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId,);
         console.log(delivery);
-        if (this.from&& this.too&& this.date&& this.length&& this.height&& this.weight&& this.priceperkg&& this.seats&& this.priceperseat){
+        if (this.from&& this.too&& this.date&& this.length&& this.height&& this.weight&& this.priceperkg&& this.seats&& this.priceperseat && this.ownerId){
 
-            this.deliverService.persist(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat);
+            this.deliverService.persist(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId );
 
             this.closeModal();
             this.presentToast('added Delivery');
