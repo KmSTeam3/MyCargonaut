@@ -1,17 +1,22 @@
+
+
 export class Payment {
     id: string;
     price: number;
-    status: boolean;
+    paymentStatus: boolean;
 
 
-    constructor(id: string, price: number, status: boolean) {
+
+    constructor(id: string, price: number, paymentStatus: boolean) {
         this.id = id;
         this.price = price;
-        this.status = status;
+        this.paymentStatus = paymentStatus;
     }
 
 
     pay(price: number){
-
+        if (price === this.price){
+            this.paymentStatus = true;
+        }
     }
 }

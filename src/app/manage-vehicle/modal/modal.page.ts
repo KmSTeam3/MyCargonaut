@@ -35,7 +35,7 @@ export class ModalPage implements OnInit {
   }
 
   saveModal(){
-    //this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
+    // this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
 
     const vehicle: Vehicle = new Vehicle(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
     console.log(vehicle);
