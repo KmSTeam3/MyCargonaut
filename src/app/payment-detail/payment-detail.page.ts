@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
+import {Shipment} from '../shared/shipment';
 
 @Component({
   selector: 'app-payment-detail',
@@ -11,6 +12,7 @@ import {ModalController} from '@ionic/angular';
 export class PaymentDetailPage implements OnInit {
 
   @Input() modalController: ModalController;
+  @Input() shipment: Shipment;
   constructor(private router: Router) {
 
   }

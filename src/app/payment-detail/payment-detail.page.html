@@ -5,8 +5,8 @@
            <ion-title>
              <ion-item detail="false" lines="none" >
                <ion-label class="ion-text-wrap">
-                 <h1>Objekt von X nach Y schicken</h1>
-                 <h2>am TT.MM.YY</h2>
+                 <h1>Objekt von {{shipment.start}} nach {{shipment.goal}} schicken</h1>
+                 <h2>am {{shipment.date | date: 'dd/MM/yyyy'}}</h2>
                </ion-label>
 
              </ion-item>
@@ -41,7 +41,7 @@
            </ion-item>
 
            <ion-item button="true" lines="none">
-             <ion-label class="ion-text-wrap"><h3>durch Firma XY mit Fahrzeug XY verschicken.</h3>
+             <ion-label class="ion-text-wrap"><h3>durch Firma {{shipment.cargonaut.fName}} mit Fahrzeug {{shipment.vehicle.name}} verschicken.</h3>
              <h3>Voraussichtliche Lieferzeit: 4-5 Werktage.</h3>
              </ion-label>
            </ion-item>
