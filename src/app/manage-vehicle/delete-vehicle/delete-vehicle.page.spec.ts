@@ -1,18 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EditVehiclePage } from './edit-vehicle.page';
+import { DeleteVehiclePage } from './delete-vehicle.page';
 
-describe('EditVehiclePage', () => {
-  let component: EditVehiclePage;
-  let fixture: ComponentFixture<EditVehiclePage>;
+describe('DeleteVehiclePage', () => {
+  let component: DeleteVehiclePage;
+  let fixture: ComponentFixture<DeleteVehiclePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditVehiclePage ]
+      declarations: [ DeleteVehiclePage ]
     });
-
-  
   }));
 
   it('should be true', () => {

@@ -6,22 +6,25 @@
 
 <ion-content ion-align-self-center>
   <ion-item>
-    <ion-input type="text"placeholder="name"  [(ngModel)]="name"></ion-input>
+    <ion-input type="text" placeholder="Kennzeichen" required [(ngModel)]="licensePlate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="load" [(ngModel)]="load"></ion-input>
+    <ion-input type="text"placeholder="Fahrzeugmodell" required [(ngModel)]="name"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="maxLoad" [(ngModel)]="maxLoad"></ion-input>
+    <ion-input type="number" placeholder="Aktuelle Ladung" [(ngModel)]="load"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="volume" [(ngModel)]="volume"></ion-input>
+    <ion-input type="number" placeholder="Maximal Ladung" [(ngModel)]="maxLoad"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="seats"  [(ngModel)]="seats"></ion-input>
+    <ion-input type="number" placeholder="Volumen" [(ngModel)]="volume"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="maxSeats"  [(ngModel)]="maxSeats"></ion-input>
+    <ion-input type="number" placeholder="Freie Plätze"  [(ngModel)]="seats"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="Maximal Plätze"  [(ngModel)]="maxSeats"></ion-input>
   </ion-item>
 
   <ion-button color="success" (click)="saveModal()" >save</ion-button>
