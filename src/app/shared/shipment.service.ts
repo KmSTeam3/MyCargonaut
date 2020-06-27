@@ -46,15 +46,15 @@ export class ShipmentService {
     }
 
     // create shipment
-    persist(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
+    persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
             pricePerKg: number, seat: number, pricePerSeat: number) {
-        const shipment: Shipment = new Shipment(id, cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat);
-        return this.shipmentCollection.doc(shipment.id).set(ShipmentService.prepare(shipment));
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat);
+        return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    update(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-           pricePerKg: number, seat: number, pricePerSeat: number) {
-        const shipment: Shipment = new Shipment(id, cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat);
+    update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
+           pricePerKg: number, seat: number, pricePerSeat: number, id: string) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 

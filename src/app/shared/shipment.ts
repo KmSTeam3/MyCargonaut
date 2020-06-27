@@ -30,10 +30,9 @@ export class Shipment {
     articleList: Article[];
 
 
-    constructor(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[],
+    constructor(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[],
                 start: string, goal: string, date: Date, startTime: string, length: number, height: number,
-                weight: number, pricePerKg: number, seat: number, pricePerSeat: number) {
-        this.id = id;
+                weight: number, pricePerKg: number, seat: number, pricePerSeat: number, id?: string) {
         this.start = start;
         this.goal = goal;
         this.date = date;
@@ -48,5 +47,6 @@ export class Shipment {
         this.vehicle = vehicle;
         this.passengerList = passengerList;
         this.articleList = articleList;
+        this.id = id;
     }
 }

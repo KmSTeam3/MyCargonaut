@@ -83,11 +83,11 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     saveModal() {
-        const shipment: Shipment = new Shipment(this.id, this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
+        const shipment: Shipment = new Shipment(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
         console.log(shipment);
         if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
 
-            this.shipmentService.persist(this.id, this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
+            this.shipmentService.persist(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
             this.closeModal();
             this.presentToast('added Delivery');
         } else {
