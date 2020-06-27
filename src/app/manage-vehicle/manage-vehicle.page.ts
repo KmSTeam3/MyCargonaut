@@ -25,13 +25,14 @@ export class ManageVehiclePage implements OnInit {
     this.authService.checkAuthState().subscribe( (user) => {
        this.renderList( user.uid);
        this.holderId = user.uid;
+       console.log('Eingeloggt als: ' + this.holderId);
       });
    }
 
   renderList(id: string){
     this.vehicleService.findAll(id).forEach(vehicle => {
       this.listVehicle = vehicle;
-      console.log(vehicle)
+      console.log(vehicle);
     });
   }
 
