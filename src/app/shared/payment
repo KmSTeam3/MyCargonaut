@@ -1,3 +1,4 @@
+import {error} from '@angular/compiler/src/util';
 
 enum PaymentSort {
     VORKASSE,
@@ -25,6 +26,8 @@ export class Payment {
     pay(price: number, paymentSort: PaymentSort){
         if (price === this.price){
             this.paymentStatus = true;
+        } else {
+            return error('not enough money');
         }
         this.paymentSort = paymentSort;
     }

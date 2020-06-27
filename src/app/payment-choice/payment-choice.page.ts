@@ -10,10 +10,16 @@ import {Router} from '@angular/router';
 export class PaymentChoicePage implements OnInit {
 
   @Input() shipment: Shipment;
-
+  currentPaymentChoice: number;
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+
+  setPaymentChoice(event){
+    this.currentPaymentChoice = event.detail.value;
+    console.log('radioGroupChange', this.currentPaymentChoice);
   }
 
   navigateToSearchResult(){

@@ -28,17 +28,22 @@
 
 <ion-content>
   <ion-list>
+    <ion-radio-group value="choice" (ionChange)="setPaymentChoice($event)">
+      <ion-list-header>
+        <ion-label>Bezahlart:</ion-label>
+      </ion-list-header>
+
     <ion-item lines="none">
       <ion-label class="ion-text-wrap">
         <ion-text>
           <h1>Vorkasse</h1>
           <p class="subtitle">Sie zahlen einfach vorab und erhalten die Ware bequem und günstig bei Zahlungseingang nach Hause geliefert.</p>
         </ion-text></ion-label>
-      <ion-checkbox color="primary"  slot="start"></ion-checkbox>
+      <ion-radio color="primary"  slot="start" value="0"></ion-radio>
     </ion-item>
 
     <ion-item lines="none">
-      <ion-checkbox color="secondary"  slot="start"></ion-checkbox>
+      <ion-radio color="secondary"  slot="start" value="1"></ion-radio>
       <ion-label class="ion-text-wrap">
           <ion-text>
             <h1>PayPal</h1>
@@ -49,7 +54,7 @@
     </ion-item>
 
     <ion-item lines="none">
-      <ion-checkbox color="warning" slot="start"></ion-checkbox>
+      <ion-radio color="warning" slot="start" value="2"></ion-radio>
       <ion-label class="ion-text-wrap">
         <ion-text>
           <h1>Barbezahlung</h1>
@@ -57,18 +62,24 @@
         </ion-text>
       </ion-label>
     </ion-item>
-
+    </ion-radio-group>
   </ion-list>
 
+<ion-grid>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-button>
+        <ion-text>
+          <p>verpflichtend</p>
+          <p>verschicken</p>
+        </ion-text>
+      </ion-button>
 
-    <ion-button>
-      <ion-text>
-        <p>verpflichtend</p>
-        <p>verschicken</p>
-      </ion-text>
-    </ion-button>
-
-
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 
 </ion-content>
