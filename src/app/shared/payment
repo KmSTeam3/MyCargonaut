@@ -1,9 +1,17 @@
 
+enum PaymentSort {
+    VORKASSE,
+    PAYPAL,
+    BAR
+}
+
+
 
 export class Payment {
     id: string;
     price: number;
     paymentStatus: boolean;
+    paymentSort: PaymentSort;
 
 
 
@@ -14,9 +22,10 @@ export class Payment {
     }
 
 
-    pay(price: number){
+    pay(price: number, paymentSort: PaymentSort){
         if (price === this.price){
             this.paymentStatus = true;
         }
+        this.paymentSort = paymentSort;
     }
 }
