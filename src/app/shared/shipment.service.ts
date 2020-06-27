@@ -9,6 +9,7 @@ import {Person} from './person';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Article} from './article';
+import {redirectUnauthorizedTo} from "@angular/fire/auth-guard";
 
 @Injectable({
     providedIn: 'root'
@@ -72,7 +73,8 @@ export class ShipmentService {
     }
 
     searchRoute(seats: number, start: string, goal: string, date: Date): Observable<Shipment[]> {
-        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.where('seats', '>=', seats).
+        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.
+        where('seats', '>=', seats).
         where('goal', '==', goal).
         where('start', '==', start).
         where('date', '==', date)).snapshotChanges();
@@ -85,7 +87,21 @@ export class ShipmentService {
         );
     }
 
-    searchTransport()
+    searchTransport(start: string, goal: string, weight: number, height: number, length: number){
+        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.
+        where('start', '==', start).
+        where('goal', '==', goal).
+        where('weight', '>=', weight).
+        where('height', '>=', height).
+        where('length', '>=', length)).snapshotChanges();
+        return queryBase.pipe(
+            map(actions => actions.map( a => {
+                const data = a.payload.doc.data() as Shipment;
+                data.id = a.payload.doc.id;
+                return{...data};
+            }))
+        );
+    }
 
     orderQuery(value: string): Observable<Shipment[]> {
         const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.orderBy(value)).snapshotChanges();
