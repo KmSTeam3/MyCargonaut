@@ -8,6 +8,7 @@ import {AuthService} from './auth.service';
 import {Person} from './person';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Article} from './article';
 
 @Injectable({
     providedIn: 'root'
@@ -44,13 +45,13 @@ export class ShipmentService {
     }
 
     // create shipment
-    persist(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: [], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
+    persist(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
             pricePerKg: number, seat: number, pricePerSeat: number) {
         const shipment: Shipment = new Shipment(id, cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat);
         return this.shipmentCollection.doc(shipment.id).set(ShipmentService.prepare(shipment));
     }
 
-    update(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: [], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
+    update(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
            pricePerKg: number, seat: number, pricePerSeat: number) {
         const shipment: Shipment = new Shipment(id, cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
@@ -70,7 +71,23 @@ export class ShipmentService {
         );
     }
 
-    query(value: string): Observable<Shipment[]>{
+    searchRoute(seats: number, start: string, goal: string, date: Date): Observable<Shipment[]> {
+        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.where('seats', '>=', seats).
+        where('goal', '==', goal).
+        where('start', '==', start).
+        where('date', '==', date)).snapshotChanges();
+        return queryBase.pipe(
+            map(actions => actions.map( a => {
+                const data = a.payload.doc.data() as Shipment;
+                data.id = a.payload.doc.id;
+                return{...data};
+            }))
+        );
+    }
+
+    searchTransport()
+
+    orderQuery(value: string): Observable<Shipment[]> {
         const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.orderBy(value)).snapshotChanges();
         return queryBase.pipe(
             map(actions => actions.map(a => {
@@ -80,5 +97,6 @@ export class ShipmentService {
             }))
         );
     }
+
 
 }
