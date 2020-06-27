@@ -9,7 +9,7 @@ import {Person} from './person';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Article} from './article';
-import {redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 @Injectable({
     providedIn: 'root'

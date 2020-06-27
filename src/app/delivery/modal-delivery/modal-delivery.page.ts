@@ -10,6 +10,7 @@ import {Vehicle} from '../../shared/vehicle';
 import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
 import {ShipmentService} from '../../shared/shipment.service';
+import {UserService} from '../../shared/user.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ModalDeliveryPage implements OnInit {
         private toastController: ToastController,
         private authService: AuthService,
         private shipmentService: ShipmentService,
+        private userService: UserService,
     ) {
     }
 
@@ -66,6 +68,7 @@ export class ModalDeliveryPage implements OnInit {
           this.modelId = this.navParams.data.paramID;
           this.modalTitle = this.navParams.data.paramTitle; */
         this.setUserId();
+        console.log('Aktuell eingeloggt als:' + this.cargonaut);
     }
 
     async presentToast(msg: string) {

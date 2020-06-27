@@ -6,6 +6,7 @@ import { VehicleService } from './../shared/vehicle.service';
 import { User } from './../shared/user';
 import { Vehicle } from './../shared/vehicle';
 import { AuthService } from './../shared/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-delivery',
@@ -14,7 +15,7 @@ import { AuthService } from './../shared/auth.service';
 })
 export class DeliveryPage implements OnInit {
 
-  constructor(public modalController: ModalController, private authService: AuthService) { }
+  constructor(public modalController: ModalController, private authService: AuthService, private router: Router) { }
 
     holderId: string;
 
@@ -45,4 +46,35 @@ ngOnInit(): void {
     this.setUserId();
 }
 
+    navigateToLogin(){
+        this.router.navigate(['/login']);
+    }
+
+    navigateToRegister(){
+        this.router.navigate(['/register']);
+    }
+
+    navigateToMangeVehicle(){
+        this.router.navigate(['/manage-vehicle']);
+    }
+
+    navigateToRouteSearch(){
+        this.router.navigate(['/route-search']);
+    }
+
+    navigateToTransportSearch(){
+        this.router.navigate(['/transport-search']);
+    }
+
+    navigateToSearchResult(){
+        this.router.navigate(['/search-result']);
+    }
+
+    navigateToProfile(){
+        this.router.navigate(['/profile']);
+    }
+
+    navigateToHome(){
+        this.router.navigate(['/home']);
+    }
 }
