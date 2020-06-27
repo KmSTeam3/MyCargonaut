@@ -42,3 +42,11 @@ h3{
   --color: white;
   --background: rgba(2, 92, 83, 0.9);
 }
+
+#list {
+  display: flex;
+}
+
+#impItem {
+  align-self: flex-end;
+}

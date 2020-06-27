@@ -1,6 +1,59 @@
+<ion-menu
+        side="end"
+        menuId="first"
+        contentId="main-content"
+>
+
+    <ion-content>
+        <ion-list>
+            <ion-item (click)="navigateToProfile()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Profil
+                </ion-label>
+            </ion-item>
+            <ion-item button="true">
+                <ion-label class="ion-text-wrap">
+                    Sendungen
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToMangeVehicle()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Fahrzeuge
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToRouteSearch()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Routensuche
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToTransportSearch()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Transportsuche
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToSearchResult()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Suchergebnisse
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-item (click)="navigateToImpressum()" button="true">
+            <ion-label class="ion-text-wrap">
+                Impressum
+            </ion-label>
+        </ion-item>
+    </ion-content>
+</ion-menu>
+
+
+<div class="ion-page" id="main-content">
 <ion-header>
     <ion-toolbar>
-        <ion-title>impressum</ion-title>
+        <img id="" src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+        <ion-buttons slot="primary">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -152,3 +205,4 @@
 
 
 </ion-content>
+</div>

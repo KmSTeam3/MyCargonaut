@@ -138,4 +138,8 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
+  }
+
 }
