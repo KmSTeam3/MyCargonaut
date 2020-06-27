@@ -24,6 +24,7 @@ export class DeliveryPage implements OnInit {
         this.authService.checkAuthState().subscribe( (user) => {
           //  this.renderList( user.uid);
             this.holderId = user.uid;
+            console.log('Not modal' + this.holderId);
         });
     }
 
