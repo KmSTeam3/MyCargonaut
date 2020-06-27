@@ -1,0 +1,211 @@
+<ion-menu
+        side="end"
+        menuId="first"
+        contentId="main-content"
+>
+
+    <ion-content>
+        <ion-list>
+            <ion-item (click)="navigateToProfile()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Profil
+                </ion-label>
+            </ion-item>
+            <ion-item button="true">
+                <ion-label class="ion-text-wrap">
+                    Sendungen
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToMangeVehicle()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Fahrzeuge
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToRouteSearch()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Routensuche
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToTransportSearch()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Transportsuche
+                </ion-label>
+            </ion-item>
+            <ion-item (click)="navigateToSearchResult()" button="true">
+                <ion-label class="ion-text-wrap">
+                    Suchergebnisse
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-item (click)="navigateToImpressum()" button="true">
+            <ion-label class="ion-text-wrap">
+                Impressum
+            </ion-label>
+        </ion-item>
+    </ion-content>
+</ion-menu>
+
+
+<div class="ion-page" id="main-content">
+<ion-header>
+    <ion-toolbar>
+        <img id="" src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+        <ion-buttons slot="primary">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-text>
+                    <h1>Impressum</h1>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2">
+                <ion-text><h3>Anschrift</h3></ion-text>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <h4>My Cargonaut GmbH</h4>
+                    <p>Max Muster</p>
+                    <p>Musterweg</p>
+                    <p>12345 Musterstadt</p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2">
+                <ion-text>
+                    <h3>Vertreten durch:</h3>
+                </ion-text>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <p>Max Muster</p>
+                    <p>Anna Muster</p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="2">
+                <h3>Kontakt:</h3>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <p>Telefon: 01234-789456</p>
+                    <p>Fax: 1234-56789</p>
+                    <p> E-Mail: <a href='mailto:max@muster.de'>max@muster.de</a></p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="2">
+                <h3>Umsatzsteuer-ID: </h3>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <p>Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz: Musterustid.9802341</p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="2">
+                <h3>Wirtschafts-ID:</h3>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <p>Musterwirtschaftsid</p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="2">
+                <h3>Aufsichtsbehörde:</h3>
+            </ion-col>
+            <ion-col>
+                <ion-text>
+                    <p>Musteraufsicht Musterstadt</p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="1"></ion-col>
+        <ion-col>
+            <ion-text>
+                <div class='impressum'>
+
+
+                    <ion-text>
+                        <h3>Haftungsausschluss: </h3>
+                        <h3>Haftung für Inhalte</h3>
+                        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+                            Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als
+                            Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den
+                            allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter
+                            jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen
+                            oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                            Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den
+                            allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst
+                            ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden
+                            von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+                    </ion-text>
+
+                    <ion-text>
+                        <h3>Haftung für Links</h3>
+                        <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss
+                            haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte
+                            der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die
+                            verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft.
+                            Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
+                            inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer
+                            Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links
+                            umgehend entfernen.</p>
+                    </ion-text>
+
+                    <ion-text>
+                        <h3>Urheberrecht</h3>
+                        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+                            deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+                            außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors
+                            bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen
+                            Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden
+                            die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet.
+                            Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
+                            entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte
+                            umgehend entfernen.</p>
+                    </ion-text>
+
+                    <ion-text>
+                        <h3>Datenschutz</h3>
+                        <p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit
+                            auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen)
+                            erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne
+                            Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+                        <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
+                            Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist
+                            nicht möglich.</p>
+                        <p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur
+                            Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit
+                            ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte
+                            im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.</p>
+                    </ion-text>
+                </div>
+            </ion-text>
+        </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
+</div>
