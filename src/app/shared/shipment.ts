@@ -4,6 +4,7 @@ import {DeliveryObject} from './deliveryObject';
 import {Article} from './article';
 import {Person} from './person';
 
+
 enum enumStatus{
     PREP,
     DELIVERY,
@@ -12,26 +13,38 @@ enum enumStatus{
 
 export class Shipment{
 
-    $id: string;
-    cargonaut: User;
-    vehicle: Vehicle;
-    passengerList: Person[];
-    articleList: Article[];
     start: string;
     goal: string;
     date: Date;
     startTime: string;
     status: enumStatus;
+    length: number;
+    height: number;
+    weight: number;
+    priceperkg: number;
+    seat: number;
+    priceperSeat: number;
+    cargonaut: string;
+    vehicle: Vehicle;
+    passengerList: Person[];
+    articleList: Article[];
 
 
-    constructor(cargonaut: User, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string) {
-        this.cargonaut = cargonaut;
-        this.vehicle = vehicle;
-        this.passengerList = passengerList;
-        this.articleList = articleList;
+    constructor(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string,length: number,height: number, weight: number,priceperkg: number,seat: number,priceperSeat: number) {
+
         this.start = start;
         this.goal = goal;
         this.date = date;
         this.startTime = startTime;
+        this.length= length;
+        this.height = height;
+        this.weight = weight;
+        this.priceperkg= priceperkg;
+        this.seat= seat;
+        this.priceperSeat= priceperSeat;
+        this.cargonaut = cargonaut;
+        this.vehicle = vehicle;
+        this.passengerList = passengerList;
+        this.articleList = articleList;
     }
 }

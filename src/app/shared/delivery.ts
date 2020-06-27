@@ -1,6 +1,6 @@
 export class Delivery{
-    from: string;
-    too: string;
+    start: string;
+    goal: string;
     date: Date;
     length: number;
     height: number;
@@ -8,11 +8,11 @@ export class Delivery{
     priceperkg: number;
     seat: number;
     priceperSeat: number;
-    ownerId: string;
+    cargonaut: string;
 
-    constructor(from: string, too:string, date:Date, length:number, height:number, weight:number, priceperkg:number, seat:number, priceperSeat:number, ownerId:string){
-        this.from = from;
-        this.too = too;
+    constructor(from: string, too:string, date:Date, length:number, height:number, weight:number, priceperkg:number, seat:number, priceperSeat:number, cargonaut:string){
+        this.start = from;
+        this.goal = too;
         this.date= date;
         this.length = length;
         this.height= height;
@@ -20,7 +20,7 @@ export class Delivery{
         this.priceperkg= priceperkg;
         this.seat= seat;
         this.priceperSeat= priceperSeat;
-        this.ownerId= ownerId;
+        this.cargonaut= cargonaut;
 
     }
 }

@@ -7,8 +7,10 @@ import {
 import {DeliveryService} from "../shared/delivery.service";
 import {Delivery} from "../shared/delivery";
 import { AuthService } from './../shared/auth.service';
-
-
+import {Shipment} from "../shared/shipment";
+import {Vehicle} from "../shared/vehicle";
+import {Person} from "../shared/person";
+import {Article} from "../shared/article";
 
 
 @Component({
@@ -16,19 +18,27 @@ import { AuthService } from './../shared/auth.service';
     templateUrl: './modal-delivery.page.html',
     styleUrls: ['./modal-delivery.page.scss'],
 })
+
 export class ModalDeliveryPage implements OnInit {
 
-    from: string;
-    too: string;
-    vehicle: string;
+
+
+    cargonaut: string;
+    vehicle: Vehicle;
+    passengerList: Person[];
+    articleList: Article[];
+    start: string;
+    goal: string;
     date: Date;
+    startTime: string;
     length: number;
     height: number;
     weight: number;
     priceperkg: number;
-    seats: number;
-    priceperseat: number;
-    ownerId: string;
+    seat: number;
+    priceperSeat: number;
+
+
 
     currentID:string;
 
@@ -38,7 +48,7 @@ export class ModalDeliveryPage implements OnInit {
         this.authService.checkAuthState().subscribe( (user) => {
             //  this.renderList( user.uid);
               this.currentID = user.uid;
-              this.ownerId= this.currentID;
+              this.cargonaut= this.currentID;
         });
     }
 
@@ -70,11 +80,11 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     saveModal() {
-        const delivery: Delivery = new Delivery(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId,);
+        const delivery: Shipment = new Shipment(this.start, this.goal, this.date, this.length, this.height, this.weight, this.priceperkg,this.seat, this.priceperSeat,this.cargonaut,this.vehicle,this.passengerList,this.articleList, this.cargonaut,);
         console.log(delivery);
-        if (this.from&& this.too&& this.date&& this.length&& this.height&& this.weight&& this.priceperkg&& this.seats&& this.priceperseat && this.ownerId){
+        if (this.start&& this.goal&& this.date&& this.length&& this.height&& this.weight&& this.priceperkg&& this.seat&& this.priceperSeat && this.cargonaut){
 
-            this.deliverService.persist(this.from, this.too, this.date, this.length, this.height, this.weight, this.priceperkg,this.seats, this.priceperseat,this.ownerId );
+            this.deliverService.persist( this.start, this.goal, this.date, this.length, this.height, this.weight, this.priceperkg,this.seat, this.priceperSeat,this.cargonaut,this.vehicle,this.passengerList,this.articleList, this.cargonaut, );
 
             this.closeModal();
             this.presentToast('added Delivery');
