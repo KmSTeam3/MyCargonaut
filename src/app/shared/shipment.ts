@@ -1,18 +1,18 @@
-import { User } from './user';
+import {User} from './user';
 import {Vehicle} from './vehicle';
 import {DeliveryObject} from './deliveryObject';
 import {Article} from './article';
 import {Person} from './person';
 
 
-enum enumStatus{
+export enum enumStatus {
     PREP,
     DELIVERY,
     DELIVERED
 }
 
-export class Shipment{
-
+export class Shipment {
+    id: string;
     start: string;
     goal: string;
     date: Date;
@@ -21,27 +21,29 @@ export class Shipment{
     length: number;
     height: number;
     weight: number;
-    priceperkg: number;
+    pricePerKg: number;
     seat: number;
-    priceperSeat: number;
+    pricePerSeat: number;
     cargonaut: string;
     vehicle: Vehicle;
     passengerList: Person[];
     articleList: Article[];
 
 
-    constructor(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string,length: number,height: number, weight: number,priceperkg: number,seat: number,priceperSeat: number) {
-
+    constructor(id: string, cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[],
+                start: string, goal: string, date: Date, startTime: string, length: number, height: number,
+                weight: number, pricePerKg: number, seat: number, pricePerSeat: number) {
+        this.id = id;
         this.start = start;
         this.goal = goal;
         this.date = date;
         this.startTime = startTime;
-        this.length= length;
+        this.length = length;
         this.height = height;
         this.weight = weight;
-        this.priceperkg= priceperkg;
-        this.seat= seat;
-        this.priceperSeat= priceperSeat;
+        this.pricePerKg = pricePerKg;
+        this.seat = seat;
+        this.pricePerSeat = pricePerSeat;
         this.cargonaut = cargonaut;
         this.vehicle = vehicle;
         this.passengerList = passengerList;

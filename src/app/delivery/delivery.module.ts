@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { DeliveryPageRoutingModule } from './delivery-routing.module';
 
 import { DeliveryPage } from './delivery.page';
-import { ModalDeliveryPageModule} from '../modal-delivery/modal-delivery.module';
+import { ModalDeliveryPageModule} from './modal-delivery/modal-delivery.module';
 
 @NgModule({
   imports: [

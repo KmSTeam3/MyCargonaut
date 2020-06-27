@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'modal-delivery',
-    loadChildren: () => import('./modal-delivery/modal-delivery.module').then( m => m.ModalDeliveryPageModule)
+    loadChildren: () => import('./delivery/modal-delivery/modal-delivery.module').then(m => m.ModalDeliveryPageModule)
   },
 
   {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {ModalDeliveryPage} from "../modal-delivery/modal-delivery.page";
-import {Test} from "tslint";
+import {ModalDeliveryPage} from './modal-delivery/modal-delivery.page';
+import {Test} from 'tslint';
 import { VehicleService } from './../shared/vehicle.service';
 import { User } from './../shared/user';
 import { Vehicle } from './../shared/vehicle';
@@ -14,7 +14,11 @@ import { AuthService } from './../shared/auth.service';
 })
 export class DeliveryPage implements OnInit {
 
+  constructor(public modalController: ModalController, private authService: AuthService) { }
+
     holderId: string;
+
+  dataReturned: any;
     setUserId(){
         this.authService.checkAuthState().subscribe( (user) => {
           //  this.renderList( user.uid);
@@ -22,17 +26,13 @@ export class DeliveryPage implements OnInit {
         });
     }
 
-  dataReturned: any;
-
-  constructor(public modalController: ModalController,private authService: AuthService) { }
-
   async openModal(){
     const modal = await this.modalController.create({
       component: ModalDeliveryPage,
     });
 
- modal.onDidDismiss().then((dataReturned) =>{
- if(dataReturned !== null){
+    modal.onDidDismiss().then((dataReturned) => {
+ if (dataReturned !== null){
    this.dataReturned = dataReturned.data;
  }
   });
