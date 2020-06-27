@@ -70,7 +70,7 @@
 
             <ion-row class="formRow">
                 <ion-col>
-                    <form class="form" [formGroup]="validationsForm">
+                    <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
                         <ion-row>
 
                             <ion-col>
@@ -79,7 +79,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-select placeholder="1">
+                                    <ion-select placeholder="1" formControlName="seats">
                                         <ion-select-option value="1">1</ion-select-option>
                                         <ion-select-option value="2">2</ion-select-option>
                                         <ion-select-option value="3">3</ion-select-option>
@@ -94,7 +94,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                                    <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="startAddress"></ion-input>
                                     <div class="validation-errors">
                                         <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                             <div class="error-message"
@@ -112,7 +112,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                                    <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="toAddress"></ion-input>
                                     <div class="validation-errors">
                                         <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                             <div class="error-message"
@@ -130,7 +130,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-input type="text" required placeholder="TT.MM.YYYY"></ion-input>
+                                    <ion-input type="text" required placeholder="TT.MM.YYYY" formControlName="date"></ion-input>
                                 </ion-row>
                             </ion-col>
 
@@ -142,7 +142,7 @@
             <ion-row>
                 <ion-col size="5"></ion-col>
                 <ion-col size="2">
-                    <ion-button expand="block" (click)="navigateToSearchResult()">Angaben zu Objekt</ion-button>
+                    <ion-button type="submit" expand="block" (click)="navigateToSearchResult()">Angaben zu Objekt</ion-button>
                 </ion-col>
                 <ion-col size="4"></ion-col>
             </ion-row>

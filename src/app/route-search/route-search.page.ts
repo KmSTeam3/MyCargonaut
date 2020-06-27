@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Shipment} from '../shared/shipment';
+import {DataHelperService} from '../shared/data-helper.service';
+import {ShipmentService} from '../shared/shipment.service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-route-search',
@@ -12,6 +15,11 @@ export class RouteSearchPage implements OnInit {
   errorMessage = '';
   successMessage = '';
 
+  shipmentList: Shipment[];
+
+
+
+
   VALIDATION_MESSAGES = {
     postalCode: [
       {type: 'required', message: 'Postleitzahl ist erforderlich.'},
@@ -23,8 +31,9 @@ export class RouteSearchPage implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
   }
+
 
   ngOnInit() {
     this.validationsForm = this.formBuilder.group({
@@ -32,7 +41,22 @@ export class RouteSearchPage implements OnInit {
         Validators.minLength(5),
         Validators.required
       ])),
+      seats: new FormControl(''),
+      startAddress: new FormControl(''),
+      toAddress: new FormControl(''),
+      date: new FormControl('')
     });
+  }
+
+  search(value){
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+      this.shipmentList = shipment;
+    });
+
+    console.log(this.shipmentList);
+
+    this.datahelper.tranportData = this.shipmentList;
+    this.router.navigate(['search-result']);
   }
 
   navigateToSearchResult(){

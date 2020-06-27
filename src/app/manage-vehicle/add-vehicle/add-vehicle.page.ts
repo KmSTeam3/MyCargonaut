@@ -1,11 +1,11 @@
-import { ModalPage } from "../modal/modal.page";
-import { Component, Input } from "@angular/core";
-import { ModalController } from "@ionic/angular";
+import { ModalPage } from '../modal/modal.page';
+import { Component, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: "app-add-vehicle",
-  templateUrl: "./add-vehicle.page.html",
-  styleUrls: ["./add-vehicle.page.scss"],
+  selector: 'app-add-vehicle',
+  templateUrl: './add-vehicle.page.html',
+  styleUrls: ['./add-vehicle.page.scss'],
 })
 export class AddVehiclePage {
   @Input() holderId: string;
