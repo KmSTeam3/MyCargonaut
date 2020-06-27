@@ -28,6 +28,7 @@ export class ManageVehiclePage implements OnInit {
     this.authService.checkAuthState().subscribe( (user) => {
        this.renderList( user.uid);
        this.holderId = user.uid;
+       console.log('Eingeloggt als: ' + this.holderId);
       });
    }
 
@@ -72,5 +73,9 @@ export class ManageVehiclePage implements OnInit {
 
   navigateToHome(){
     this.router.navigate(['/home']);
+  }
+
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
   }
 }

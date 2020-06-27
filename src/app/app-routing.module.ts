@@ -57,6 +57,10 @@ const routes: Routes = [
     path: 'payment-detail',
     loadChildren: () => import('./payment-detail/payment-detail.module').then( m => m.PaymentDetailPageModule)
   },
+  {
+    path: 'impressum',
+    loadChildren: () => import('./impressum/impressum.module').then( m => m.ImpressumPageModule)
+  },
 
 
 ];

@@ -69,11 +69,14 @@ export class HomePage {
     this.router.navigate(['/profile']);
   }
 
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
+  }
+
   openFirst(){
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
-
 
 }
 
