@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Vehicle } from 'src/app/shared/vehicle';
+import { EModalPage } from '../e-modal/e-modal.page';
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -25,7 +26,7 @@ export class EditVehiclePage implements OnInit {
   async presentModal() {
     console.log( this.vehicle) ;
     const modal = await this.modalController.create({
-      component: ModalPage,
+      component: EModalPage,
       componentProps: {
         licensePlate: this.vehicle.licensePlate,
         name: this.vehicle.name,

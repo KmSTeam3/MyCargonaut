@@ -23,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'delete-vehicle',
     loadChildren: () => import('./delete-vehicle/delete-vehicle.module').then( m => m.DeleteVehiclePageModule)
+  },
+  {
+    path: 'e-modal',
+    loadChildren: () => import('./e-modal/e-modal.module').then( m => m.EModalPageModule)
   }
 
 ];
