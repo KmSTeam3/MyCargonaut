@@ -68,4 +68,8 @@ export class SearchResultPage implements OnInit {
   navigateToHome(){
     this.router.navigate(['/home']);
   }
+
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
+  }
 }

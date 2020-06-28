@@ -4,7 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { VehicleService } from "./../shared/vehicle.service";
 import { AuthService } from "./../shared/auth.service";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { ManageVehiclePage } from "./manage-vehicle.page";
@@ -50,18 +50,7 @@ describe("ManageVehiclePage", () => {
     expect(true).toBeTruthy();
   });
 
-  it("should be empty", () => {
-    //let router = TestBed.get(Router) ;
-    //let location = TestBed.get(Location);
-    component = TestBed.inject(ManageVehiclePage);
-    authService = TestBed.inject(AuthService);
-    vehicleService = TestBed.inject(VehicleService);
-    //router = TestBed.inject(RouterTestingModule );
-    const testComponent = new ManageVehiclePage(vehicleService, authService);
-    expect(component.listVehicle).toEqual([]);
-  });
-
-  it("should be no empty", function (done) {
+  it("should be not empty", function (done) {
     //let router = TestBed.get(Router) ;
     //let location = TestBed.get(Location);
     component = TestBed.inject(ManageVehiclePage);
@@ -69,7 +58,6 @@ describe("ManageVehiclePage", () => {
     vehicleService = TestBed.inject(VehicleService);
     angularFireStore = TestBed.get(AngularFirestore);
     //router = TestBed.inject(RouterTestingModule);
-    const testComponent = new ManageVehiclePage(vehicleService, authService);
 
     authService.login(value).then(() => {
       authService.checkAuthState().subscribe((user) => {
@@ -84,10 +72,16 @@ describe("ManageVehiclePage", () => {
           123
         );
         const testListVehicle: Vehicle[] = [vehicle];
-        component.renderList(user.uid);
+        
+        component.setUserId();
+        fixture.autoDetectChanges();
         expect(component.listVehicle).toEqual(testListVehicle);
       });
       done();
-    });
+    }).catch( ()=> {
+      console.log('Login failed!'); 
+    }
+    );
   });
+  
 });
