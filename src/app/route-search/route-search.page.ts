@@ -54,7 +54,7 @@ export class RouteSearchPage implements OnInit {
   search(value){
     console.log('search called');
     console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+    this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
       this.shipmentList = shipment;
       console.log(shipment);
     });

@@ -99,7 +99,7 @@ export class ShipmentService {
         );
     }
 
-    searchRoute(seats: number, start: string, goal: string, date: Date): Observable<Shipment[]> {
+    searchRoute(seats: number, start: string, goal: string, date: string): Observable<Shipment[]> {
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> =  this.afs.collection<Shipment>('shipment', ref => ref.
         where('seat', '>=', seats).
         where('goal', '==', goal).
