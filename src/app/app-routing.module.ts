@@ -43,9 +43,14 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'payment-detail',
     loadChildren: () => import('./payment-detail/payment-detail.module').then( m => m.PaymentDetailPageModule)
+  },
+  {
+    path: 'payment-choice',
+    loadChildren: () => import('./payment-choice/payment-choice.module').then( m => m.PaymentChoicePageModule)
   },
   {
     path: 'impressum',
