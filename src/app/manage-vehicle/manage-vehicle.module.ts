@@ -11,17 +11,19 @@ import { ManageVehiclePageRoutingModule } from './manage-vehicle-routing.module'
 import { ManageVehiclePage } from './manage-vehicle.page';
 import { ListVehiclePageModule } from './list-vehicle/list-vehicle.module';
 import { AddVehiclePageModule } from './add-vehicle/add-vehicle.module';
+import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ManageVehiclePageRoutingModule,
-    ListVehiclePageModule,
-    AddVehiclePageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ManageVehiclePageRoutingModule,
+        ListVehiclePageModule,
+        AddVehiclePageModule,
+        MenuHeaderPageModule
+    ],
   declarations: [ManageVehiclePage],
   exports: [ListVehiclePageModule, AddVehiclePageModule]
 })

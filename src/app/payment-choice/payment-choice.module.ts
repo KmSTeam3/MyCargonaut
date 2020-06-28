@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentChoicePageRoutingModule } from './payment-choice-routing.module';
 
 import { PaymentChoicePage } from './payment-choice.page';
+import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PaymentChoicePageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PaymentChoicePageRoutingModule,
+        MenuHeaderPageModule
+    ],
   declarations: [PaymentChoicePage]
 })
 export class PaymentChoicePageModule {}

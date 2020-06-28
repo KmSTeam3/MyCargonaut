@@ -4,22 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SearchResultPageRoutingModule } from './search-result-routing.module';
+import { PaymentSuccessPageRoutingModule } from './payment-success-routing.module';
 
-import { SearchResultPage } from './search-result.page';
-import {ListResultPageModule} from './list-result/list-result.module';
+import { PaymentSuccessPage } from './payment-success.page';
 import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
-
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        SearchResultPageRoutingModule,
-        ListResultPageModule,
+        PaymentSuccessPageRoutingModule,
         MenuHeaderPageModule
     ],
-  declarations: [SearchResultPage]
+  declarations: [PaymentSuccessPage]
 })
-export class SearchResultPageModule {}
+export class PaymentSuccessPageModule {}

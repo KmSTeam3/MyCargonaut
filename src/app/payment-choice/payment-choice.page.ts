@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Shipment} from '../shared/shipment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
-import {ShipmentService} from "../shared/shipment.service";
+import {ShipmentService} from '../shared/shipment.service';
 
 @Component({
     selector: 'app-payment-choice',
