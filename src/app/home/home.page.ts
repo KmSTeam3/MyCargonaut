@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { Component } from '@angular/core';
-import {User} from '../shared/user';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -9,33 +8,17 @@ import { MenuController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+/**
+ * Home page shows the three different search options and has login and registration options
+ *
+ * If User is logged in instead of login & regBtn burger menu that opens nav-sidemenu is shown
+ */
 export class HomePage {
 
   constructor(public userService: UserService, private router: Router, private menu: MenuController) {
     // this.getUserList();
   }
 
-  /*getUserList(){
-    this.userService.getUserList().valueChanges().subscribe(res => {console.log(res); } );
-  }
-
-  createUser(){
-    const user: User = new User('Admin', 'Adminstrator', '01.01.2001', 'emailadresse', 'geheim');
-    this.userService.createUser(user);
-    alert('user created.');
-  }
-
-  deleteUser(id){
-    console.log(id);
-    if (window.confirm('Do you really want to delete?')){
-        this.userService.deleteUser(id);
-    }
-  }
-
-  // to do
-  updateUser(){
-
-  }*/
 
   navigateToLogin(){
     this.router.navigate(['/login']);
@@ -45,33 +28,6 @@ export class HomePage {
     this.router.navigate(['/register']);
   }
 
-  navigateToDelivery(){
-    this.router.navigate(['/delivery']);
-  }
-
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
-
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
-
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
-
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
-
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
-
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
 
   openFirst(){
     this.menu.enable(true, 'first');
