@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Shipment} from '../shared/shipment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
+import {ShipmentService} from "../shared/shipment.service";
 
 @Component({
     selector: 'app-payment-choice',
@@ -13,7 +14,7 @@ export class PaymentChoicePage implements OnInit {
     @Input() shipment: Shipment;
     currentPaymentChoice: number;
 
-    constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute) {
+    constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 console.log(params);
@@ -52,6 +53,13 @@ export class PaymentChoicePage implements OnInit {
         });
         toast.present();
     }
+
+
+    pay(){
+        this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice, this.shipment.id);
+
+    }
+
 
     navigateToSearchResult() {
         this.router.navigate(['/search-result']);

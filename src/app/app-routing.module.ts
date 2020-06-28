@@ -73,7 +73,11 @@ const routes: Routes = [
   {
     path: 'impressum',
     loadChildren: () => import('./impressum/impressum.module').then( m => m.ImpressumPageModule)
+  },  {
+    path: 'payment-success',
+    loadChildren: () => import('./payment-success/payment-success.module').then( m => m.PaymentSuccessPageModule)
   },
+
 
 
 ];
