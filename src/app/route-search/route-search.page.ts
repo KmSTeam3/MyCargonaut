@@ -10,6 +10,16 @@ import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from
   templateUrl: './route-search.page.html',
   styleUrls: ['./route-search.page.scss'],
 })
+/**
+ * Route search page which lets users search for shipments with available seats
+ * matching given search criteria where they can travel with
+ *
+ * Criteria:
+ * - How many seats are needed
+ * - Start address
+ * - Destination address
+ * - On which date the shipment start
+ */
 export class RouteSearchPage implements OnInit {
 
   validationsForm: FormGroup;
@@ -37,6 +47,7 @@ export class RouteSearchPage implements OnInit {
 
 
   ngOnInit() {
+    // Initiation of the form fields value variables
       this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -49,6 +60,7 @@ export class RouteSearchPage implements OnInit {
     });
   }
 
+  // Search method
   search(value){
     console.log('search called');
     console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
@@ -71,14 +83,17 @@ export class RouteSearchPage implements OnInit {
     });
   }
 
+  // navigation method to the login page
   navigateToLogin(){
     this.router.navigate(['/login']);
   }
 
+  // navigation method to register page
   navigateToRegister(){
     this.router.navigate(['/register']);
   }
 
+  // navigation method to the home page
   navigateToHome(){
     this.router.navigate(['/home']);
   }
