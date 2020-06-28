@@ -3,7 +3,7 @@ import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
 import {Vehicle} from '../shared/vehicle';
 import {Person} from '../shared/person';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
 
@@ -24,7 +24,17 @@ export class SearchResultPage implements OnInit {
 
   listShipments: Shipment[] = [];
 
-  constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService) { }
+  constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        console.log(params);
+        console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
+        this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+        console.log(this.listShipments);
+      }
+    });
+
+  }
   customPopoverOptions: any = {
     header: 'Filter search result',
     subHeader: 'Select your attribute',
@@ -36,8 +46,8 @@ export class SearchResultPage implements OnInit {
     // this.user.rating = 1;
     // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
     // this.shipmentService.query('price');
-    this.listShipments = this.dataHelper.tranportData;
-    console.log('Result Page' + this.listShipments);
+    // this.listShipments = this.dataHelper.tranportData;
+    console.log(this.listShipments);
     // this.listShipments.push(this.shipment);
   }
 

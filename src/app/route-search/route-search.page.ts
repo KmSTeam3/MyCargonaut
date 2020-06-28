@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Shipment} from '../shared/shipment';
 import {DataHelperService} from '../shared/data-helper.service';
 import {ShipmentService} from '../shared/shipment.service';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 
@@ -56,6 +56,8 @@ export class RouteSearchPage implements OnInit {
     console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
     this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
       this.shipmentList = shipment;
+      const navigationExtras: NavigationExtras = { state: { shipmentList: this.shipmentList } };
+      this.router.navigate(['search-result'], navigationExtras);
       console.log(shipment);
     });
 
@@ -79,7 +81,6 @@ export class RouteSearchPage implements OnInit {
     // console.log(this.shipmentList);
 
     this.datahelper.tranportData = this.shipmentList;
-    this.router.navigate(['search-result']);
   }
 
   query(value){
