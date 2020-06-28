@@ -72,6 +72,17 @@ export class ShipmentService {
         );
     }
 
+    testAll(): Observable<Shipment[]>{
+        const changeActions: Observable<DocumentChangeAction<Shipment>[]> =  this.shipmentCollection.snapshotChanges();
+        return changeActions.pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data();
+                data.id = a.payload.doc.id;
+                return {...data} as Shipment;
+            }))
+        );
+    }
+
     testQuery(): Observable<Shipment[]>{
         const changeActions: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('seat', '>=', 1).
@@ -89,15 +100,17 @@ export class ShipmentService {
     }
 
     searchRoute(seats: number, start: string, goal: string, date: Date): Observable<Shipment[]> {
-        return  this.afs.collection<Shipment>('shipment', ref => ref.
+        const queryBase: Observable<DocumentChangeAction<Shipment>[]> =  this.afs.collection<Shipment>('shipment', ref => ref.
         where('seat', '>=', seats).
         where('goal', '==', goal).
         where('start', '==', start).
-        where('date', '==', date))
-            .snapshotChanges().pipe(
-            map(actions => actions.map( a => {
-                const data = a.payload.doc.data() as Shipment;
-                return{...data};
+        where('date', '==', date)).snapshotChanges();
+
+        return queryBase.pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data();
+                data.id = a.payload.doc.id;
+                return{...data} as Shipment;
             }))
         );
     }

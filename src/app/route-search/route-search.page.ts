@@ -52,16 +52,20 @@ export class RouteSearchPage implements OnInit {
   }
 
   search(value){
-
-    this.shipmentService.testQuery().forEach( shipment => {
+    console.log('search called');
+    console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
       this.shipmentList = shipment;
+      console.log(shipment);
+    });
+
+    this.shipmentService.testAll().forEach( shipment => {
       console.log(shipment);
     });
 
 
     // this.query(value);
-   //  console.log('search called');
-    // console.log('Seats ' + value.seats + 'StartAddress ' + value.startAddress + 'toAddress ' + value.toAddress + 'Date ' + value.date);
+
 
     // console.log(this.shipmentService.testQuery());
 
