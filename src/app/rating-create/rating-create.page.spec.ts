@@ -27,4 +27,11 @@ describe('RatingCreatePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return right color ', () => {
+    let color: string;
+    component.points = 1;
+    color = component.getColor(2);
+    expect(color).toEqual('#E0E0E0');
+  });
 });
