@@ -1,27 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPage } from './login.page';
+import { UserRatingsPage } from './user-ratings.page';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 
-describe('LoginPage', () => {
-  let component: LoginPage;
-  let fixture: ComponentFixture<LoginPage>;
+describe('UserRatingsPage', () => {
+  let component: UserRatingsPage;
+  let fixture: ComponentFixture<UserRatingsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginPage ],
+      declarations: [ UserRatingsPage ],
       imports: [IonicModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        ReactiveFormsModule,
-        FormsModule,
         RouterTestingModule.withRoutes([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(UserRatingsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
