@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Shipment} from '../shared/shipment';
-import {DataHelperService} from '../shared/data-helper.service';
 import {ShipmentService} from '../shared/shipment.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-route-search',
@@ -34,7 +32,7 @@ export class RouteSearchPage implements OnInit {
   shipment: Shipment;
 
 
-  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService) {
   }
 
 
@@ -54,7 +52,7 @@ export class RouteSearchPage implements OnInit {
   search(value){
     console.log('search called');
     console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-    this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
       this.shipmentList = shipment;
       const navigationExtras: NavigationExtras = { state: { shipmentList: this.shipmentList } };
       this.router.navigate(['search-result'], navigationExtras);
@@ -64,23 +62,6 @@ export class RouteSearchPage implements OnInit {
     this.shipmentService.testAll().forEach( shipment => {
       console.log(shipment);
     });
-
-
-    // this.query(value);
-
-
-    // console.log(this.shipmentService.testQuery());
-
-
-    /*
-    this.shipmentService.getShipment('uK4RcgPdXf0WfKGybvuA').forEach( shipment => {
-      this.shipment = shipment;
-      console.log(shipment);
-    });*/
-
-    // console.log(this.shipmentList);
-
-    this.datahelper.tranportData = this.shipmentList;
   }
 
   query(value){
@@ -88,10 +69,6 @@ export class RouteSearchPage implements OnInit {
       this.shipmentList = shipment;
       console.log(shipment);
     });
-  }
-
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
   }
 
   navigateToLogin(){
@@ -102,30 +79,8 @@ export class RouteSearchPage implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
-
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
-
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
-
   navigateToHome(){
     this.router.navigate(['/home']);
   }
 
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
-
-  navigateToDelivery(){
-    this.router.navigate(['/delivery']);
-  }
 }

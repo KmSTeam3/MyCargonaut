@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { TransportSearchPageRoutingModule } from './transport-search-routing.module';
 
 import { TransportSearchPage } from './transport-search.page';
+import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { TransportSearchPage } from './transport-search.page';
         FormsModule,
         IonicModule,
         TransportSearchPageRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MenuHeaderPageModule
     ],
   declarations: [TransportSearchPage]
 })
