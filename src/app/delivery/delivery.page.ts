@@ -60,7 +60,7 @@ export class DeliveryPage implements OnInit {
 ngOnInit(): void {
     this.setUserId();
 }
-
+    // navigation to homepage
     navigateToHome(){
         this.router.navigate(['/home']);
     }

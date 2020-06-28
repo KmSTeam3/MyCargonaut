@@ -18,7 +18,9 @@ import {UserService} from '../../shared/user.service';
     templateUrl: './modal-delivery.page.html',
     styleUrls: ['./modal-delivery.page.scss'],
 })
-
+/**
+ * Modal page for adding new shipment
+ */
 export class ModalDeliveryPage implements OnInit {
 
 
@@ -83,6 +85,9 @@ export class ModalDeliveryPage implements OnInit {
         toast.present();
     }
 
+    /**
+     * Function to collect modal form values and generate new shipment through call of shipment.service persist method
+     */
     saveModal() {
         const shipment: Shipment = new Shipment(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
         console.log(shipment);
@@ -98,6 +103,9 @@ export class ModalDeliveryPage implements OnInit {
 
     }
 
+    /**
+     * Method to close the modal for adding new shipment
+     */
     async closeModal() {
         const onClosedData = 'Wrapped Up!';
         await this.modalController.dismiss(onClosedData);

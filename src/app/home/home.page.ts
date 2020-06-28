@@ -19,20 +19,29 @@ export class HomePage {
     // this.getUserList();
   }
 
-
+  // navigation method to login page
   navigateToLogin(){
     this.router.navigate(['/login']);
   }
 
+  // navigation metohd to register page
   navigateToRegister(){
     this.router.navigate(['/register']);
   }
-
 
   openFirst(){
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
 
+  // navigation method to route search page
+  navigateToRouteSearch() {
+    this.router.navigate(['/route-search']);
+  }
+
+  // navigation method to transport search page
+  navigateToTransportSearch() {
+    this.router.navigate(['/transport-search']);
+  }
 }
 
