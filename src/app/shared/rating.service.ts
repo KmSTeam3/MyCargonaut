@@ -9,6 +9,10 @@ import {User} from './user';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Service for managing ratings in the database
+ */
 export class RatingService {
 
   ratingCollection: AngularFirestoreCollection<Rating>;
@@ -26,6 +30,11 @@ export class RatingService {
   constructor(private afs: AngularFirestore, private userservice: UserService) { }
 
 
+    /**
+     * Persists rating in the subcollecton of the corresponding user
+     * @param rating Rating object containing points and description
+     * @param userId ID of the user who is being rated
+     */
   persist(rating: Rating, userId: string){
     this.ratingCollection = this.afs.collection<Rating>('user/' + userId + '/ratings');
     this.ratingCollection.add(RatingService.prepare(rating)).then(() => {
@@ -33,6 +42,10 @@ export class RatingService {
     });
   }
 
+    /**
+     * Retrieves all ratings of a user from the database
+     * @param userId ID of the user whose ratings should be retrieved
+     */
   findAll(userId: string): Observable<Rating[]>{
     this.ratingCollection = this.afs.collection<Rating>('user/' + userId + '/ratings');
     const changeActions: Observable<DocumentChangeAction<Rating>[]> = this.ratingCollection.snapshotChanges();
@@ -45,6 +58,10 @@ export class RatingService {
     );
   }
 
+    /**
+     * Updates the average rating of a user when a new rating is added
+     * @param userID ID of the user whose average rating should be updated
+     */
   updateAverage(userID: string){
     let ratings: Rating[];
     let average = 0;
@@ -63,6 +80,10 @@ export class RatingService {
 
   }
 
+    /**
+     * Calculates the average rating of an array of ratings
+     * @param ratings Array containing ratings of a user
+     */
   calcAverage(ratings: Rating[]): number{
       let average = 0;
       for (const rating of ratings){

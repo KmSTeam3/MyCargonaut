@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { RatingCreatePage } from './rating-create.page';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('RatingCreatePage', () => {
   let component: RatingCreatePage;
@@ -10,7 +13,10 @@ describe('RatingCreatePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RatingCreatePage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        RouterTestingModule.withRoutes([])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RatingCreatePage);

@@ -8,6 +8,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
+
+/**
+ * Page for registering as a user
+ */
 export class RegisterPage implements OnInit {
 
   validationsForm: FormGroup;
@@ -70,6 +74,10 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  /**
+   * Register a user
+   * @param value Containing data for creating a user
+   */
   register(value){
     if (value.password !== value.confirmPW){
       this.errorMessage = 'Passwörter stimmen nicht über eivn';

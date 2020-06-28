@@ -7,6 +7,10 @@ import {Rating} from '../shared/rating';
   templateUrl: './user-ratings.page.html',
   styleUrls: ['./user-ratings.page.scss'],
 })
+
+/**
+ * Page for displaying all ratings of a user and the average rating
+ */
 export class UserRatingsPage implements OnInit {
 
   // TODO userID needs to be replaced with userID of user whose ratings need to be shown. Probably from URL parameter

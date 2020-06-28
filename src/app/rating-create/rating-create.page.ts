@@ -7,6 +7,10 @@ import {RatingService} from '../shared/rating.service';
   templateUrl: './rating-create.page.html',
   styleUrls: ['./rating-create.page.scss'],
 })
+
+/**
+ * Page for rating a user
+ */
 export class RatingCreatePage implements OnInit {
 
   points: number;
@@ -17,6 +21,9 @@ export class RatingCreatePage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Persists a rating in the database
+   */
   submit() {
     const rating: Rating = new Rating(this.points, this.description);
     // TODO Dummy ID needs to be replaced with ID of the user whose shipment is being rated. Probably pass it over URL when selecting shipment to rate
@@ -24,6 +31,10 @@ export class RatingCreatePage implements OnInit {
     // TODO Navigate back to shipment list
   }
 
+  /**
+   * Updates points when the star rating changes
+   * @param index Value of the points
+   */
   rate(index: number){
     this.points = index;
   }
@@ -32,6 +43,11 @@ export class RatingCreatePage implements OnInit {
     return index > this.points;
   }
 
+
+  /**
+   * Determines the color of the stars depending on which star is clicked
+   * @param index Selected rating
+   */
   getColor(index: number){
     enum colors {
       GREY = '#E0E0E0',

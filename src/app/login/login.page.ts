@@ -9,6 +9,10 @@ import {Router} from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
+/**
+ * Page for login
+ */
 export class LoginPage implements OnInit {
 
   validationsForm: FormGroup;
@@ -31,6 +35,7 @@ export class LoginPage implements OnInit {
 
 
   login(value){
+    this.errorMessage = '';
     this.authservice.login(value).then(() => {
       console.log('Login erfolgreich');
       if (this.authservice.checkAuthState()){
@@ -40,6 +45,9 @@ export class LoginPage implements OnInit {
       }
 
       this.router.navigate(['/home']);
+        }, error => {
+      this.errorMessage = 'Überprüfe deine Login Daten';
+
         }
     );
   }

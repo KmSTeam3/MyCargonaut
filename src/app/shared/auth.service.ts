@@ -13,6 +13,10 @@ export class AuthService {
   }
 
 
+  /**
+   * Registers a user in the firebase auth database
+   * @param value Contains email and password of user
+   */
   register(value): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.auth.createUserWithEmailAndPassword(value.email, value.password)
@@ -25,6 +29,10 @@ export class AuthService {
     }));
   }
 
+  /**
+   * Method to login user
+   * @param value Contains email and password
+   */
   login(value){
     return new Promise<any>(((resolve, reject) => {
       this.auth.signInWithEmailAndPassword(value.email, value.password)
@@ -34,10 +42,17 @@ export class AuthService {
     }));
   }
 
+  /**
+   * Checks the authState (is a user logged in or not)
+   */
   checkAuthState(): Observable<firebase.User | null>{
     return this.auth.authState;
   }
 
+
+  /**
+   * Method to sign out user
+   */
   SignOut() {
     return this.auth.signOut();
   }

@@ -15,6 +15,10 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Service for managing users in firestore
+ */
 export class UserService {
 
   isLoggedIn = false;
@@ -39,20 +43,34 @@ export class UserService {
     this.userCollection = afs.collection<User>('user');
   }
 
-  // create
+  /**
+   * Persists user
+   */
   persist(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string){
     const user: User = new User(id, title, fName, lName, street, housenumber, postalcode, city, email);
     return this.userCollection.doc(user.id).set(UserService.prepare(user));
   }
 
+  /**
+   * updates user
+   * @param user User to be updated
+   */
   update(user: User){
     return this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 
+  /**
+   * deletes user
+   * @param userid ID of user who should be deleted
+   */
   delete(userid: string){
     this.userCollection.doc(userid).delete();
   }
 
+  /**
+   * Fetches user from firestore by given ID
+   * @param id ID of the user
+   */
   getUser(id: string): Observable<User>{
     return this.userCollection.doc(id).get().pipe(
         map(a => {
@@ -63,6 +81,9 @@ export class UserService {
     );
   }
 
+  /**
+   * Fetches all users from the database
+   */
   findAll(): Observable<User[]> {
     const changeActions: Observable<DocumentChangeAction<User>[]> = this.userCollection.snapshotChanges();
     return changeActions.pipe(
