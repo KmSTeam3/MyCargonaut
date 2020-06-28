@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchResultPageRoutingModule } from './search-result-routing.module';
 
 import { SearchResultPage } from './search-result.page';
-import {ListResultPageModule} from "./list-result/list-result.module";
+import {ListResultPageModule} from './list-result/list-result.module';
 
 
 @NgModule({

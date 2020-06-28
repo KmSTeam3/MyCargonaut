@@ -1,0 +1,86 @@
+<ion-menu
+        side="end"
+        menuId="first"
+        contentId="main-content"
+>
+
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="navigateToProfile()">Profil</ion-item>
+      <ion-item >Sendungen</ion-item>
+      <ion-item (click)="navigateToMangeVehicle()" >Fahrzeuge</ion-item>
+      <ion-item (click)="navigateToRouteSearch()"  >Routensuche</ion-item>
+      <ion-item (click)="navigateToTransportSearch()" >Transportsuche</ion-item>
+      <ion-item (click)="navigateToSearchResult()">Suchergebnisse</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+<ion-header>
+  <ion-toolbar>
+    <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+    <ion-buttons slot="primary">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group value="choice" (ionChange)="setPaymentChoice($event)">
+      <ion-list-header>
+        <ion-label>Bezahlart:</ion-label>
+      </ion-list-header>
+
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <h1>Vorkasse</h1>
+          <p class="subtitle">Sie zahlen vorab und erhalten die Ware bequem und günstig bei Zahlungseingang nach Hause geliefert.</p>
+        </ion-text></ion-label>
+      <ion-radio color="primary"  slot="start" value="0"></ion-radio>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-radio color="secondary"  slot="start" value="1"></ion-radio>
+      <ion-label class="ion-text-wrap">
+          <ion-text>
+            <h1>PayPal</h1>
+            <img id="paypalImg" src="assets/PayPal-Logo.png">
+            <p class="subtitle">Bezahlung per PayPal - einfach, schnell und sicher</p>
+          </ion-text>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-radio color="warning" slot="start" value="2"></ion-radio>
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <h1>Barbezahlung</h1>
+          <p class="subtitle">Sie zahlen einfach beim Vereinbarten Übergabepunkt</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+<ion-grid>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-button>
+        <ion-text>
+          <p>verpflichtend</p>
+          <p>verschicken</p>
+        </ion-text>
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+</ion-content>
+</div>
