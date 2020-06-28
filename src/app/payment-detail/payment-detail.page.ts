@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 import {Shipment} from '../shared/shipment';
 
@@ -58,8 +58,7 @@ export class PaymentDetailPage implements OnInit {
 
   navigateToPaymentChoice(modalController: ModalController){
     this.dismissModal(modalController);
-
-    this.router.navigate(['/payment-choice']);
-
+    const navigationExtras: NavigationExtras = { state: { shipment: this.shipment } };
+    this.router.navigate(['/payment-choice'], navigationExtras);
   }
 }

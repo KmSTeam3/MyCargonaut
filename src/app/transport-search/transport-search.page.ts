@@ -68,4 +68,8 @@ export class TransportSearchPage implements OnInit {
   navigateToImpressum(){
     this.router.navigate(['/impressum']);
   }
+
+  navigateToDelivery(){
+    this.router.navigate(['/delivery']);
+  }
 }

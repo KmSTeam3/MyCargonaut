@@ -86,4 +86,13 @@ ngOnInit(): void {
     navigateToHome(){
         this.router.navigate(['/home']);
     }
+
+    navigateToDelivery() {
+        this.router.navigate(['/delivery']);
+    }
+
+
+    navigateToImpressum() {
+        this.router.navigate(['/impressum']);
+    }
 }

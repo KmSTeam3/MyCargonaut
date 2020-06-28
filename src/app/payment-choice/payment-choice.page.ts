@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Shipment} from '../shared/shipment';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 
 @Component({
@@ -13,7 +13,15 @@ export class PaymentChoicePage implements OnInit {
     @Input() shipment: Shipment;
     currentPaymentChoice: number;
 
-    constructor(private router: Router, private toastController: ToastController) {
+    constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute) {
+        this.route.queryParams.subscribe(params => {
+            if (this.router.getCurrentNavigation().extras.state) {
+                console.log(params);
+                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
+                this.shipment = this.router.getCurrentNavigation().extras.state.shipmentList;
+                console.log(this.shipment);
+            }
+        });
     }
 
     ngOnInit() {
@@ -75,5 +83,13 @@ export class PaymentChoicePage implements OnInit {
 
     navigateToHome() {
         this.router.navigate(['/home']);
+    }
+
+    navigateToImpressum(){
+        this.router.navigate(['/impressum']);
+    }
+
+    navigateToDelivery() {
+        this.router.navigate(['/delivery']);
     }
 }
