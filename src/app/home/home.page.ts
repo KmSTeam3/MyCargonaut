@@ -45,6 +45,10 @@ export class HomePage {
     this.router.navigate(['/register']);
   }
 
+  navigateToDelivery(){
+    this.router.navigate(['/delivery']);
+  }
+
   navigateToMangeVehicle(){
     this.router.navigate(['/manage-vehicle']);
   }

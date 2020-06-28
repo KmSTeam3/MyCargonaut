@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Shipment} from '../shared/shipment';
+import {DataHelperService} from '../shared/data-helper.service';
+import {ShipmentService} from '../shared/shipment.service';
+import {NavigationExtras, Router} from '@angular/router';
+import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+
 @Component({
   selector: 'app-route-search',
   templateUrl: './route-search.page.html',
@@ -12,6 +18,10 @@ export class RouteSearchPage implements OnInit {
   errorMessage = '';
   successMessage = '';
 
+  shipmentList: Shipment[] = [];
+
+
+
   VALIDATION_MESSAGES = {
     postalCode: [
       {type: 'required', message: 'Postleitzahl ist erforderlich.'},
@@ -21,17 +31,62 @@ export class RouteSearchPage implements OnInit {
       {type: 'required', message: 'Datum ist erforderlich.'},
     ]
   };
+  shipment: Shipment;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
   }
 
+
   ngOnInit() {
-    this.validationsForm = this.formBuilder.group({
+      this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required
       ])),
+      seats: new FormControl(''),
+      startAddress: new FormControl(''),
+      toAddress: new FormControl(''),
+      date: new FormControl('')
+    });
+  }
+
+  search(value){
+    console.log('search called');
+    console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
+    this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+      this.shipmentList = shipment;
+      const navigationExtras: NavigationExtras = { state: { shipmentList: this.shipmentList } };
+      this.router.navigate(['search-result'], navigationExtras);
+      console.log(shipment);
+    });
+
+    this.shipmentService.testAll().forEach( shipment => {
+      console.log(shipment);
+    });
+
+
+    // this.query(value);
+
+
+    // console.log(this.shipmentService.testQuery());
+
+
+    /*
+    this.shipmentService.getShipment('uK4RcgPdXf0WfKGybvuA').forEach( shipment => {
+      this.shipment = shipment;
+      console.log(shipment);
+    });*/
+
+    // console.log(this.shipmentList);
+
+    this.datahelper.tranportData = this.shipmentList;
+  }
+
+  query(value){
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+      this.shipmentList = shipment;
+      console.log(shipment);
     });
   }
 

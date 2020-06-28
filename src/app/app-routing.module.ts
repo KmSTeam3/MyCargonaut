@@ -20,6 +20,15 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'delivery',
+    loadChildren: () => import('./delivery/delivery.module').then( m => m.DeliveryPageModule)
+  },
+  {
+    path: 'modal-delivery',
+    loadChildren: () => import('./delivery/modal-delivery/modal-delivery.module').then(m => m.ModalDeliveryPageModule)
+  },
+
+  {
     path: 'manage-vehicle',
     loadChildren: () => import('./manage-vehicle/manage-vehicle.module').then( m => m.ManageVehiclePageModule)
   },

@@ -89,7 +89,6 @@ export class UserService {
     return changeActions.pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data();
-          data.id = a.payload.doc.id;
           return {...data} as User;
         }))
     );
