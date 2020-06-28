@@ -7,6 +7,8 @@ import { User } from './../shared/user';
 import { Vehicle } from './../shared/vehicle';
 import { AuthService } from './../shared/auth.service';
 import {Router} from '@angular/router';
+import {Shipment} from '../shared/shipment';
+import {ShipmentService} from '../shared/shipment.service';
 
 @Component({
   selector: 'app-delivery',
@@ -14,8 +16,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./delivery.page.scss'],
 })
 export class DeliveryPage implements OnInit {
+    shipmentList: Shipment[] = [];
 
-  constructor(public modalController: ModalController, private authService: AuthService, private router: Router) { }
+  constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) { }
 
     holderId: string;
 
@@ -24,6 +27,11 @@ export class DeliveryPage implements OnInit {
         this.authService.checkAuthState().subscribe( (user) => {
           //  this.renderList( user.uid);
             this.holderId = user.uid;
+            this.shipmentService.getShipments(user.uid).forEach( shipment => {
+                this.shipmentList = shipment;
+                console.log(this.holderId);
+                console.log(shipment);
+            });
             console.log('Not modal' + this.holderId);
         });
     }

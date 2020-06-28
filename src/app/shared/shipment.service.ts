@@ -116,18 +116,31 @@ export class ShipmentService {
     }
 
     searchTransport(start: string, goal: string, weight: number, height: number, length: number): Observable<Shipment[]>{
-        const queryBase = this.afs.collection('shipment', ref => ref.
+        const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('start', '==', start).
         where('goal', '==', goal).
         where('weight', '>=', weight).
         where('height', '>=', height).
         where('length', '>=', length)).snapshotChanges();
+
         return queryBase.pipe(
             map(actions => actions.map( a => {
-                const data = a.payload.doc.data() as Shipment;
+                const data = a.payload.doc.data();
                 data.id = a.payload.doc.id;
-                return{...data};
+                return{...data} as Shipment;
             }))
+        );
+    }
+
+    getShipments(cargonaut: string) {
+        const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
+        where('cargonaut', '==', cargonaut)).snapshotChanges();
+
+        return queryBase.pipe(  map(actions => actions.map(a => {
+            const data = a.payload.doc.data();
+            data.id = a.payload.doc.id;
+            return{...data} as Shipment;
+        }))
         );
     }
 

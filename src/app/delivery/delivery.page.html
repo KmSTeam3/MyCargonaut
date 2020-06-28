@@ -50,8 +50,7 @@
 
 
         <ion-card-content >
-
-
+            <app-delivery-list *ngFor="let shipment of this.shipmentList" [shipment]="shipment"></app-delivery-list>
 
         </ion-card-content>
 

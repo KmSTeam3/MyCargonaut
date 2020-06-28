@@ -9,12 +9,15 @@ import { DeliveryListPageRoutingModule } from './delivery-list-routing.module';
 import { DeliveryListPage } from './delivery-list.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DeliveryListPageRoutingModule
-  ],
-  declarations: [DeliveryListPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        DeliveryListPageRoutingModule
+    ],
+    exports: [
+        DeliveryListPage
+    ],
+    declarations: [DeliveryListPage]
 })
 export class DeliveryListPageModule {}
