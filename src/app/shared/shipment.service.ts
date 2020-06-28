@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Vehicle} from './vehicle';
 import {Shipment} from './shipment';
 import {User} from './user';
@@ -72,23 +72,38 @@ export class ShipmentService {
         );
     }
 
+    testQuery(): Observable<Shipment[]>{
+        const changeActions: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
+        where('seat', '>=', 1).
+        where('goal', '==', 'Warschau').
+        where('start', '==', 'Berlin').
+        where('date', '==', '1933-02-04')).snapshotChanges();
+
+        return changeActions.pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data();
+                data.id = a.payload.doc.id;
+                return {...data} as Shipment;
+            }))
+        );
+    }
+
     searchRoute(seats: number, start: string, goal: string, date: Date): Observable<Shipment[]> {
-        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.
-        where('seats', '>=', seats).
+        return  this.afs.collection<Shipment>('shipment', ref => ref.
+        where('seat', '>=', seats).
         where('goal', '==', goal).
         where('start', '==', start).
-        where('date', '==', date)).snapshotChanges();
-        return queryBase.pipe(
+        where('date', '==', date))
+            .snapshotChanges().pipe(
             map(actions => actions.map( a => {
                 const data = a.payload.doc.data() as Shipment;
-                data.id = a.payload.doc.id;
                 return{...data};
             }))
         );
     }
 
-    searchTransport(start: string, goal: string, weight: number, height: number, length: number){
-        const queryBase = this.afs.collection<Shipment>('shipment', ref => ref.
+    searchTransport(start: string, goal: string, weight: number, height: number, length: number): Observable<Shipment[]>{
+        const queryBase = this.afs.collection('shipment', ref => ref.
         where('start', '==', start).
         where('goal', '==', goal).
         where('weight', '>=', weight).
@@ -113,6 +128,5 @@ export class ShipmentService {
             }))
         );
     }
-
 
 }

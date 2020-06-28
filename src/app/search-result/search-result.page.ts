@@ -37,7 +37,7 @@ export class SearchResultPage implements OnInit {
     // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
     // this.shipmentService.query('price');
     this.listShipments = this.dataHelper.tranportData;
-    console.log(this.listShipments);
+    console.log('Result Page' + this.listShipments);
     // this.listShipments.push(this.shipment);
   }
 

@@ -4,6 +4,9 @@ import {Shipment} from '../shared/shipment';
 import {DataHelperService} from '../shared/data-helper.service';
 import {ShipmentService} from '../shared/shipment.service';
 import {Router} from '@angular/router';
+import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+
 @Component({
   selector: 'app-route-search',
   templateUrl: './route-search.page.html',
@@ -15,8 +18,7 @@ export class RouteSearchPage implements OnInit {
   errorMessage = '';
   successMessage = '';
 
-  shipmentList: Shipment[];
-
+  shipmentList: Shipment[] = [];
 
 
 
@@ -29,14 +31,15 @@ export class RouteSearchPage implements OnInit {
       {type: 'required', message: 'Datum ist erforderlich.'},
     ]
   };
+  shipment: Shipment;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
   }
 
 
   ngOnInit() {
-    this.validationsForm = this.formBuilder.group({
+      this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required
@@ -49,14 +52,37 @@ export class RouteSearchPage implements OnInit {
   }
 
   search(value){
-    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+
+    this.shipmentService.testQuery().forEach( shipment => {
       this.shipmentList = shipment;
+      console.log(shipment);
     });
 
-    console.log(this.shipmentList);
+
+    // this.query(value);
+   //  console.log('search called');
+    // console.log('Seats ' + value.seats + 'StartAddress ' + value.startAddress + 'toAddress ' + value.toAddress + 'Date ' + value.date);
+
+    // console.log(this.shipmentService.testQuery());
+
+
+    /*
+    this.shipmentService.getShipment('uK4RcgPdXf0WfKGybvuA').forEach( shipment => {
+      this.shipment = shipment;
+      console.log(shipment);
+    });*/
+
+    // console.log(this.shipmentList);
 
     this.datahelper.tranportData = this.shipmentList;
     this.router.navigate(['search-result']);
+  }
+
+  query(value){
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+      this.shipmentList = shipment;
+      console.log(shipment);
+    });
   }
 
   navigateToSearchResult(){
