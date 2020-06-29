@@ -1,50 +1,4 @@
-<ion-menu
-        side="end"
-        menuId="first"
-        contentId="main-content"
->
-
-    <ion-content>
-        <ion-list>
-            <ion-item (click)="navigateToProfile()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Profil
-                </ion-label>
-            </ion-item>
-            <ion-item (click)="navigateToDelivery()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Sendungen
-                </ion-label>
-            </ion-item>
-            <ion-item (click)="navigateToMangeVehicle()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Fahrzeuge
-                </ion-label>
-            </ion-item>
-            <ion-item (click)="navigateToRouteSearch()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Routensuche
-                </ion-label>
-            </ion-item>
-            <ion-item (click)="navigateToTransportSearch()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Transportsuche
-                </ion-label>
-            </ion-item>
-            <ion-item (click)="navigateToSearchResult()" button="true">
-                <ion-label class="ion-text-wrap">
-                    Suchergebnisse
-                </ion-label>
-            </ion-item>
-        </ion-list>
-
-        <ion-item (click)="navigateToImpressum()" button="true">
-            <ion-label class="ion-text-wrap">
-                Impressum
-            </ion-label>
-        </ion-item>
-    </ion-content>
-</ion-menu>
+<app-menu-header></app-menu-header>
 
 
 <div class="ion-page" id="main-content">
@@ -60,7 +14,7 @@
     </ion-header>
 
     <ion-content id="ion-content">
-        <ion-grid>
+        <form>
             <ion-row class="heading">
                 <ion-col size="2"></ion-col>
                 <ion-col>
@@ -72,7 +26,7 @@
             <ion-row class="formRow">
                 <ion-col size="3"></ion-col>
                 <ion-col>
-                    <form class="form" [formGroup]="validationsForm">
+                    <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
 
                         <ion-row>
 
@@ -81,7 +35,7 @@
                                     <h3 style="opacity: revert">von:</h3>
                                 </ion-row>
                                 <ion-row class="formControl">
-                                    <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                                    <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="startAddress"></ion-input>
                                     <div class="validation-errors">
                                         <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                             <div class="error-message"
@@ -99,7 +53,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-input type="text" required placeholder="Stadt, PLZ"></ion-input>
+                                    <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="toAddress"></ion-input>
                                     <div class="validation-errors">
                                         <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                             <div class="error-message"
@@ -121,7 +75,7 @@
 
                                 <ion-row class="formControl">
                                     <ion-input type="text" required
-                                               placeholder="Piano, Tisch, Eurpalette... etc."></ion-input>
+                                               placeholder="Piano, Tisch, Eurpalette... etc." formControlName="article"></ion-input>
                                     <div class="validation-errors">
                                         <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                             <div class="error-message"
@@ -141,7 +95,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-select placeholder="Gewicht in kg">
+                                    <ion-select placeholder="Gewicht in kg" formControlName="weight">
                                         <ion-select-option value="1">1</ion-select-option>
                                         <ion-select-option value="2">2</ion-select-option>
                                         <ion-select-option value="3">3</ion-select-option>
@@ -160,7 +114,7 @@
 
                                 <ion-row>
                                     <ion-col class="formControl">
-                                        <ion-input type="text" required placeholder="Höhe"></ion-input>
+                                        <ion-input type="text" required placeholder="Höhe" formControlName="height"></ion-input>
                                         <div class="validation-errors">
                                             <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                                 <div class="error-message"
@@ -173,7 +127,7 @@
                                     </ion-col>
 
                                     <ion-col class="formControl">
-                                        <ion-input type="text" required placeholder="Breite"></ion-input>
+                                        <ion-input type="text" required placeholder="Breite" formControlName="length"></ion-input>
                                         <div class="validation-errors">
                                             <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
                                                 <div class="error-message"
@@ -212,7 +166,7 @@
             <ion-row>
                 <ion-col size="5"></ion-col>
                 <ion-col size="2">
-                    <ion-button expand="block" (click)="navigateToSearchResult()">Cargonaut finden!</ion-button>
+                    <ion-button expand="block" type="submit" class="submit-btn">Cargonaut finden!</ion-button>
                 </ion-col>
                 <ion-col size="4"></ion-col>
             </ion-row>

@@ -51,6 +51,7 @@ export class RegisterPage implements OnInit {
   constructor(private userservice: UserService, private authservice: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    // Initiation of the form fields value variables and corresponding validators
     this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
           Validators.minLength(5),

@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Shipment} from '../shared/shipment';
-import {DataHelperService} from '../shared/data-helper.service';
 import {ShipmentService} from '../shared/shipment.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-route-search',
   templateUrl: './route-search.page.html',
   styleUrls: ['./route-search.page.scss'],
 })
+/**
+ * Route search page which lets users search for shipments with available seats
+ * matching given search criteria where they can travel with
+ *
+ * Criteria:
+ * - How many seats are needed
+ * - Start address
+ * - Destination address
+ * - On which date the shipment start
+ */
 export class RouteSearchPage implements OnInit {
 
   validationsForm: FormGroup;
@@ -34,11 +42,12 @@ export class RouteSearchPage implements OnInit {
   shipment: Shipment;
 
 
-  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private datahelper: DataHelperService, private shipmentService: ShipmentService) {
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService) {
   }
 
 
   ngOnInit() {
+    // Initiation of the form fields value variables
       this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -51,10 +60,11 @@ export class RouteSearchPage implements OnInit {
     });
   }
 
+  // Search method
   search(value){
     console.log('search called');
     console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-    this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
+    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
       this.shipmentList = shipment;
       const navigationExtras: NavigationExtras = { state: { shipmentList: this.shipmentList } };
       this.router.navigate(['search-result'], navigationExtras);
@@ -64,23 +74,6 @@ export class RouteSearchPage implements OnInit {
     this.shipmentService.testAll().forEach( shipment => {
       console.log(shipment);
     });
-
-
-    // this.query(value);
-
-
-    // console.log(this.shipmentService.testQuery());
-
-
-    /*
-    this.shipmentService.getShipment('uK4RcgPdXf0WfKGybvuA').forEach( shipment => {
-      this.shipment = shipment;
-      console.log(shipment);
-    });*/
-
-    // console.log(this.shipmentList);
-
-    this.datahelper.tranportData = this.shipmentList;
   }
 
   query(value){
@@ -90,42 +83,19 @@ export class RouteSearchPage implements OnInit {
     });
   }
 
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
-
+  // navigation method to the login page
   navigateToLogin(){
     this.router.navigate(['/login']);
   }
 
+  // navigation method to register page
   navigateToRegister(){
     this.router.navigate(['/register']);
   }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
-
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
-
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
-
+  // navigation method to the home page
   navigateToHome(){
     this.router.navigate(['/home']);
   }
 
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
-
-  navigateToDelivery(){
-    this.router.navigate(['/delivery']);
-  }
 }

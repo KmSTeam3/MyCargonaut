@@ -15,6 +15,9 @@ import {ShipmentService} from '../shared/shipment.service';
   templateUrl: './delivery.page.html',
   styleUrls: ['./delivery.page.scss'],
 })
+/**
+ * Delivery Page, shows shipment history of logged in user and option to create new shipments
+ */
 export class DeliveryPage implements OnInit {
     shipmentList: Shipment[] = [];
 
@@ -36,6 +39,9 @@ export class DeliveryPage implements OnInit {
         });
     }
 
+    /**
+     *  Modal page for adding a delivery is created
+     */
   async openModal(){
     const modal = await this.modalController.create({
       component: ModalDeliveryPage,
@@ -54,45 +60,9 @@ export class DeliveryPage implements OnInit {
 ngOnInit(): void {
     this.setUserId();
 }
-
-    navigateToLogin(){
-        this.router.navigate(['/login']);
-    }
-
-    navigateToRegister(){
-        this.router.navigate(['/register']);
-    }
-
-    navigateToMangeVehicle(){
-        this.router.navigate(['/manage-vehicle']);
-    }
-
-    navigateToRouteSearch(){
-        this.router.navigate(['/route-search']);
-    }
-
-    navigateToTransportSearch(){
-        this.router.navigate(['/transport-search']);
-    }
-
-    navigateToSearchResult(){
-        this.router.navigate(['/search-result']);
-    }
-
-    navigateToProfile(){
-        this.router.navigate(['/profile']);
-    }
-
+    // navigation to homepage
     navigateToHome(){
         this.router.navigate(['/home']);
     }
 
-    navigateToDelivery() {
-        this.router.navigate(['/delivery']);
-    }
-
-
-    navigateToImpressum() {
-        this.router.navigate(['/impressum']);
-    }
 }

@@ -9,6 +9,9 @@ import {Shipment} from '../shared/shipment';
   styleUrls: ['./payment-detail.page.scss'],
 
 })
+/**
+ * Payment details page shows a modal with further information on the chosen shipment from the search result
+ */
 export class PaymentDetailPage implements OnInit {
 
   @Input() modalController: ModalController;
@@ -20,42 +23,16 @@ export class PaymentDetailPage implements OnInit {
   ngOnInit() {
   }
 
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
-
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
-
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
-
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
-
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
-
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
-
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
-
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
-
+  // method for dismissing the payment detail modal
   async dismissModal(modalController: ModalController) {
     await modalController.dismiss();
   }
 
+  /**
+   * navigation method to payment choice page with passing of shipment object for further manipulation
+   *
+   * @param modalController modal controller form search result page to access modal from this page
+   */
   navigateToPaymentChoice(modalController: ModalController){
     this.dismissModal(modalController);
     const navigationExtras: NavigationExtras = { state: { shipment: this.shipment } };
