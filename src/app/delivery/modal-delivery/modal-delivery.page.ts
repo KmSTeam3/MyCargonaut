@@ -62,9 +62,11 @@ export class ModalDeliveryPage implements OnInit {
     setUserId() {
         this.authService.checkAuthState().subscribe( (user) => {
             //  this.renderList( user.uid);
-            this.currentID = user.uid;
-            console.log('Eingeloggt als: ' + this.currentID);
-            this.cargonaut = this.currentID;
+            if (user){
+                this.currentID = user.uid;
+                console.log('Eingeloggt als: ' + this.currentID);
+                this.cargonaut = this.currentID;
+            }
         });
     }
 
