@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button></ion-back-button>
+    <img src="assets/CargoLogo.PNG">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -10,25 +14,34 @@
     <ion-row>
       <ion-col size="4"></ion-col>
       <ion-col size="4">
-        <div class="ion-text-center">
-          <ion-item lines="none" *ngIf="user">
-            <ion-label>{{user.fName}} {{user.lName}}</ion-label>
-            <p><ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, user.rating)}"></ion-icon></p>
+        <div>
+          <ion-item class="ion-text-center"  lines="none" *ngIf="user">
+            <ion-label color="primary">
+              <h1>{{user.fName}} {{user.lName}}</h1>
+              <h1><ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, user.rating)}"></ion-icon></h1>
+            </ion-label>
           </ion-item>
         </div>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col size="3"></ion-col>
+      <ion-col size="6">
+        <ion-list>
+          <ion-card *ngFor="let rating of ratings">
+            <ion-card-header><ion-item lines="none">
+              <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, rating.points)}"></ion-icon>
+            </ion-item></ion-card-header>
+            <ion-card-content>{{rating.description}}</ion-card-content>
+          </ion-card>
+        </ion-list>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+    </ion-row>
   </ion-grid>
 
 
-  <ion-list>
-    <ion-card *ngFor="let rating of ratings">
-      <ion-card-header><ion-item lines="none">
-        <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, rating.points)}"></ion-icon>
-      </ion-item></ion-card-header>
-      <ion-card-content>{{rating.description}}</ion-card-content>
-    </ion-card>
-  </ion-list>
+
 
 </ion-content>

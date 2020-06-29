@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../shared/user';
 import {UserService} from '../shared/user.service';
@@ -11,13 +11,14 @@ import {Router} from '@angular/router';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage implements OnInit, OnDestroy {
 
   validationsForm: FormGroup;
   errorMessage = '';
   successMessage = '';
   userID;
   subscription: Subscription;
+  subscription2: Subscription;
 
   VALIDATION_MESSAGES = {
     postalcode: [
@@ -49,23 +50,26 @@ export class ProfilePage implements OnInit {
   };
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
-    // TODO userID aus URL holen oder von eingeloggtem User
     this.subscription = this.authservice.checkAuthState().subscribe((value => {
-      this.userID = value.uid;
-      this.userService.getUser(this.userID).subscribe((user) => {
-        if (user){
-          this.validationsForm.patchValue({
-            title: user.title,
-            fname: user.fName,
-            lname: user.lName,
-            street: user.street,
-            housenumber: user.housenumber,
-            postalcode: user.postalcode,
-            city: user.city,
-            email: user.email
-          });
-        }
-      });
+      if (value){
+        this.userID = value.uid;
+        this.subscription2 = this.userService.getUser(this.userID).subscribe((user) => {
+          if (user){
+            this.validationsForm.patchValue({
+              title: user.title,
+              fname: user.fName,
+              lname: user.lName,
+              street: user.street,
+              housenumber: user.housenumber,
+              postalcode: user.postalcode,
+              city: user.city,
+              email: user.email
+            });
+          }
+        });
+
+      }
+
     }));
   }
 
@@ -141,6 +145,11 @@ export class ProfilePage implements OnInit {
 
   navigateToImpressum(){
     this.router.navigate(['/impressum']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 
 }

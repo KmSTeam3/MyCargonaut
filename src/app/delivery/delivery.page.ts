@@ -29,13 +29,16 @@ export class DeliveryPage implements OnInit {
     setUserId(){
         this.authService.checkAuthState().subscribe( (user) => {
           //  this.renderList( user.uid);
-            this.holderId = user.uid;
-            this.shipmentService.getShipments(user.uid).forEach( shipment => {
-                this.shipmentList = shipment;
-                console.log(this.holderId);
-                console.log(shipment);
-            });
-            console.log('Not modal' + this.holderId);
+            if (user){
+                this.holderId = user.uid;
+                this.shipmentService.getShipments(user.uid).forEach( shipment => {
+                    this.shipmentList = shipment;
+                    console.log(this.holderId);
+                    console.log(shipment);
+                });
+                console.log('Not modal' + this.holderId);
+            }
+
         });
     }
 
