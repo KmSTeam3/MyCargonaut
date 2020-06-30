@@ -43,6 +43,7 @@
                     </div>
 
                     <ion-button color="primary" type="submit" [disabled]="!validationsForm.valid">Anmelden</ion-button>
+                    <label class="error-message">{{errorMessage}}</label>
                     <h3 class="ion-text-center">oder registrieren</h3>
                     <ion-button (click)="navigateRegister()" color="primary">Cargonaut werden</ion-button>
                 </form>

@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
 
       this.router.navigate(['/home']);
         }, error => {
-      this.errorMessage = 'Überprüfe deine Login Daten';
+      this.errorMessage = 'Anmeldung fehlgeschlagen! Überprüfe deine Login Daten';
 
         }
     );

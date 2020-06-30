@@ -19,7 +19,7 @@
 <ion-content>
   <div class="background">
     <div>
-      <ion-grid>
+      <ion-grid *ngIf="isEdit">
         <ion-row>
           <ion-col size="4"></ion-col>
           <ion-col class="regForm" size="4">
@@ -165,12 +165,117 @@
               <ion-row class="ion-text-center">
                 <ion-col>
                   <ion-button type="submit" size="large" color="primary" class="submit-btn" [disabled]="!validationsForm.valid" style="margin-top: 10%">Speichern</ion-button>
-                  <label class="error-message">{{errorMessage}}</label>
-                  <label class="success-message">{{successMessage}}</label>
+                  <ion-button (click)="isEdit = false" color="danger" style="margin-top: 10%">Abbrechen</ion-button>
                 </ion-col>
               </ion-row>
 
             </form>
+          </ion-col>
+          <ion-col size="4"></ion-col>
+        </ion-row>
+      </ion-grid>
+
+<!-- Only view -->
+      <ion-grid *ngIf="!isEdit && user">
+        <ion-row>
+          <ion-col size="4"></ion-col>
+          <ion-col class="regForm" size="4">
+
+              <h1 class="ion-text-center">MyProfil</h1>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Anrede: {{user.title}} </ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item >
+                    <ion-label>Vorname: {{user.fName}}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Nachname: {{user.lName}} </ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col size="9">
+                  <ion-item>
+                    <ion-label>Straße: {{user.street}}</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-item>
+                    <ion-label>Nummer: {{user.housenumber}}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col size="4">
+                  <ion-item>
+                    <ion-label>Postleitzahl: {{user.postalcode}}</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="8">
+                  <ion-item>
+                    <ion-label>Stadt: {{user.city}}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Email: {{user.email}}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button (click)="isEdit = true" color="primary">Profil bearbeiten</ion-button> <br>
+                  <label class="error-message">{{errorMessage}}</label>
+                  <label class="success-message">{{successMessage}}</label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button color="danger">Profil löschen</ion-button>
+                </ion-col>
+              </ion-row>
+          </ion-col>
+          <ion-col size="4"></ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 20px">
+          <ion-col size="4"></ion-col>
+          <ion-col class="regForm" size="4">
+            <h1 class="ion-text-center">MyBewertungen</h1>
+            <ion-item lines="none">
+              <ion-label>Durchschnittsbewertung:
+                <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, user.rating)}"></ion-icon>
+                <p style="padding-left: 10px" *ngIf="user.rating === 0">Noch keine oder nicht genügend Bewertungen verfügbar</p>
+              </ion-label>
+            </ion-item>
+            <ion-list>
+            <ion-card style="padding-left: 10px;" *ngFor="let rating of ratings">
+              <ion-card-header>
+                <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, rating.points)}"></ion-icon>
+              </ion-card-header>
+              <ion-card-content>
+                {{rating.description}}
+              </ion-card-content>
+            </ion-card>
+            </ion-list>
           </ion-col>
           <ion-col size="4"></ion-col>
         </ion-row>

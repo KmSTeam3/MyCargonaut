@@ -27,7 +27,7 @@ export class RatingCreatePage implements OnInit {
   submit() {
     const rating: Rating = new Rating(this.points, this.description);
     // TODO Dummy ID needs to be replaced with ID of the user whose shipment is being rated. Probably pass it over URL when selecting shipment to rate
-    this.ratingService.persist(rating, 'T0PqS0ej92Y7eol9ZWAmWIrEXvU2');
+    this.ratingService.persist(rating, 'tGVWto1bYHWeq6wtjFN5pGYXInG3');
     // TODO Navigate back to shipment list
   }
 

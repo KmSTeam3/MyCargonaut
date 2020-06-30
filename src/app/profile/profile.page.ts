@@ -5,6 +5,8 @@ import {UserService} from '../shared/user.service';
 import {AuthService} from '../shared/auth.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {Rating} from '../shared/rating';
+import {RatingService} from '../shared/rating.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,11 @@ export class ProfilePage implements OnInit, OnDestroy {
   userID;
   subscription: Subscription;
   subscription2: Subscription;
+  subscription3: Subscription;
+  isEdit = false;
+  user: User;
+  firebaseUser: firebase.User;
+  ratings: Rating[];
 
   VALIDATION_MESSAGES = {
     postalcode: [
@@ -49,12 +56,15 @@ export class ProfilePage implements OnInit, OnDestroy {
     ]
   };
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router, private ratingService: RatingService) {
     this.subscription = this.authservice.checkAuthState().subscribe((value => {
       if (value){
         this.userID = value.uid;
+        this.firebaseUser = value;
         this.subscription2 = this.userService.getUser(this.userID).subscribe((user) => {
           if (user){
+            this.user = user;
+            this.user.rating = Math.round(this.user.rating);
             this.validationsForm.patchValue({
               title: user.title,
               fname: user.fName,
@@ -64,6 +74,9 @@ export class ProfilePage implements OnInit, OnDestroy {
               postalcode: user.postalcode,
               city: user.city,
               email: user.email
+            });
+            this.subscription3 = this.ratingService.findAll(this.userID).subscribe((ratings) => {
+              this.ratings = ratings;
             });
           }
         });
@@ -97,13 +110,88 @@ export class ProfilePage implements OnInit, OnDestroy {
 
 
   updateProfile(value){
-    const user: User = new User(this.userID, value.title, value.fName, value.lName, value.street, value.housenumber, value.postalcode, value.city, value.email);
-    this.userService.update(user)
-        .then(() => {
-          this.successMessage = 'Profil erfolgreich geupdatet';
-    }, () => {
-          this.errorMessage = 'Fehler beim Updaten des Profils';
+    this.successMessage = '';
+    this.errorMessage = '';
+    if (value.email !== this.user.email){
+      this.firebaseUser.updateEmail(value.email).then(() => {
+        console.log('Email geändert');
+        this.addNewValues(value);
+        this.userService.update(this.user)
+            .then(() => {
+              this.successMessage = 'Profil erfolgreich geupdatet';
+            }, () => {
+              this.errorMessage = 'Fehler beim Updaten des Profils';
+            });
+      }, (error) => {
+        console.log('Nicht geändert: ' + error.message);
+        this.errorMessage = 'Wenn du deine Email ändern möchtest, logge dich bitte erneut ein!';
+        this.router.navigate(['login']);
+      });
+    } else if (value.password !== ''){
+        this.firebaseUser.updatePassword(value.password).then(() => {
+          console.log('Passwort geändert');
+          this.addNewValues(value);
+          this.userService.update(this.user)
+              .then(() => {
+                this.successMessage = 'Profil erfolgreich geupdatet';
+              }, () => {
+                this.errorMessage = 'Fehler beim Updaten des Profils';
+              });
+        }, (error) => {
+          console.log('Nicht geändert: ' + error.message);
+          this.errorMessage = 'Wenn du dein Passwort ändern möchtest, logge dich bitte erneut ein!';
+          this.router.navigate(['login']);
         });
+    } else {
+        this.addNewValues(value);
+        this.userService.update(this.user)
+          .then(() => {
+            this.successMessage = 'Profil erfolgreich geupdatet';
+          }, () => {
+            this.errorMessage = 'Fehler beim Updaten des Profils';
+          });
+    }
+    this.isEdit = false;
+  }
+
+  addNewValues(value){
+    this.user.title = value.title;
+    this.user.fName = value.fname;
+    this.user.lName = value.lname;
+    this.user.street = value.street;
+    this.user.housenumber = value.housenumber;
+    this.user.postalcode = value.postalcode;
+    this.user.city = value.city;
+    this.user.email = value.email;
+  }
+
+  /**
+   * Determines the color of the stars depending on rating
+   * @param index Index of the star
+   * @param points Rating points
+   */
+  getColor(index: number, points: number){
+    enum colors {
+      GREY = '#E0E0E0',
+      GREEN = '#76FF03',
+      YELLOW = '#FFCA28',
+      RED = '#DD2C00'
+    }
+    if (index > points){
+      return colors.GREY;
+    }
+    switch (points) {
+      case 1:
+      case 2:
+        return colors.RED;
+      case 3:
+        return colors.YELLOW;
+      case 4:
+      case 5:
+        return colors.GREEN;
+      default:
+        return colors.GREY;
+    }
   }
 
   signOut(){
