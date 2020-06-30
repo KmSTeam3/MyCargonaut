@@ -43,6 +43,7 @@ export class ListResultPage implements OnInit, OnDestroy {
       cssClass: 'paymentModal',
       componentProps: {
         shipment: this.shipment,
+        user: this.user,
         modalController: this.modalController
       }
     });
@@ -54,8 +55,8 @@ export class ListResultPage implements OnInit, OnDestroy {
   }
 
   /**
-   * Determines the color of the stars depending on which star is clicked
-   * @param index Selected rating
+   * Determines the color of the stars depending on rating
+   * @param index Index of the star
    * @param points Rating points
    */
   getColor(index: number, points: number){
