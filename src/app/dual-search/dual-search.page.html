@@ -42,14 +42,6 @@
 
             <ion-row class="formControl">
               <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="startAddress"></ion-input>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
-                  <div class="error-message"
-                       *ngIf="validationsForm.get('startAddress').hasError(validation.type) && (validationsForm.get('startAddress').dirty || validationsForm.get('startAddress').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
             </ion-row>
           </ion-col>
           <ion-col size="1"></ion-col>
@@ -60,14 +52,6 @@
 
             <ion-row class="formControl">
               <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="toAddress"></ion-input>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
-                  <div class="error-message"
-                       *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
             </ion-row>
           </ion-col>
          </ion-row>
