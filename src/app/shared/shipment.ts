@@ -6,9 +6,9 @@ import {Person} from './person';
 
 
 export enum enumStatus {
-    PREP,
-    DELIVERY,
-    DELIVERED
+    BAR,
+    PAYPAL,
+    VORKASSE
 }
 
 export class Shipment {
