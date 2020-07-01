@@ -49,9 +49,7 @@ export class PaymentDetailPage implements OnInit {
   getColor(index: number, points: number){
     enum colors {
       GREY = '#E0E0E0',
-      GREEN = '#76FF03',
-      YELLOW = '#FFCA28',
-      RED = '#DD2C00'
+      PRIMARY = '#3B6863',
     }
     if (index > points){
       return colors.GREY;
@@ -59,12 +57,10 @@ export class PaymentDetailPage implements OnInit {
     switch (points) {
       case 1:
       case 2:
-        return colors.RED;
       case 3:
-        return colors.YELLOW;
       case 4:
       case 5:
-        return colors.GREEN;
+        return colors.PRIMARY;
       default:
         return colors.GREY;
     }

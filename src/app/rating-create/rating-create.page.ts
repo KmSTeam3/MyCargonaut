@@ -15,8 +15,11 @@ export class RatingCreatePage implements OnInit {
 
   points: number;
   description: string;
+  userID: string;
 
-  constructor(private ratingService: RatingService) { }
+  constructor(private ratingService: RatingService) {
+    this.userID = 'tGVWto1bYHWeq6wtjFN5pGYXInG3';
+  }
 
   ngOnInit() {
   }
@@ -27,7 +30,7 @@ export class RatingCreatePage implements OnInit {
   submit() {
     const rating: Rating = new Rating(this.points, this.description);
     // TODO Dummy ID needs to be replaced with ID of the user whose shipment is being rated. Probably pass it over URL when selecting shipment to rate
-    this.ratingService.persist(rating, 'tGVWto1bYHWeq6wtjFN5pGYXInG3');
+    this.ratingService.persist(rating, this.userID);
     // TODO Navigate back to shipment list
   }
 
@@ -51,9 +54,7 @@ export class RatingCreatePage implements OnInit {
   getColor(index: number){
     enum colors {
       GREY = '#E0E0E0',
-      GREEN = '#76FF03',
-      YELLOW = '#FFCA28',
-      RED = '#DD2C00'
+      PRIMARY = '#3B6863',
     }
     if (this.isAboveRating(index)){
       return colors.GREY;
@@ -61,12 +62,10 @@ export class RatingCreatePage implements OnInit {
     switch (this.points) {
       case 1:
       case 2:
-        return colors.RED;
       case 3:
-        return colors.YELLOW;
       case 4:
       case 5:
-        return colors.GREEN;
+        return colors.PRIMARY;
       default:
         return colors.GREY;
     }

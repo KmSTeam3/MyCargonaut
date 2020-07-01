@@ -171,9 +171,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   getColor(index: number, points: number){
     enum colors {
       GREY = '#E0E0E0',
-      GREEN = '#76FF03',
-      YELLOW = '#FFCA28',
-      RED = '#DD2C00'
+      PRIMARY = '#3B6863',
     }
     if (index > points){
       return colors.GREY;
@@ -181,12 +179,10 @@ export class ProfilePage implements OnInit, OnDestroy {
     switch (points) {
       case 1:
       case 2:
-        return colors.RED;
       case 3:
-        return colors.YELLOW;
       case 4:
       case 5:
-        return colors.GREEN;
+        return colors.PRIMARY;
       default:
         return colors.GREY;
     }
@@ -304,9 +300,15 @@ export class ProfilePage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
-    this.subscription3.unsubscribe();
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
+    if (this.subscription2){
+      this.subscription2.unsubscribe();
+    }
+    if (this.subscription3){
+      this.subscription3.unsubscribe();
+    }
   }
 
 }
