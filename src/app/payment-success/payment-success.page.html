@@ -17,10 +17,10 @@
                         <ion-row>
                             <ion-col>
                                 <ion-text align="center">
-                                    <h2>Smart2Pay Global Services</h2>
-                                    <p>U.A</p>
-                                    <p>Brink 27C</p>
-                                    <p>1251KS Laren</p>
+                                    <h2>Shipment</h2>
+                                    <p>{{shipment.id}}</p>
+                                    <p>{{shipment.vehicle}}</p>
+                                    <p>{{shipment.cargonaut}}</p>
                                 </ion-text>
                             </ion-col>
 
@@ -48,8 +48,8 @@
                         <ion-row>
                             <ion-col>
                                 <ion-text align="center">
-                                    <h3>Klarna</h3>
-                                    <p>14916-208339-59A6C6BC-E50A</p>
+                                    <h3>{{cargonaut.fName}} {{cargonaut.lName}}</h3>
+                                    <p>{{cargonaut.rating}}</p>
                                 </ion-text>
 
                             </ion-col>

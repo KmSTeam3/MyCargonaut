@@ -4,9 +4,9 @@ import {ModalController} from '@ionic/angular';
 import {Shipment} from '../shared/shipment';
 
 @Component({
-  selector: 'app-payment-detail',
-  templateUrl: './payment-detail.page.html',
-  styleUrls: ['./payment-detail.page.scss'],
+    selector: 'app-payment-detail',
+    templateUrl: './payment-detail.page.html',
+    styleUrls: ['./payment-detail.page.scss'],
 
 })
 /**
@@ -14,28 +14,31 @@ import {Shipment} from '../shared/shipment';
  */
 export class PaymentDetailPage implements OnInit {
 
-  @Input() modalController: ModalController;
-  @Input() shipment: Shipment;
-  constructor(private router: Router) {
+    @Input() modalController: ModalController;
+    @Input() shipment: Shipment;
 
-  }
+    constructor(private router: Router) {
 
-  ngOnInit() {
-  }
+    }
 
-  // method for dismissing the payment detail modal
-  async dismissModal(modalController: ModalController) {
-    await modalController.dismiss();
-  }
+    ngOnInit() {
+        console.log('Modal shipment' + this.shipment.goal);
+    }
 
-  /**
-   * navigation method to payment choice page with passing of shipment object for further manipulation
-   *
-   * @param modalController modal controller form search result page to access modal from this page
-   */
-  navigateToPaymentChoice(modalController: ModalController){
-    this.dismissModal(modalController);
-    const navigationExtras: NavigationExtras = { state: { shipment: this.shipment } };
-    this.router.navigate(['/payment-choice'], navigationExtras);
-  }
+    // method for dismissing the payment detail modal
+    async dismissModal(modalController: ModalController) {
+        await modalController.dismiss();
+    }
+
+    /**
+     * navigation method to payment choice page with passing of shipment object for further manipulation
+     *
+     * @param modalController modal controller form search result page to access modal from this page
+     */
+    navigateToPaymentChoice(modalController: ModalController) {
+        this.dismissModal(modalController);
+        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
+        console.log('navigations extra ' + navigationExtras);
+        this.router.navigate(['/payment-choice'], navigationExtras);
+    }
 }

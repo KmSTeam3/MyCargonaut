@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
@@ -6,9 +6,9 @@ import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 
 @Component({
-  selector: 'app-route-search',
-  templateUrl: './route-search.page.html',
-  styleUrls: ['./route-search.page.scss'],
+    selector: 'app-route-search',
+    templateUrl: './route-search.page.html',
+    styleUrls: ['./route-search.page.scss'],
 })
 /**
  * Route search page which lets users search for shipments with available seats
@@ -22,80 +22,79 @@ import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from
  */
 export class RouteSearchPage implements OnInit {
 
-  validationsForm: FormGroup;
-  errorMessage = '';
-  successMessage = '';
+    validationsForm: FormGroup;
+    errorMessage = '';
+    successMessage = '';
 
-  shipmentList: Shipment[] = [];
-
-
-
-  VALIDATION_MESSAGES = {
-    postalCode: [
-      {type: 'required', message: 'Postleitzahl ist erforderlich.'},
-      {type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten'}
-    ],
-    datum: [
-      {type: 'required', message: 'Datum ist erforderlich.'},
-    ]
-  };
-  shipment: Shipment;
+    shipmentList: Shipment[] = [];
 
 
-  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService) {
-  }
+    VALIDATION_MESSAGES = {
+        postalCode: [
+            {type: 'required', message: 'Postleitzahl ist erforderlich.'},
+            {type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten'}
+        ],
+        datum: [
+            {type: 'required', message: 'Datum ist erforderlich.'},
+        ]
+    };
+    shipment: Shipment;
 
 
-  ngOnInit() {
-    // Initiation of the form fields value variables
-      this.validationsForm = this.formBuilder.group({
-      postalcode: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required
-      ])),
-      seats: new FormControl(''),
-      startAddress: new FormControl(''),
-      toAddress: new FormControl(''),
-      date: new FormControl('')
-    });
-  }
+    constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private shipmentService: ShipmentService) {
+    }
 
-  // Search method
-  search(value){
-    console.log('search called');
-    console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-    this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
-      this.shipmentList = shipment;
-      const navigationExtras: NavigationExtras = { state: { shipmentList: this.shipmentList } };
-      this.router.navigate(['search-result'], navigationExtras);
-      console.log(shipment);
-    });
 
-    this.shipmentService.testAll().forEach( shipment => {
-      console.log(shipment);
-    });
-  }
+    ngOnInit() {
+        // Initiation of the form fields value variables
+        this.validationsForm = this.formBuilder.group({
+            postalcode: new FormControl('', Validators.compose([
+                Validators.minLength(5),
+                Validators.required
+            ])),
+            seats: new FormControl(''),
+            startAddress: new FormControl(''),
+            toAddress: new FormControl(''),
+            date: new FormControl('')
+        });
+    }
 
-  query(value){
-    this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach( shipment => {
-      this.shipmentList = shipment;
-      console.log(shipment);
-    });
-  }
+    // Search method
+    search(value) {
+        console.log('search called');
+        console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
+        this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+            this.shipmentList = shipment;
+            const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList}};
+            this.router.navigate(['search-result'], navigationExtras);
+            console.log(shipment);
+        });
 
-  // navigation method to the login page
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+        this.shipmentService.testAll().forEach(shipment => {
+            console.log(shipment);
+        });
+    }
 
-  // navigation method to register page
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
+    query(value) {
+        this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+            this.shipmentList = shipment;
+            console.log(shipment);
+        });
+    }
 
-  // navigation method to the home page
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
+    // navigation method to the login page
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
+
+    // navigation method to register page
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
+
+    // navigation method to the home page
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 
 }

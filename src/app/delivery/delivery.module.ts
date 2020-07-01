@@ -9,8 +9,8 @@ import { DeliveryPageRoutingModule } from './delivery-routing.module';
 
 import { DeliveryPage } from './delivery.page';
 import { ModalDeliveryPageModule} from './modal-delivery/modal-delivery.module';
-import {DeliveryListPageModule} from "./delivery-list/delivery-list.module";
-import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
+import {DeliveryListPageModule} from './delivery-list/delivery-list.module';
+import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
 
 @NgModule({
     imports: [
