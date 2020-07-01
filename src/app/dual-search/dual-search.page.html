@@ -1,9 +1,116 @@
+<app-menu-header></app-menu-header>
+
+<div class="ion-page" id="main-content">
+
+
 <ion-header>
   <ion-toolbar>
-    <ion-title>dual-search</ion-title>
+    <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
+    <ion-buttons slot="primary">
+      <ion-button (click)="navigateToLogin()">Login</ion-button>
+      <ion-button id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row class="formRow">
+    <ion-col size="1"></ion-col>
+    <ion-col>
+      <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
+        <ion-row>
+          <ion-col>
+            <ion-row>
+              <h3 opacity="1">Anzahl:</h3>
+            </ion-row>
 
+            <ion-row class="formControl">
+              <ion-select placeholder="1" formControlName="seats">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+              </ion-select>
+            </ion-row>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+          <ion-col>
+            <ion-row>
+              <h3 style="opacity: revert">von:</h3>
+            </ion-row>
+
+            <ion-row class="formControl">
+              <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="startAddress"></ion-input>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                  <div class="error-message"
+                       *ngIf="validationsForm.get('startAddress').hasError(validation.type) && (validationsForm.get('startAddress').dirty || validationsForm.get('startAddress').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </ion-row>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+          <ion-col>
+            <ion-row>
+              <h3 style="opacity: revert">nach:</h3>
+            </ion-row>
+
+            <ion-row class="formControl">
+              <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="toAddress"></ion-input>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                  <div class="error-message"
+                       *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </ion-row>
+          </ion-col>
+         </ion-row>
+
+        <ion-row>
+      <ion-col>
+        <ion-row>
+          <h3 style="opacity: revert">Datum:</h3>
+        </ion-row>
+
+        <ion-row class="formControl">
+          <ion-input type="text" required placeholder="YYYY-MM-DD" formControlName="date"></ion-input>
+        </ion-row>
+      </ion-col>
+
+          <ion-col size="2"></ion-col>
+
+          <ion-col>
+            <ion-row>
+              <h3 opacity="1">Anzahl:</h3>
+            </ion-row>
+
+            <ion-row class="formControl">
+              <ion-select placeholder="1" formControlName="seats">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+              </ion-select>
+            </ion-row>
+          </ion-col>
+
+    </ion-row>
+        <ion-row>
+          <ion-col size="5"></ion-col>
+          <ion-col size="2">
+            <ion-button type="submit" expand="block" class="submit-btn">Angaben zu Objekt</ion-button>
+          </ion-col>
+          <ion-col size="4"></ion-col>
+        </ion-row>
+      </form>
+    </ion-col>
+    <ion-col size="1"></ion-col>
+  </ion-row>
 </ion-content>
+</div>
