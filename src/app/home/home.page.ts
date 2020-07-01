@@ -1,7 +1,9 @@
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,18 @@ import { MenuController } from '@ionic/angular';
  *
  * If User is logged in instead of login & regBtn burger menu that opens nav-sidemenu is shown
  */
-export class HomePage {
+export class HomePage implements OnDestroy{
 
-  constructor(public userService: UserService, private router: Router, private menu: MenuController) {
+  subscription: Subscription;
+  user: firebase.User;
+
+  constructor(public authService: AuthService, private router: Router, private menu: MenuController) {
     // this.getUserList();
+    this.subscription = this.authService.checkAuthState().subscribe(value => {
+      if (value){
+        this.user = value;
+      }
+    });
   }
 
   // navigation method to login page
@@ -42,6 +52,16 @@ export class HomePage {
   // navigation method to transport search page
   navigateToTransportSearch() {
     this.router.navigate(['/transport-search']);
+  }
+
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
 

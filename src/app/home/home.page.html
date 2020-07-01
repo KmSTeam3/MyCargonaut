@@ -5,14 +5,14 @@
         <ion-toolbar>
             <ion-buttons
                     slot="end"
-                    class="headerText"
-                    *ngIf="!this.userService.isLoggedIn"
-            >
-                <ion-button (click)="navigateToLogin()">Login</ion-button>
-                <ion-button (click)="navigateToRegister()">Registieren</ion-button>
+                    class="headerText">
+                <ion-button *ngIf="user" (click)="signOut()">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+                <ion-button *ngIf="!user" (click)="navigateToRegister()">Registieren</ion-button>
             </ion-buttons>
-            <ion-menu-button auto-hide="false" slot="end" class="headerText"
-                             *ngIf="this.userService.isLoggedIn"></ion-menu-button>
+            <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
         </ion-toolbar>
     </ion-header>
 

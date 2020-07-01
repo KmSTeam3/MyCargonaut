@@ -11,7 +11,8 @@ import { ManageVehiclePageRoutingModule } from './manage-vehicle-routing.module'
 import { ManageVehiclePage } from './manage-vehicle.page';
 import { ListVehiclePageModule } from './list-vehicle/list-vehicle.module';
 import { AddVehiclePageModule } from './add-vehicle/add-vehicle.module';
-import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
+import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
+import {UnauthorizedPageModule} from '../unauthorized/unauthorized.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
         ManageVehiclePageRoutingModule,
         ListVehiclePageModule,
         AddVehiclePageModule,
-        MenuHeaderPageModule
+        MenuHeaderPageModule,
+        UnauthorizedPageModule
     ],
   declarations: [ManageVehiclePage],
   exports: [ListVehiclePageModule, AddVehiclePageModule]

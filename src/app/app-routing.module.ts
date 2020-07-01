@@ -81,6 +81,10 @@ const routes: Routes = [
     path: 'menu-header',
     loadChildren: () => import('./menu-header/menu-header.module').then( m => m.MenuHeaderPageModule)
   },
+  {
+    path: 'unauthorized',
+    loadChildren: () => import('./unauthorized/unauthorized.module').then( m => m.UnauthorizedPageModule)
+  },
 
 
 

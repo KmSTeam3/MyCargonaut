@@ -6,13 +6,26 @@
   <ion-toolbar>
     <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
     <ion-buttons slot="primary">
+      <ion-button *ngIf="user" (click)="signOut()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button *ngIf="!user" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+  <ion-content *ngIf="!user">
+    <ion-content *ngIf="!user">
+      <app-unauthorized></app-unauthorized>
+    </ion-content>
+
+
+  </ion-content>
+
+<ion-content *ngIf="user">
 
   <app-add-vehicle [holderId]="holderId" ></app-add-vehicle>
   <app-list-vehicle *ngFor="let vehicle of this.listVehicle" [vehicle]="vehicle"></app-list-vehicle>

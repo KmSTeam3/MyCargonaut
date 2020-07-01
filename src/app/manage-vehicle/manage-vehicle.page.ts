@@ -4,7 +4,8 @@ import { VehicleService } from './../shared/vehicle.service';
 import { User } from './../shared/user';
 import { Vehicle } from './../shared/vehicle';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
 
 
 
@@ -13,11 +14,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './manage-vehicle.page.html',
   styleUrls: ['./manage-vehicle.page.scss'],
 })
-export class ManageVehiclePage implements OnInit {
+export class ManageVehiclePage implements OnInit, OnDestroy {
 
 
   listVehicle: Vehicle[] = [];
   holderId: string;
+  user: firebase.User;
+  subscription: Subscription;
   constructor( private vehicleService: VehicleService, private authService: AuthService, private router?: Router) { }
 
   ngOnInit() {
@@ -25,10 +28,13 @@ export class ManageVehiclePage implements OnInit {
   }
 
   setUserId(){
-    this.authService.checkAuthState().subscribe( (user) => {
-       this.renderList( user.uid);
-       this.holderId = user.uid;
-       console.log('Eingeloggt als: ' + this.holderId);
+    this.subscription = this.authService.checkAuthState().subscribe( (user) => {
+      if (user){
+        this.user = user;
+        this.renderList( user.uid);
+        this.holderId = user.uid;
+        console.log('Eingeloggt als: ' + this.holderId);
+      }
       });
    }
 
@@ -41,6 +47,12 @@ export class ManageVehiclePage implements OnInit {
 
   goToAdd(){
     this.router.navigate(['/manage-vehicle/add-vehicle']);
+  }
+
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
   }
 
   navigateToLogin(){
@@ -80,5 +92,9 @@ export class ManageVehiclePage implements OnInit {
   }
   navigateToDelivery(){
     this.router.navigate(['/delivery']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

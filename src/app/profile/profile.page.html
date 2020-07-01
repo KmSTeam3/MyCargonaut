@@ -7,16 +7,22 @@
   <ion-toolbar>
     <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
     <ion-buttons slot="end" >
-      <ion-button (click)="signOut()">
+      <ion-button *ngIf="firebaseUser" (click)="signOut()">
         <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
+      <ion-button *ngIf="!firebaseUser" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button *ngIf="!firebaseUser" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
       <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!firebaseUser">
+    <app-unauthorized></app-unauthorized>
+</ion-content>
+
+<ion-content *ngIf="firebaseUser">
   <div class="background">
     <div>
       <ion-grid *ngIf="isEdit">
