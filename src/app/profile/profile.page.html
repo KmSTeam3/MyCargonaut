@@ -145,23 +145,6 @@
                 </ion-col>
               </ion-row>
 
-              <ion-row class="side">
-                <ion-col>
-                  <ion-item lines="none">
-                    <ion-input type="password" formControlName="password" class="form-control" placeholder="Passwort"></ion-input>
-                  </ion-item>
-                  <div class="validation-errors">
-                    <ng-container *ngFor="let validation of VALIDATION_MESSAGES.password">
-                      <div class="error-message"
-                           *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
-                        {{ validation.message }}
-                      </div>
-                    </ng-container>
-                  </div>
-                </ion-col>
-              </ion-row>
-
-
               <ion-row class="ion-text-center">
                 <ion-col>
                   <ion-button type="submit" size="large" color="primary" class="submit-btn" [disabled]="!validationsForm.valid" style="margin-top: 10%">Speichern</ion-button>
@@ -243,13 +226,16 @@
               </ion-row>
 
               <ion-row>
-                <ion-col size="6">
-                  <ion-button (click)="isEdit = true" color="primary">Profil bearbeiten</ion-button> <br>
+                <ion-col size="4">
+                  <ion-button size="small" (click)="isEdit = true" color="primary">Profil bearbeiten</ion-button> <br>
                   <label class="error-message">{{errorMessage}}</label>
                   <label class="success-message">{{successMessage}}</label>
                 </ion-col>
-                <ion-col size="6">
-                  <ion-button color="danger">Profil löschen</ion-button>
+                <ion-col size="4">
+                  <ion-button size="small" (click)="showInputAlert()" color="primary">Passwort ändern</ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button (click)="showAlert('Sorry!', 'Diese Funktionalität wurde noch nicht implementiert')" size="small" color="danger">Profil löschen</ion-button>
                 </ion-col>
               </ion-row>
           </ion-col>

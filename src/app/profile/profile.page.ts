@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {Rating} from '../shared/rating';
 import {RatingService} from '../shared/rating.service';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -50,13 +51,13 @@ export class ProfilePage implements OnInit, OnDestroy {
     email: [
       { type: 'required', message: 'Email ist erforderlich.' },
       { type: 'pattern', message: 'Bitte gebe eine gültige Email ein.' }
-    ],
-    password: [
-      { type: 'minlength', message: 'Passwort muss min. 6 Zeichen lang sein.' }
     ]
   };
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router, private ratingService: RatingService) {
+  /**
+   * Subscriptions to all necessary data from firebase are initiated and necessary dependencies are injected
+   */
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router, private ratingService: RatingService, private alertController: AlertController) {
     this.subscription = this.authservice.checkAuthState().subscribe((value => {
       if (value){
         this.userID = value.uid;
@@ -86,6 +87,9 @@ export class ProfilePage implements OnInit, OnDestroy {
     }));
   }
 
+  /**
+   * Validations form is initiated here
+   */
   ngOnInit() {
     this.validationsForm = this.formBuilder.group({
       postalcode: new FormControl('', Validators.compose([
@@ -96,9 +100,6 @@ export class ProfilePage implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(6),
-      ])),
       city: new FormControl(''),
       lname: new FormControl(''),
       fname: new FormControl(''),
@@ -108,7 +109,15 @@ export class ProfilePage implements OnInit, OnDestroy {
     });
   }
 
+  ionViewWillEnter(){
+    this.errorMessage = '';
+    this.successMessage = '';
+  }
 
+  /**
+   * Updates user data and sets error/success messages
+   * @param value Contains values of the inputs from form
+   */
   updateProfile(value){
     this.successMessage = '';
     this.errorMessage = '';
@@ -122,26 +131,11 @@ export class ProfilePage implements OnInit, OnDestroy {
             }, () => {
               this.errorMessage = 'Fehler beim Updaten des Profils';
             });
-      }, (error) => {
-        console.log('Nicht geändert: ' + error.message);
+      }, (error1) => {
+        console.log('Nicht geändert: ' + error1.message);
         this.errorMessage = 'Wenn du deine Email ändern möchtest, logge dich bitte erneut ein!';
         this.router.navigate(['login']);
       });
-    } else if (value.password !== ''){
-        this.firebaseUser.updatePassword(value.password).then(() => {
-          console.log('Passwort geändert');
-          this.addNewValues(value);
-          this.userService.update(this.user)
-              .then(() => {
-                this.successMessage = 'Profil erfolgreich geupdatet';
-              }, () => {
-                this.errorMessage = 'Fehler beim Updaten des Profils';
-              });
-        }, (error) => {
-          console.log('Nicht geändert: ' + error.message);
-          this.errorMessage = 'Wenn du dein Passwort ändern möchtest, logge dich bitte erneut ein!';
-          this.router.navigate(['login']);
-        });
     } else {
         this.addNewValues(value);
         this.userService.update(this.user)
@@ -154,6 +148,10 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.isEdit = false;
   }
 
+  /**
+   * Adds values from form to user object befor updating
+   * @param value Contains inputs from form
+   */
   addNewValues(value){
     this.user.title = value.title;
     this.user.fName = value.fname;
@@ -192,6 +190,76 @@ export class ProfilePage implements OnInit, OnDestroy {
       default:
         return colors.GREY;
     }
+  }
+
+  /**
+   * Alert window for upating password
+   */
+  async showInputAlert() {
+    this.errorMessage = '';
+    this.successMessage = '';
+    const alert = await this.alertController.create({
+      header: 'Passwort ändern',
+      message: 'Bitte gib dein neues Passwort ein',
+      inputs: [
+        {
+          name: 'password',
+          type: 'password',
+          placeholder: 'Neues Passwort'
+        },
+        {
+          name: 'confirmpassword',
+          type: 'password',
+          placeholder: 'Passwort bestätigen'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Bestätigen',
+          role: 'submit',
+          handler: data => {
+            if (data.password.length < 6){
+              this.errorMessage = 'Passwort nicht geändert. Neues Passwort muss mindestens 6 Zeichen lang sein';
+            } else if (data.password !== data.confirmpassword){
+              this.errorMessage = 'Passwort nicht geändert. Deine neuen Passwörter stimmen nicht über ein';
+            } else {
+              this.firebaseUser.updatePassword(data.password).then(() => {
+                this.successMessage = 'Passwort geändert';
+              }, (error1) => {
+                if (error1.message === 'This operation is sensitive and requires recent authentication. Log in again before retrying this request.') {
+                  this.errorMessage = 'Passwort nicht geändert! Logge dich bitte erneut ein, um dein Passwort zu ändern!';
+                  setTimeout(() => {
+                    this.router.navigate(['login']);
+                  }, 5000);
+                } else {
+                  this.errorMessage = error1.message;
+                }
+              });
+            }
+          },
+        },
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+        }]
+    });
+    await alert.present();
+  }
+
+  /**
+   * Generic function to show alert window
+   */
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+        }]
+    });
+    await alert.present();
   }
 
   signOut(){
@@ -238,6 +306,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
   }
 
 }
