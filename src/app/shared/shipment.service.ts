@@ -131,6 +131,22 @@ export class ShipmentService {
         );
     }
 
+    searchBoth(start: string, goal: string, date: string, seats: number){
+        const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
+        where('start', '==', start).
+        where('goal', '==', goal).
+        where('date', '==', date).
+        where('seat', '>=', seats)).snapshotChanges();
+
+        return queryBase.pipe(
+            map(actions => actions.map( a => {
+                const data = a.payload.doc.data();
+                data.id = a.payload.doc.id;
+                return{...data} as Shipment;
+            }))
+        );
+    }
+
     getShipments(cargonaut: string) {
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('cargonaut', '==', cargonaut)).snapshotChanges();
