@@ -120,9 +120,7 @@ export class ShipmentService {
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('start', '==', start).
         where('goal', '==', goal).
-        where('weight', '>=', weight).
-        where('height', '>=', height).
-        where('length', '>=', length)).snapshotChanges();
+        where('weight', '>=', weight)).snapshotChanges();
 
         return queryBase.pipe(
             map(actions => actions.map( a => {
