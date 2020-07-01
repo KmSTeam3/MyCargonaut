@@ -86,4 +86,7 @@ export class PaymentChoicePage implements OnInit {
     }
 
 
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 }
