@@ -16,4 +16,8 @@ export class PaymentSuccessPage implements OnInit {
     navigateToHome() {
         this.router.navigate(['/home']);
     }
+
+    navigateToSearchResult() {
+    this.router.navigate(['/search-result']);
+    }
 }

@@ -1,15 +1,97 @@
 <app-menu-header></app-menu-header>
 <div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
-      <ion-buttons slot="primary">
-        <ion-menu-button auto-hide="false"></ion-menu-button>
-      </ion-buttons>
+    <ion-header>
+        <ion-toolbar>
+            <img src="assets/CargoLogo.PNG" id="logoImg" (click)="navigateToHome()">
+            <ion-buttons slot="primary">
+                <ion-menu-button auto-hide="false"></ion-menu-button>
+            </ion-buttons>
 
-    </ion-toolbar>
-  </ion-header>
-<ion-content>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-card>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="3" class="overview">
+                        <ion-row>
+                            <ion-col>
+                                <ion-text align="center">
+                                    <h2>Smart2Pay Global Services</h2>
+                                    <p>U.A</p>
+                                    <p>Brink 27C</p>
+                                    <p>1251KS Laren</p>
+                                </ion-text>
+                            </ion-col>
 
-</ion-content>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-text align="center">
+                                    <h1>1.00€</h1>
+                                    <p>See more</p>
+                                </ion-text>
+                            </ion-col>
+
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-item lines="none" color="rgba(245,245,246,0.9)"></ion-item>
+                                <ion-item lines="none" color="rgba(245,245,246,0.9)"></ion-item>
+                                <ion-item lines="none" color="rgba(245,245,246,0.9)"></ion-item>
+
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-text align="center">
+                                    <h3>Klarna</h3>
+                                    <p>14916-208339-59A6C6BC-E50A</p>
+                                </ion-text>
+
+                            </ion-col>
+
+                        </ion-row>
+                    </ion-col>
+
+
+                    <ion-col>
+                        <ion-row>
+                            <ion-col></ion-col>
+                            <ion-col>
+                                <img src="assets/img/klarna.gif">
+                            </ion-col>
+                            <ion-col></ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-text align="center">
+                                    <h1>Thank you</h1>
+                                    <p>The merchant will receive a confirmation of the transaction and can process your order immediately</p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-item lines="none"></ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col></ion-col>
+                            <ion-col>
+                                <ion-button size="large" (click)="navigateToHome()">Back to Merchant</ion-button>
+                            </ion-col>
+                            <ion-col></ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            </ion-card>
+    </ion-content>
 </div>
