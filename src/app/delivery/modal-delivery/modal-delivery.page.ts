@@ -90,20 +90,17 @@ export class ModalDeliveryPage implements OnInit {
      * @param uId User ID from logged in User.
      */
     getVehicles(uId: string){
+        this.vehicles = [];
         this.vehicleService.findAll(uId).subscribe( (vehiclesList) => {
             this.vehicles = vehiclesList;
         });
     }
 
-    getSelectValue(value: string){
+    getSelectValue(event){
         this.vehicles.forEach( vehicle => {
-            console.log(vehicle.licensePlate);
-            console.log(value);
-            if ( value === vehicle.licensePlate) {
+            if ( event.detail.value === vehicle.licensePlate) {
                 this.selectedVehicle = vehicle;
-                console.log( 'vehicle: ' + this.selectedVehicle);
-            }else{
-                console.log('etwas komisch');
+                //console.log( 'vehicle: ' + this.selectedVehicle);
             }
         });
     }
