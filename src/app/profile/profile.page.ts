@@ -10,9 +10,9 @@ import {RatingService} from '../shared/rating.service';
 import {AlertController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+    selector: 'app-profile',
+    templateUrl: './profile.page.html',
+    styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit, OnDestroy {
 
@@ -82,10 +82,10 @@ export class ProfilePage implements OnInit, OnDestroy {
           }
         });
 
-      }
+            }
 
-    }));
-  }
+        }));
+    }
 
   /**
    * Validations form is initiated here
@@ -258,46 +258,47 @@ export class ProfilePage implements OnInit, OnDestroy {
     await alert.present();
   }
 
-  signOut(){
-    this.authservice.SignOut().then(() => {
-      this.router.navigate(['login']);
-    });
-  }
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    signOut() {
+        this.authservice.SignOut().then(() => {
+            this.router.navigate(['login']);
+        });
+    }
 
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
 
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
+    navigateToMangeVehicle() {
+        this.router.navigate(['/manage-vehicle']);
+    }
 
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
+    navigateToRouteSearch() {
+        this.router.navigate(['/route-search']);
+    }
 
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
+    navigateToTransportSearch() {
+        this.router.navigate(['/transport-search']);
+    }
 
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
+    navigateToSearchResult() {
+        this.router.navigate(['/search-result']);
+    }
 
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
+
+    navigateToImpressum() {
+        this.router.navigate(['/impressum']);
+    }
 
   ngOnDestroy(): void {
     if (this.subscription){

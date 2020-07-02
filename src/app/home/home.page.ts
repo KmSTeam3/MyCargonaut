@@ -54,6 +54,10 @@ export class HomePage implements OnDestroy{
     this.router.navigate(['/transport-search']);
   }
 
+    navigateToDualSearch() {
+        this.router.navigate(['/dual-search']);
+    }
+
   signOut(){
     this.authService.SignOut().then(() => {
       this.navigateToLogin();

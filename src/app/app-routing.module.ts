@@ -73,18 +73,23 @@ const routes: Routes = [
   {
     path: 'impressum',
     loadChildren: () => import('./impressum/impressum.module').then( m => m.ImpressumPageModule)
-  },  {
+  },
+  {
     path: 'payment-success',
     loadChildren: () => import('./payment-success/payment-success.module').then( m => m.PaymentSuccessPageModule)
   },
   {
     path: 'menu-header',
     loadChildren: () => import('./menu-header/menu-header.module').then( m => m.MenuHeaderPageModule)
+  },  {
+    path: 'dual-search',
+    loadChildren: () => import('./dual-search/dual-search.module').then( m => m.DualSearchPageModule)
   },
   {
     path: 'unauthorized',
     loadChildren: () => import('./unauthorized/unauthorized.module').then( m => m.UnauthorizedPageModule)
   },
+
 
 
 

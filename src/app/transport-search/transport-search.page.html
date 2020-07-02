@@ -14,7 +14,8 @@
     </ion-header>
 
     <ion-content id="ion-content">
-        <form>
+        <ion-grid>
+            <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
             <ion-row class="heading">
                 <ion-col size="2"></ion-col>
                 <ion-col>
@@ -26,7 +27,7 @@
             <ion-row class="formRow">
                 <ion-col size="3"></ion-col>
                 <ion-col>
-                    <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
+
 
                         <ion-row>
 
@@ -157,7 +158,7 @@
                             </ion-col>
 
                         </ion-row>
-                    </form>
+
 
                 </ion-col>
                 <ion-col size="3"></ion-col>
@@ -170,7 +171,7 @@
                 </ion-col>
                 <ion-col size="4"></ion-col>
             </ion-row>
-
+            </form>
 
         </ion-grid>
     </ion-content>

@@ -10,9 +10,9 @@ import {Subscription} from 'rxjs';
 import {AuthService} from '../shared/auth.service';
 
 @Component({
-  selector: 'app-search-result',
-  templateUrl: './search-result.page.html',
-  styleUrls: ['./search-result.page.scss'],
+    selector: 'app-search-result',
+    templateUrl: './search-result.page.html',
+    styleUrls: ['./search-result.page.scss'],
 })
 export class SearchResultPage implements OnInit, OnDestroy {
   @Input() shipmentList: Shipment[];
@@ -44,22 +44,23 @@ export class SearchResultPage implements OnInit, OnDestroy {
     });
 
 
-  }
-  customPopoverOptions: any = {
-    header: 'Filter search result',
-    subHeader: 'Select your attribute',
-    message: 'Only select your favorite flower'
-  };
+    }
 
-  ngOnInit() {
-    // this.passengerList[0] = this.person;
-    // this.user.rating = 1;
-    // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
-    // this.shipmentService.query('price');
-    // this.listShipments = this.dataHelper.tranportData;
-    console.log(this.listShipments);
-    // this.listShipments.push(this.shipment);
-  }
+    customPopoverOptions: any = {
+        header: 'Filter search result',
+        subHeader: 'Select your attribute',
+        message: 'Only select your favorite flower'
+    };
+
+    ngOnInit() {
+        // this.passengerList[0] = this.person;
+        // this.user.rating = 1;
+        // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
+        // this.shipmentService.query('price');
+        // this.listShipments = this.dataHelper.tranportData;
+        console.log(this.listShipments);
+        // this.listShipments.push(this.shipment);
+    }
 
   signOut(){
     this.authService.SignOut().then(() => {
@@ -71,33 +72,33 @@ export class SearchResultPage implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
+    navigateToMangeVehicle() {
+        this.router.navigate(['/manage-vehicle']);
+    }
 
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
+    navigateToRouteSearch() {
+        this.router.navigate(['/route-search']);
+    }
 
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
+    navigateToTransportSearch() {
+        this.router.navigate(['/transport-search']);
+    }
 
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
+    navigateToSearchResult() {
+        this.router.navigate(['/search-result']);
+    }
 
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 
   navigateToImpressum(){
     this.router.navigate(['/impressum']);

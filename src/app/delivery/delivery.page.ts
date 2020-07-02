@@ -75,7 +75,6 @@ export class DeliveryPage implements OnInit, OnDestroy {
             this.navigateToLogin();
         });
     }
-
     // navigation to homepage
     navigateToHome() {
         this.router.navigate(['/home']);
