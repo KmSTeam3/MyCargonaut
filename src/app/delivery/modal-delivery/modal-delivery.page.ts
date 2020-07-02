@@ -1,3 +1,5 @@
+import { VehicleService } from './../../shared/vehicle.service';
+
 import {Component, OnInit} from '@angular/core';
 import {
     ModalController,
@@ -6,11 +8,11 @@ import {
 } from '@ionic/angular';
 import {AuthService} from '../../shared/auth.service';
 import {enumStatus, Shipment} from '../../shared/shipment';
-import {Vehicle} from '../../shared/vehicle';
 import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
 import {ShipmentService} from '../../shared/shipment.service';
 import {UserService} from '../../shared/user.service';
+import { Vehicle } from 'src/app/shared/vehicle';
 
 
 @Component({
@@ -32,6 +34,7 @@ export class ModalDeliveryPage implements OnInit {
         private authService: AuthService,
         private shipmentService: ShipmentService,
         private userService: UserService,
+        private vehicleService: VehicleService
     ) {
     }
 
@@ -48,10 +51,11 @@ export class ModalDeliveryPage implements OnInit {
     seat: number;
     pricePerSeat: number;
     cargonaut: string;
-    vehicle: Vehicle;
+    vehicles: Vehicle[];
     passengerList: Person[];
     articleList: Article[];
 
+    selectedVehicle: Vehicle;
 
     currentID: string;
 
@@ -66,6 +70,7 @@ export class ModalDeliveryPage implements OnInit {
                 this.currentID = user.uid;
                 console.log('Eingeloggt als: ' + this.currentID);
                 this.cargonaut = this.currentID;
+                this.getVehicles(this.currentID);
             }
         });
     }
@@ -77,6 +82,30 @@ export class ModalDeliveryPage implements OnInit {
         this.setUserId();
 
         console.log('Aktuell eingeloggt als:' + this.cargonaut);
+    }
+
+
+    /**
+     * Will fetch all available vehicles registered by current User
+     * @param uId User ID from logged in User.
+     */
+    getVehicles(uId: string){
+        this.vehicleService.findAll(uId).subscribe( (vehiclesList) => {
+            this.vehicles = vehiclesList;
+        });
+    }
+
+    getSelectValue(value: string){
+        this.vehicles.forEach( vehicle => {
+            console.log(vehicle.licensePlate);
+            console.log(value);
+            if ( value === vehicle.licensePlate) {
+                this.selectedVehicle = vehicle;
+                console.log( 'vehicle: ' + this.selectedVehicle);
+            }else{
+                console.log('etwas komisch');
+            }
+        });
     }
 
     async presentToast(msg: string) {
@@ -91,18 +120,21 @@ export class ModalDeliveryPage implements OnInit {
      * Function to collect modal form values and generate new shipment through call of shipment.service persist method
      */
     saveModal() {
-        const shipment: Shipment = new Shipment(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
+        if ( this.selectedVehicle === undefined || null || '') {
+            this.presentToast('Please select a Vehicle.');
+        }else{
+        const shipment: Shipment = new Shipment(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
         console.log(shipment);
         if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
 
-            this.shipmentService.persist(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat, 0);
+            this.shipmentService.persist(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat, 0);
             this.closeModal();
             this.presentToast('added Delivery');
         } else {
             this.presentToast('fuck');
         }
 
-
+        }
     }
 
     /**
