@@ -31,7 +31,9 @@
 
     <ion-item color="dark">
         <ion-label position="floating">Fahrzeug</ion-label>
-        <ion-input type="text" [(ngModel)]="vehicle"></ion-input>
+        <ion-select [(ngModel)]="selectedVehicle" (ionChange)="getSelectValue($event)">
+            <ion-select-option *ngFor="let vehicle of vehicles" value="{{vehicle.licensePlate}}"> {{vehicle.licensePlate}}  </ion-select-option>
+        </ion-select>
     </ion-item>
 
 
