@@ -19,8 +19,6 @@ describe('ProfilePage', () => {
   let authService: AuthService;
   let subscription: Subscription;
 
-  const credentials = { email: 'klausi@web.de', password: '123456' };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfilePage ],
