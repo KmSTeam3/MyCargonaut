@@ -15,7 +15,7 @@
 
       </ion-col>
       <ion-col>
-        <ion-button>Edit</ion-button>
+        <ion-button [id]="shipment.id" (click)="openEditModal(shipment.id)">Edit</ion-button>
       </ion-col>
       <ion-col>
         <ion-button color="danger">Delete</ion-button>
