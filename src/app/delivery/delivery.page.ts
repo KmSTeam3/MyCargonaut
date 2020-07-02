@@ -38,7 +38,7 @@ export class DeliveryPage implements OnInit {
                     console.log(this.holderId);
                     console.log(shipment);
                 });
-                console.log('Not modal' + this.holderId);
+                console.log('Logged in as' + this.holderId);
             }
 
         });
