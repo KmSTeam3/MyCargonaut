@@ -48,7 +48,6 @@ export class DeliveryListPage implements OnInit {
     }
 
     async openEditModal(shipId) {
-        alert(shipId);
         const modal = await this.modalController.create({
             component: ModalDeliveryEditPage,
             componentProps: {
@@ -75,6 +74,10 @@ export class DeliveryListPage implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    delete(shipId){
+        this.shipmentService.delete(shipId);
     }
 
     ngOnInit() {

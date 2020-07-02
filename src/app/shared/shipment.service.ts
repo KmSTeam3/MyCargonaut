@@ -39,6 +39,7 @@ export class ShipmentService {
         copy.startTime = copy.startTime || null;
         copy.status = copy.status || null;
 
+
         return copy;
     }
 
