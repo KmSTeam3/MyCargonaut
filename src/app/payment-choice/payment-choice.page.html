@@ -14,7 +14,7 @@
   <ion-list>
     <ion-radio-group value="choice" (ionChange)="setPaymentChoice($event)">
       <ion-list-header>
-        <ion-label>Bezahlart:</ion-label>
+        <ion-label><h1>Bezahlart:</h1></ion-label>
       </ion-list-header>
 
     <ion-item lines="none">
@@ -54,7 +54,7 @@
     <ion-col></ion-col>
     <ion-col></ion-col>
     <ion-col>
-      <ion-button>
+      <ion-button (click)="pay()">
         <ion-text>
           <p>verpflichtend</p>
           <p>verschicken</p>

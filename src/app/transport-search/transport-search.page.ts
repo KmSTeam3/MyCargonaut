@@ -63,7 +63,7 @@ export class TransportSearchPage implements OnInit {
   search(value){
     console.log('search called');
     console.log('Start Address ' + value.startAddress + ' toAddress ' + value.toAddress + ' Article ' + value.article + ' weight ' + value.weight + ' height ' + value.height + ' length ' + value.length);
-    this.shipmentService.searchTransport(value.startAddress, value.toAddress,  value.weight, value.height, value.length).forEach( shipment => {
+    this.shipmentService.searchTransport(value.startAddress, value.toAddress,  +value.weight, +value.height, +value.length).forEach( shipment => {
       this.shipmentList = shipment;
       const navigationExtras: NavigationExtras = { state: {shipmentList: this.shipmentList} };
       this.router.navigate(['/search-result'], navigationExtras);

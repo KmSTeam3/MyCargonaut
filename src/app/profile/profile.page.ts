@@ -7,149 +7,150 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+    selector: 'app-profile',
+    templateUrl: './profile.page.html',
+    styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit, OnDestroy {
 
-  validationsForm: FormGroup;
-  errorMessage = '';
-  successMessage = '';
-  userID;
-  subscription: Subscription;
-  subscription2: Subscription;
+    validationsForm: FormGroup;
+    errorMessage = '';
+    successMessage = '';
+    userID;
+    subscription: Subscription;
+    subscription2: Subscription;
 
-  VALIDATION_MESSAGES = {
-    postalcode: [
-      { type: 'required', message: 'Postleitzahl ist erforderlich.' },
-      { type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten' }
-    ],
-    fname: [
-      { type: 'required', message: 'Vorname ist erforderlich.' }
-    ],
-    lname: [
-      { type: 'required', message: 'Nachname ist erforderlich.' }
-    ],
-    city: [
-      { type: 'required', message: 'Stadt ist erforderlich.' }
-    ],
-    housenumber: [
-      { type: 'required', message: 'Hausnummer ist erforderlich.' }
-    ],
-    street: [
-      { type: 'required', message: 'Straße ist erforderlich'}
-    ],
-    email: [
-      { type: 'required', message: 'Email ist erforderlich.' },
-      { type: 'pattern', message: 'Bitte gebe eine gültige Email ein.' }
-    ],
-    password: [
-      { type: 'minlength', message: 'Passwort muss min. 6 Zeichen lang sein.' }
-    ]
-  };
+    VALIDATION_MESSAGES = {
+        postalcode: [
+            {type: 'required', message: 'Postleitzahl ist erforderlich.'},
+            {type: 'minlength', message: 'Postleitzahl muss mindestens 5 Zahlen enthalten'}
+        ],
+        fname: [
+            {type: 'required', message: 'Vorname ist erforderlich.'}
+        ],
+        lname: [
+            {type: 'required', message: 'Nachname ist erforderlich.'}
+        ],
+        city: [
+            {type: 'required', message: 'Stadt ist erforderlich.'}
+        ],
+        housenumber: [
+            {type: 'required', message: 'Hausnummer ist erforderlich.'}
+        ],
+        street: [
+            {type: 'required', message: 'Straße ist erforderlich'}
+        ],
+        email: [
+            {type: 'required', message: 'Email ist erforderlich.'},
+            {type: 'pattern', message: 'Bitte gebe eine gültige Email ein.'}
+        ],
+        password: [
+            {type: 'minlength', message: 'Passwort muss min. 6 Zeichen lang sein.'}
+        ]
+    };
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
-    this.subscription = this.authservice.checkAuthState().subscribe((value => {
-      if (value){
-        this.userID = value.uid;
-        this.subscription2 = this.userService.getUser(this.userID).subscribe((user) => {
-          if (user){
-            this.validationsForm.patchValue({
-              title: user.title,
-              fname: user.fName,
-              lname: user.lName,
-              street: user.street,
-              housenumber: user.housenumber,
-              postalcode: user.postalcode,
-              city: user.city,
-              email: user.email
+    constructor(private userService: UserService, private formBuilder: FormBuilder, private authservice: AuthService, private router: Router) {
+        this.subscription = this.authservice.checkAuthState().subscribe((value => {
+            if (value) {
+                this.userID = value.uid;
+                this.subscription2 = this.userService.getUser(this.userID).subscribe((user) => {
+                    if (user) {
+                        this.validationsForm.patchValue({
+                            title: user.title,
+                            fname: user.fName,
+                            lname: user.lName,
+                            street: user.street,
+                            housenumber: user.housenumber,
+                            postalcode: user.postalcode,
+                            city: user.city,
+                            email: user.email
+                        });
+                    }
+                });
+
+            }
+
+        }));
+    }
+
+    ngOnInit() {
+        this.validationsForm = this.formBuilder.group({
+            postalcode: new FormControl('', Validators.compose([
+                Validators.minLength(5),
+                Validators.required
+            ])),
+            email: new FormControl('', Validators.compose([
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+            ])),
+            password: new FormControl('', Validators.compose([
+                Validators.minLength(6),
+            ])),
+            city: new FormControl(''),
+            lname: new FormControl(''),
+            fname: new FormControl(''),
+            street: new FormControl(''),
+            housenumber: new FormControl(''),
+            title: new FormControl('')
+        });
+    }
+
+
+    updateProfile(value) {
+        const user: User = new User(this.userID, value.title, value.fName, value.lName, value.street, value.housenumber, value.postalcode, value.city, value.email);
+        this.userService.update(user)
+            .then(() => {
+                this.successMessage = 'Profil erfolgreich geupdatet';
+            }, () => {
+                this.errorMessage = 'Fehler beim Updaten des Profils';
             });
-          }
+    }
+
+    signOut() {
+        this.authservice.SignOut().then(() => {
+            this.router.navigate(['login']);
         });
+    }
 
-      }
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
-    }));
-  }
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
 
-  ngOnInit() {
-    this.validationsForm = this.formBuilder.group({
-      postalcode: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required
-      ])),
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(6),
-      ])),
-      city: new FormControl(''),
-      lname: new FormControl(''),
-      fname: new FormControl(''),
-      street: new FormControl(''),
-      housenumber: new FormControl(''),
-      title: new FormControl('')
-    });
-  }
+    navigateToMangeVehicle() {
+        this.router.navigate(['/manage-vehicle']);
+    }
 
+    navigateToRouteSearch() {
+        this.router.navigate(['/route-search']);
+    }
 
-  updateProfile(value){
-    const user: User = new User(this.userID, value.title, value.fName, value.lName, value.street, value.housenumber, value.postalcode, value.city, value.email);
-    this.userService.update(user)
-        .then(() => {
-          this.successMessage = 'Profil erfolgreich geupdatet';
-    }, () => {
-          this.errorMessage = 'Fehler beim Updaten des Profils';
-        });
-  }
+    navigateToTransportSearch() {
+        this.router.navigate(['/transport-search']);
+    }
 
-  signOut(){
-    this.authservice.SignOut().then(() => {
-      this.router.navigate(['login']);
-    });
-  }
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    navigateToSearchResult() {
+        this.router.navigate(['/search-result']);
+    }
 
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
+    navigateToImpressum() {
+        this.router.navigate(['/impressum']);
+    }
 
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
-
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
-
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
-
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
-
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
-  }
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+        this.subscription2.unsubscribe();
+    }
 
 }

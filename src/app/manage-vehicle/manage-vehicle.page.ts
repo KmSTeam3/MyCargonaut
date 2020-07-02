@@ -1,84 +1,86 @@
-import { AuthService } from './../shared/auth.service';
-import { map } from 'rxjs/operators';
-import { VehicleService } from './../shared/vehicle.service';
-import { User } from './../shared/user';
-import { Vehicle } from './../shared/vehicle';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-
+import {AuthService} from './../shared/auth.service';
+import {map} from 'rxjs/operators';
+import {VehicleService} from './../shared/vehicle.service';
+import {User} from './../shared/user';
+import {Vehicle} from './../shared/vehicle';
+import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
-  selector: 'app-manage-vehicle',
-  templateUrl: './manage-vehicle.page.html',
-  styleUrls: ['./manage-vehicle.page.scss'],
+    selector: 'app-manage-vehicle',
+    templateUrl: './manage-vehicle.page.html',
+    styleUrls: ['./manage-vehicle.page.scss'],
 })
 export class ManageVehiclePage implements OnInit {
 
 
-  listVehicle: Vehicle[] = [];
-  holderId: string;
-  constructor( private vehicleService: VehicleService, private authService: AuthService, private router?: Router) { }
+    listVehicle: Vehicle[] = [];
+    holderId: string;
 
-  ngOnInit() {
-    this.setUserId();
-  }
+    constructor(private vehicleService: VehicleService, private authService: AuthService, private router?: Router) {
+    }
 
-  setUserId(){
-    this.authService.checkAuthState().subscribe( (user) => {
-       this.renderList( user.uid);
-       this.holderId = user.uid;
-       console.log('Eingeloggt als: ' + this.holderId);
-      });
-   }
+    ngOnInit() {
+        this.setUserId();
+    }
 
-  renderList(id: string){
-    this.vehicleService.findAll(id).forEach(vehicle => {
-      this.listVehicle = vehicle;
-      console.log(vehicle);
-    });
-  }
+    setUserId() {
+        this.authService.checkAuthState().subscribe((user) => {
+            this.renderList(user.uid);
+            this.holderId = user.uid;
+            console.log('Eingeloggt als: ' + this.holderId);
+        });
+    }
 
-  goToAdd(){
-    this.router.navigate(['/manage-vehicle/add-vehicle']);
-  }
+    renderList(id: string) {
+        this.vehicleService.findAll(id).forEach(vehicle => {
+            this.listVehicle = vehicle;
+            console.log(vehicle);
+        });
+    }
 
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    goToAdd() {
+        this.router.navigate(['/manage-vehicle/add-vehicle']);
+    }
 
-  navigateToRegister(){
-    this.router.navigate(['/register']);
-  }
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
-  navigateToMangeVehicle(){
-    this.router.navigate(['/manage-vehicle']);
-  }
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
 
-  navigateToRouteSearch(){
-    this.router.navigate(['/route-search']);
-  }
+    navigateToMangeVehicle() {
+        this.router.navigate(['/manage-vehicle']);
+    }
 
-  navigateToTransportSearch(){
-    this.router.navigate(['/transport-search']);
-  }
+    navigateToRouteSearch() {
+        this.router.navigate(['/route-search']);
+    }
 
-  navigateToSearchResult(){
-    this.router.navigate(['/search-result']);
-  }
+    navigateToTransportSearch() {
+        this.router.navigate(['/transport-search']);
+    }
 
-  navigateToProfile(){
-    this.router.navigate(['/profile']);
-  }
+    navigateToSearchResult() {
+        this.router.navigate(['/search-result']);
+    }
 
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
-  navigateToDelivery(){
-    this.router.navigate(['/delivery']);
-  }
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
+
+    navigateToImpressum() {
+        this.router.navigate(['/impressum']);
+    }
+
+    navigateToDelivery() {
+        this.router.navigate(['/delivery']);
+    }
 }

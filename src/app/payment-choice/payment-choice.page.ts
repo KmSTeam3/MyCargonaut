@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Shipment} from '../shared/shipment';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 import {ShipmentService} from '../shared/shipment.service';
 
@@ -18,13 +18,13 @@ export class PaymentChoicePage implements OnInit {
     currentPaymentChoice: number;
 
     constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
-       // method call collects passed data (shipment object) from previous page
+        // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
-                this.shipment = this.router.getCurrentNavigation().extras.state.shipmentList;
-                console.log(this.shipment);
+                console.log(this.router.getCurrentNavigation().extras.state.shipment);
+                this.shipment = this.router.getCurrentNavigation().extras.state.shipment;
+                console.log('Routing worked' + this.shipment);
             }
         });
     }
@@ -69,9 +69,10 @@ export class PaymentChoicePage implements OnInit {
     /**
      * Payment method that updates the payment status of the shipment and continues with the selected choice or directs to the success page
      */
-    pay(){
+    pay() {
         this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice, this.shipment.id);
-
+        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
+        this.router.navigate(['/payment-success'], navigationExtras);
     }
 
 
@@ -85,5 +86,8 @@ export class PaymentChoicePage implements OnInit {
         this.router.navigate(['/register']);
     }
 
-
+    // navigation method to the home page
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 }

@@ -4,9 +4,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RouteSearchPageRoutingModule } from './route-search-routing.module';
+import { DualSearchPageRoutingModule } from './dual-search-routing.module';
 
-import { RouteSearchPage } from './route-search.page';
+import { DualSearchPage } from './dual-search.page';
 import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
 
 @NgModule({
@@ -14,10 +14,10 @@ import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
         CommonModule,
         FormsModule,
         IonicModule,
-        RouteSearchPageRoutingModule,
+        DualSearchPageRoutingModule,
         ReactiveFormsModule,
         MenuHeaderPageModule
     ],
-  declarations: [RouteSearchPage]
+  declarations: [DualSearchPage]
 })
-export class RouteSearchPageModule {}
+export class DualSearchPageModule {}

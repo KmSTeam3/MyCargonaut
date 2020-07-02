@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ModalDeliveryPage} from './modal-delivery/modal-delivery.page';
 import {Test} from 'tslint';
@@ -9,7 +9,6 @@ import {AuthService} from './../shared/auth.service';
 import {Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
-import {ModalDeliveryEditPage} from "./modal-delivery-edit/modal-delivery-edit.page";
 
 @Component({
     selector: 'app-delivery',
@@ -20,8 +19,6 @@ import {ModalDeliveryEditPage} from "./modal-delivery-edit/modal-delivery-edit.p
  * Delivery Page, shows shipment history of logged in user and option to create new shipments
  */
 export class DeliveryPage implements OnInit {
-
-
     shipmentList: Shipment[] = [];
 
     constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) {
@@ -41,7 +38,7 @@ export class DeliveryPage implements OnInit {
                     console.log(this.holderId);
                     console.log(shipment);
                 });
-                console.log('Not modal' + this.holderId);
+                console.log('Logged in as' + this.holderId);
             }
 
         });
@@ -66,11 +63,8 @@ export class DeliveryPage implements OnInit {
 
     }
 
-
-
     ngOnInit(): void {
         this.setUserId();
-
     }
 
     // navigation to homepage

@@ -82,7 +82,10 @@ const routes: Routes = [
     path: 'menu-header',
     loadChildren: () => import('./menu-header/menu-header.module').then( m => m.MenuHeaderPageModule)
   },
-
+  {
+    path: 'dual-search',
+    loadChildren: () => import('./dual-search/dual-search.module').then( m => m.DualSearchPageModule)
+  },
 
 
 

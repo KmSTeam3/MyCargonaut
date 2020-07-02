@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentChoicePageRoutingModule } from './payment-choice-routing.module';
 
 import { PaymentChoicePage } from './payment-choice.page';
-import {MenuHeaderPageModule} from "../menu-header/menu-header.module";
+import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
 
 @NgModule({
     imports: [

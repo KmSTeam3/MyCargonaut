@@ -43,5 +43,9 @@ export class HomePage {
   navigateToTransportSearch() {
     this.router.navigate(['/transport-search']);
   }
+
+    navigateToDualSearch() {
+        this.router.navigate(['/dual-search']);
+    }
 }
 
