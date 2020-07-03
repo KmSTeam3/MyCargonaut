@@ -6,9 +6,9 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
-import {Article} from "../shared/article";
-import {AuthService} from "../shared/auth.service";
-import {Subscription} from "rxjs";
+import {Article} from '../shared/article';
+import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -74,34 +74,6 @@ export class SearchResultPage implements OnInit {
     navigateToRegister() {
         this.router.navigate(['/register']);
     }
-
-    navigateToMangeVehicle() {
-        this.router.navigate(['/manage-vehicle']);
-    }
-
-    navigateToRouteSearch() {
-        this.router.navigate(['/route-search']);
-    }
-
-    navigateToTransportSearch() {
-        this.router.navigate(['/transport-search']);
-    }
-
-    navigateToSearchResult() {
-        this.router.navigate(['/search-result']);
-    }
-
-    navigateToProfile() {
-        this.router.navigate(['/profile']);
-    }
-
-    navigateToHome() {
-        this.router.navigate(['/home']);
-    }
-
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
