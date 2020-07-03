@@ -92,7 +92,7 @@ export class ModalDeliveryPage implements OnInit {
 
             this.shipmentService.persist(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start,
                                         this.goal, this.date, this.startTime, this.length, this.height, this.weight,
-                                        this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.pending);
+                                        this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.wartend);
             this.closeModal();
             this.presentToast('added Delivery');
         } else {

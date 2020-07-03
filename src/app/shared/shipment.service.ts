@@ -47,21 +47,21 @@ export class ShipmentService {
         this.shipmentCollection = afs.collection<Shipment>('shipment');
     }
 
-    // create shipment
+    // adds a new "shipment" document to the firestore collection "shipment"
     persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
             pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus: number) {
         const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus);
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    // update shipment
+    //adds a new "shipment" document to the firestore collection "shipment"
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
            pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus:number, id: string) {
         const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 
-    // delete shipment
+    // deletes a document "shipment" in Firestore Collection "Shipment"
     delete(shipmentId: string) {
         this.shipmentCollection.doc(shipmentId).delete();
     }
