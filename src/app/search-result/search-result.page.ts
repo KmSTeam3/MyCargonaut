@@ -29,6 +29,7 @@ export class SearchResultPage implements OnInit {
     listShipments: Shipment[] = [];
     article: Article;
     subscription: Subscription;
+    user: firebase.User;
 
     constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
@@ -52,13 +53,13 @@ export class SearchResultPage implements OnInit {
     };
 
     ngOnInit() {
-        // this.passengerList[0] = this.person;
-        // this.user.rating = 1;
-        // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
-        // this.shipmentService.query('price');
-        // this.listShipments = this.dataHelper.tranportData;
+        this.subscription = this.authService.checkAuthState().subscribe( (user) => {
+            if (user){
+                this.user = user;
+                console.log('Eingeloggt als: ' + this.user.uid);
+            }
+        });
         console.log(this.listShipments);
-        // this.listShipments.push(this.shipment);
     }
 
   signOut(){
@@ -78,4 +79,8 @@ export class SearchResultPage implements OnInit {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+    navigateToHome() {
+        this.router.navigate(['/home']);
+    }
 }

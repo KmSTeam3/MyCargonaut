@@ -3,6 +3,8 @@ import {NavigationExtras, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 import {Shipment} from '../shared/shipment';
 import {Article} from '../shared/article';
+import {UserService} from '../shared/user.service';
+import {User} from '../shared/user';
 
 
 @Component({
@@ -20,9 +22,12 @@ export class PaymentDetailPage implements OnInit {
     @Input() shipment: Shipment;
     @Input() article: Article;
 
-    constructor(private router: Router) {
+    user: User;
 
-
+    constructor(private router: Router, private userService: UserService) {
+        this.userService.getUser(this.shipment.cargonaut).subscribe( (user) => {
+            this.user = user;
+        });
     }
 
     ngOnInit() {
