@@ -99,7 +99,7 @@ export class ModalDeliveryPage implements OnInit {
             this.closeModal();
             this.presentToast('added Delivery');
         } else {
-            this.presentToast('fuck');
+            this.presentToast('something went wrong');
         }
 
 
