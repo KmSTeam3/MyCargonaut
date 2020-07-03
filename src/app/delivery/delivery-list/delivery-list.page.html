@@ -1,0 +1,43 @@
+ <ion-card color="dark" style="width: 70%">
+
+    <ion-row class="ion-align-items-start">
+      <ion-col size="3">
+        <ion-item color="dark"> <img src="../../../assets/img/car_placeholder_img.png" > </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item color="dark"> <h2>Route Id</h2> </ion-item>
+      </ion-col>
+      <ion-item color="dark">von: {{shipment.start}} </ion-item>
+      <ion-col>
+        <ion-chip color="success">
+          <ion-label>Durchgeführt</ion-label>
+        </ion-chip>
+
+      </ion-col>
+      <ion-col>
+        <ion-button>Edit</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger">Delete</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-item color="dark"> </ion-item> -->
+    <ion-row>
+      <ion-col>
+        <ion-item color="dark">mit : {{shipment.vehicle.name}} </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item color="dark" > <ion-badge color="success" > Aufträge: 3</ion-badge> </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item color="dark">nach: {{shipment.goal}} </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item color="dark">am {{shipment.date}} </ion-item>
+      </ion-col>
+
+
+    </ion-row>
+
+  </ion-card>

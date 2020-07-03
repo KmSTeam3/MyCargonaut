@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+            <ion-col class="ion-text-center" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
+                <form class="form" [formGroup]="validationsForm" (ngSubmit)="login(validationsForm.value)">
+                    <img alt="MyCargonaut Logo" src="assets/CargoLogo.PNG">
+                    <h1 class="ion-text-center">Anmelden</h1>
+
+                    <ion-item lines="none">
+                        <ion-input formControlName="email" class="form-control" type="text" required
+                                   placeholder="Email"></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of VALIDATION_MESSAGES.email">
+                            <div class="error-message"
+                                 *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <ion-item lines="none">
+                        <ion-input formControlName="password" class="form-control" type="password" required
+                                   placeholder="Passwort"></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of VALIDATION_MESSAGES.password">
+                            <div class="error-message"
+                                 *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <ion-button color="primary" type="submit" [disabled]="!validationsForm.valid">Anmelden</ion-button>
+                    <label class="error-message">{{errorMessage}}</label>
+                    <h3 class="ion-text-center">oder registrieren</h3>
+                    <ion-button (click)="navigateRegister()" color="primary">Cargonaut werden</ion-button>
+                </form>
+            </ion-col>
+
+            <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
