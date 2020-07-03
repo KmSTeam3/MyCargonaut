@@ -36,6 +36,7 @@ export class UserService {
     copy.city = copy.city || null;
     copy.email = copy.email || null;
     copy.rating = copy.rating || null;
+    copy.bookings = copy.bookings || null;
     return copy;
   }
 

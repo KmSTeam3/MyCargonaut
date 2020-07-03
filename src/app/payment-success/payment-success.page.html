@@ -47,7 +47,7 @@
 
                         <ion-row>
                             <ion-col>
-                                <ion-text align="center">
+                                <ion-text *ngIf="cargonaut" align="center">
                                     <h3>{{cargonaut.fName}} {{cargonaut.lName}}</h3>
                                     <p>{{cargonaut.rating}}</p>
                                 </ion-text>

@@ -85,6 +85,10 @@ const routes: Routes = [
     path: 'dual-search',
     loadChildren: () => import('./dual-search/dual-search.module').then( m => m.DualSearchPageModule)
   },
+  {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
 
 
 

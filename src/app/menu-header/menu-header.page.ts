@@ -62,4 +62,9 @@ export class MenuHeaderPage implements OnInit {
   navigateToDelivery(){
     this.router.navigate(['/delivery']);
   }
+
+  // navigation to bookings
+  navigateToBookings(){
+    this.router.navigate(['bookings']);
+  }
 }

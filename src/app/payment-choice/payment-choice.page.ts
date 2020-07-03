@@ -1,8 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Shipment} from '../shared/shipment';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 import {ShipmentService} from '../shared/shipment.service';
+import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
+import {UserService} from '../shared/user.service';
+import {User} from '../shared/user';
 
 @Component({
     selector: 'app-payment-choice',
@@ -12,12 +16,15 @@ import {ShipmentService} from '../shared/shipment.service';
 /**
  * Payment choice page shows the three supported payment methods and navigates to payment
  */
-export class PaymentChoicePage implements OnInit {
+export class PaymentChoicePage implements OnInit, OnDestroy {
 
     @Input() shipment: Shipment;
     currentPaymentChoice: number;
+    user: User;
+    subscription: Subscription;
+    subscription2: Subscription;
 
-    constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
+    constructor(private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService, private authService: AuthService, private userService: UserService) {
         // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
@@ -27,6 +34,15 @@ export class PaymentChoicePage implements OnInit {
                 console.log('Routing worked' + this.shipment);
             }
         });
+
+        this.subscription = this.authService.checkAuthState().subscribe(value => {
+          this.subscription2 = this.userService.getUser(value.uid).subscribe(user => {
+              this.user = user;
+              if (!this.user.bookings){
+                  this.user.bookings = [];
+              }
+          });
+       });
     }
 
     ngOnInit() {
@@ -71,6 +87,10 @@ export class PaymentChoicePage implements OnInit {
      */
     pay() {
         this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice, this.shipment.id);
+        // TODO this needs to be done after passengerList and articleList have been updated
+        this.user.bookings.push(this.shipment);
+        this.userService.update(this.user);
+
         const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
         this.router.navigate(['/payment-success'], navigationExtras);
     }
@@ -89,5 +109,10 @@ export class PaymentChoicePage implements OnInit {
     // navigation method to the home page
     navigateToHome() {
         this.router.navigate(['/home']);
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+        this.subscription2.unsubscribe();
     }
 }

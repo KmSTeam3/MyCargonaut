@@ -1,6 +1,8 @@
 /**
  * Class representing a user
  */
+import {Shipment} from './shipment';
+
 export class User {
 
     id: string;
@@ -13,6 +15,7 @@ export class User {
     city: string;
     email: string;
     rating: number;
+    bookings: Shipment[] = [];
 
 
     constructor(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string) {
