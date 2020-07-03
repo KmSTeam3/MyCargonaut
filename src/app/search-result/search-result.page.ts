@@ -9,6 +9,7 @@ import {DataHelperService} from '../shared/data-helper.service';
 import {Article} from '../shared/article';
 import {AuthService} from '../shared/auth.service';
 import {Subscription} from 'rxjs';
+import {UserService} from '../shared/user.service';
 
 
 @Component({
@@ -31,13 +32,13 @@ export class SearchResultPage implements OnInit {
     subscription: Subscription;
     user: firebase.User;
 
-    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
+    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService) {
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 console.log(params);
                 console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
                 this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
-                if (this.router.getCurrentNavigation().extras.state.article != null){
+                if (this.router.getCurrentNavigation().extras.state.article != null) {
                     this.article = this.router.getCurrentNavigation().extras.state.article;
                 }
                 console.log(this.listShipments);
@@ -52,9 +53,39 @@ export class SearchResultPage implements OnInit {
         message: 'Only select your favorite flower'
     };
 
+    async sortList(event) {
+        switch (event.detail.value) {
+            case '0':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => (a.pricePerKg > b.pricePerKg) ? 1 : ((b.pricePerKg > a.pricePerKg) ? -1 : 0));
+                break;
+            case '1':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => {
+                    const tempA = this.getRating(a);
+                    const tempB = this.getRating(b);
+                    if (tempA < tempB) {
+                        return -1;
+                    }
+                    if (tempA > tempB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                break;
+        }
+    }
+
+
+    async getRating(shipment: Shipment) {
+        this.userService.getUser(shipment.cargonaut).subscribe((value => {
+            return Math.round(value.rating);
+        }));
+    }
+
     ngOnInit() {
-        this.subscription = this.authService.checkAuthState().subscribe( (user) => {
-            if (user){
+        this.subscription = this.authService.checkAuthState().subscribe((user) => {
+            if (user) {
                 this.user = user;
                 console.log('Eingeloggt als: ' + this.user.uid);
             }
@@ -62,25 +93,26 @@ export class SearchResultPage implements OnInit {
         console.log(this.listShipments);
     }
 
-  signOut(){
-    this.authService.SignOut().then(() => {
-      this.navigateToLogin();
-    });
-  }
+    signOut() {
+        this.authService.SignOut().then(() => {
+            this.navigateToLogin();
+        });
+    }
 
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
     navigateToRegister() {
         this.router.navigate(['/register']);
     }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
     navigateToHome() {
         this.router.navigate(['/home']);
     }
+
 }
