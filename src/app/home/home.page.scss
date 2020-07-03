@@ -1,0 +1,45 @@
+h1 {
+  color: white;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+h3 {
+  color: white;
+}
+
+
+
+
+.heading{
+  margin-top: 70px;
+}
+
+ion-toolbar{
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+#ion-content{
+  --background: url(/../../assets/hannes-egler-nT4k2JDtwTQ-unsplash.jpg)no-repeat center center / cover;
+}
+
+.headerText{
+  color: #fdfdfd;
+  font-weight: bold;
+}
+
+.optionCol{
+  background: #000000;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 60px;
+  margin-right: 60px;
+  opacity: 0.7;
+}

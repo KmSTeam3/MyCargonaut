@@ -1,0 +1,35 @@
+<ion-card>
+  <ion-grid>
+    <ion-row class="ion-align-items-start">
+      <ion-col>
+        <ion-item>
+          <img src="../../../assets/img/car_placeholder_img.png">
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-card-title>{{vehicle.name}}</ion-card-title>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col>
+        <ion-item>
+          Maximum Load: 
+        {{vehicle.maxLoad}} 
+        kg
+      </ion-item>
+      <ion-item>
+        Maximum Seats: 
+        {{vehicle.maxSeats}}
+      </ion-item>
+      </ion-col>
+
+      <ion-col>
+        
+          <app-edit-vehicle [id]="vehicle.licensePlate" [uId]="vehicle.holderId"></app-edit-vehicle>
+          <app-delete-vehicle [id]="vehicle.licensePlate" [uId]="vehicle.holderId"></app-delete-vehicle>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+</ion-card>
