@@ -6,43 +6,39 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
-import {Subscription} from 'rxjs';
-import {AuthService} from '../shared/auth.service';
+import {Article} from "../shared/article";
+
 
 @Component({
     selector: 'app-search-result',
     templateUrl: './search-result.page.html',
     styleUrls: ['./search-result.page.scss'],
 })
-export class SearchResultPage implements OnInit, OnDestroy {
-  @Input() shipmentList: Shipment[];
-  // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
-  // passengerList: Person[] = [];
-  // person: Person = new Person(1, this.user2, '789101112');
-  // date: Date = new Date('2020-06-22');
-  // shipment: Shipment;
+export class SearchResultPage implements OnInit {
+    @Input() shipmentList: Shipment[];
+    // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+    // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+    // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
+    // passengerList: Person[] = [];
+    // person: Person = new Person(1, this.user2, '789101112');
+    // date: Date = new Date('2020-06-22');
+    // shipment: Shipment;
 
-  listShipments: Shipment[] = [];
-  user: firebase.User;
-  subscription: Subscription;
+    listShipments: Shipment[] = [];
+    article: Article;
 
-  constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private authService: AuthService) {
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        console.log(params);
-        console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
-        this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
-        console.log(this.listShipments);
-      }
-    });
-    this.subscription = this.authService.checkAuthState().subscribe(value => {
-      if (value){
-        this.user = value;
-      }
-    });
-
+    constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
+        this.route.queryParams.subscribe(params => {
+            if (this.router.getCurrentNavigation().extras.state) {
+                console.log(params);
+                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
+                this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+                if (this.router.getCurrentNavigation().extras.state.article != null){
+                    this.article = this.router.getCurrentNavigation().extras.state.article;
+                }
+                console.log(this.listShipments);
+            }
+        });
 
     }
 
