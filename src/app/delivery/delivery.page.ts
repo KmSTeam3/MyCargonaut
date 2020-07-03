@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ModalDeliveryPage} from './modal-delivery/modal-delivery.page';
 import {Test} from 'tslint';
@@ -9,6 +9,7 @@ import {AuthService} from './../shared/auth.service';
 import {Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-delivery',
@@ -18,20 +19,22 @@ import {ShipmentService} from '../shared/shipment.service';
 /**
  * Delivery Page, shows shipment history of logged in user and option to create new shipments
  */
-export class DeliveryPage implements OnInit {
+export class DeliveryPage implements OnInit, OnDestroy {
+
     shipmentList: Shipment[] = [];
+    holderId: string;
+    dataReturned: any;
+    user: firebase.User;
+    subscription: Subscription;
 
     constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) {
     }
 
-    holderId: string;
-
-    dataReturned: any;
-
     setUserId() {
-        this.authService.checkAuthState().subscribe((user) => {
+        this.subscription = this.authService.checkAuthState().subscribe((user) => {
             //  this.renderList( user.uid);
             if (user) {
+                this.user = user;
                 this.holderId = user.uid;
                 this.shipmentService.getShipments(user.uid).forEach(shipment => {
                     this.shipmentList = shipment;
@@ -67,9 +70,28 @@ export class DeliveryPage implements OnInit {
         this.setUserId();
     }
 
+    signOut(){
+        this.authService.SignOut().then(() => {
+            this.navigateToLogin();
+        });
+    }
     // navigation to homepage
     navigateToHome() {
         this.router.navigate(['/home']);
+    }
+
+    // navigation to login
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
+
+    // navigation to login
+    navigateToRegister() {
+        this.router.navigate(['/register']);
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
 }

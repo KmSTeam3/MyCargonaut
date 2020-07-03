@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 import {Shipment} from '../shared/shipment';
+import {User} from '../shared/user';
 
 @Component({
     selector: 'app-payment-detail',
@@ -14,10 +15,10 @@ import {Shipment} from '../shared/shipment';
  */
 export class PaymentDetailPage implements OnInit {
 
-    @Input() modalController: ModalController;
-    @Input() shipment: Shipment;
-
-    constructor(private router: Router) {
+  @Input() modalController: ModalController;
+  @Input() shipment: Shipment;
+  @Input() user: User;
+  constructor(private router: Router) {
 
     }
 
@@ -40,5 +41,29 @@ export class PaymentDetailPage implements OnInit {
         const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
         console.log('navigations extra ' + navigationExtras);
         this.router.navigate(['/payment-choice'], navigationExtras);
+    }
+    /**
+     * Determines the color of the stars depending on rating
+     * @param index Index of the star
+     * @param points Rating points
+     */
+    getColor(index: number, points: number){
+        enum colors {
+            GREY = '#E0E0E0',
+            PRIMARY = '#3B6863',
+        }
+        if (index > points){
+            return colors.GREY;
+        }
+        switch (points) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return colors.PRIMARY;
+            default:
+                return colors.GREY;
+        }
     }
 }
