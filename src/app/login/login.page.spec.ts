@@ -16,13 +16,13 @@ describe('LoginPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],
-      imports: [IonicModule,
+      imports: [IonicModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         ReactiveFormsModule,
         FormsModule,
         RouterTestingModule.withRoutes([])],
       providers: [
-          LoginPage,
+        LoginPage,
         {provide: AuthService}
       ]
     }).compileComponents();
@@ -48,7 +48,9 @@ describe('LoginPage', () => {
       if (value){
         user = value;
       }
-      expect(user).toBeDefined();
+      setTimeout(() => {
+        expect(user).toBeDefined();
+      }, 5000);
     });
   });
 
