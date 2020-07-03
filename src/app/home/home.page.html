@@ -6,13 +6,10 @@
             <ion-buttons
                     slot="end"
                     class="headerText">
-                <ion-button *ngIf="user" (click)="signOut()">
-                    <ion-icon name="log-out-outline"></ion-icon>
-                </ion-button>
                 <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
                 <ion-button *ngIf="!user" (click)="navigateToRegister()">Registieren</ion-button>
             </ion-buttons>
-            <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
+            <ion-menu-button *ngIf="user" auto-hide="false" slot="end" class="headerText"></ion-menu-button>
         </ion-toolbar>
     </ion-header>
 

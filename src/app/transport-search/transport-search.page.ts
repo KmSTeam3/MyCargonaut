@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'app-transport-search',
@@ -20,11 +22,13 @@ import {ShipmentService} from '../shared/shipment.service';
  * - The height of the users article
  * - How long the users article is
  */
-export class TransportSearchPage implements OnInit {
+export class TransportSearchPage implements OnInit, OnDestroy {
 
   validationsForm: FormGroup;
   errorMessage = '';
   successMessage = '';
+  user: firebase.User;
+  subscription: Subscription;
 
   shipmentList: Shipment[] = [];
 
@@ -38,7 +42,13 @@ export class TransportSearchPage implements OnInit {
     ]
   };
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private authService: AuthService) {
+    this.subscription = this.authService.checkAuthState().subscribe(value => {
+      if (value){
+        this.user = value;
+      }
+    });
+  }
 
   ngOnInit() {
     // Initiation of the form fields value variables
@@ -85,5 +95,9 @@ export class TransportSearchPage implements OnInit {
   // navigation method to the home page
   navigateToHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
