@@ -36,11 +36,6 @@ deploy:
       branch: master
       tags: true
     local_dir: www
-  - provider: npm
-    skip_cleanup: true
-    email: "jan.niklas.martens@mni.thm.de"
-    api_key: $NPM_API_KEY
-    on:
-      branch: master
-      tags: true
-    local_dir: www
+  - provider: firebase
+    token:
+      secure: $FIREBASE_TOKEN
