@@ -14,6 +14,9 @@ import {AlertController} from '@ionic/angular';
     templateUrl: './profile.page.html',
     styleUrls: ['./profile.page.scss'],
 })
+/**
+ * Profile page of the logged in user, shows overview of current user infos
+ */
 export class ProfilePage implements OnInit, OnDestroy {
 
   validationsForm: FormGroup;

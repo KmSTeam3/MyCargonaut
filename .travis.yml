@@ -42,3 +42,4 @@ deploy:
     on:
       branch: master
       tags: true
+    local_dir: www

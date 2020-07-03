@@ -1,8 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
-import {Vehicle} from '../shared/vehicle';
-import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
@@ -17,6 +15,9 @@ import {UserService} from '../shared/user.service';
     templateUrl: './search-result.page.html',
     styleUrls: ['./search-result.page.scss'],
 })
+/**
+ * Search result page wich shows list of shipments corresponding with search parameter
+ */
 export class SearchResultPage implements OnInit {
     @Input() shipmentList: Shipment[];
     // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
@@ -53,6 +54,7 @@ export class SearchResultPage implements OnInit {
         message: 'Only select your favorite flower'
     };
 
+    // sort method for shown shipmentlist
     async sortList(event) {
         switch (event.detail.value) {
             case '0':
@@ -76,7 +78,7 @@ export class SearchResultPage implements OnInit {
         }
     }
 
-
+    // method for getting the rating of the cargonaut of the shipment
     async getRating(shipment: Shipment) {
         this.userService.getUser(shipment.cargonaut).subscribe((value => {
             return Math.round(value.rating);

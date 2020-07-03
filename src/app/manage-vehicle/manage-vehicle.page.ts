@@ -13,30 +13,34 @@ import {Subscription} from 'rxjs';
     templateUrl: './manage-vehicle.page.html',
     styleUrls: ['./manage-vehicle.page.scss'],
 })
+/**
+ * Management page for the vehicles of the user
+ */
 export class ManageVehiclePage implements OnInit, OnDestroy {
+    listVehicle: Vehicle[] = [];
+    holderId: string;
+    user: firebase.User;
+    subscription: Subscription;
 
-
-  listVehicle: Vehicle[] = [];
-  holderId: string;
-  user: firebase.User;
-  subscription: Subscription;
-  constructor( private vehicleService: VehicleService, private authService: AuthService, private router?: Router) { }
+    constructor(private vehicleService: VehicleService, private authService: AuthService, private router?: Router) {
+    }
 
     ngOnInit() {
         this.setUserId();
     }
 
     setUserId() {
-        this.subscription = this.authService.checkAuthState().subscribe( (user) => {
-      if (user){
-        this.user = user;
-        this.renderList( user.uid);
-        this.holderId = user.uid;
-        console.log('Eingeloggt als: ' + this.holderId);
-      }
-      });
-   }
+        this.subscription = this.authService.checkAuthState().subscribe((user) => {
+            if (user) {
+                this.user = user;
+                this.renderList(user.uid);
+                this.holderId = user.uid;
+                console.log('Eingeloggt als: ' + this.holderId);
+            }
+        });
+    }
 
+    // method for getting list of all vehicles of the user
     renderList(id: string) {
         this.vehicleService.findAll(id).forEach(vehicle => {
             this.listVehicle = vehicle;
@@ -48,53 +52,28 @@ export class ManageVehiclePage implements OnInit, OnDestroy {
         this.router.navigate(['/manage-vehicle/add-vehicle']);
     }
 
-    signOut(){
-    this.authService.SignOut().then(() => {
-      this.navigateToLogin();
-    });
-  }
+    signOut() {
+        this.authService.SignOut().then(() => {
+            this.navigateToLogin();
+        });
+    }
 
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    // navigation method to the login page
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
+    // navigation method to register page
     navigateToRegister() {
         this.router.navigate(['/register']);
     }
 
-    navigateToMangeVehicle() {
-        this.router.navigate(['/manage-vehicle']);
-    }
-
-    navigateToRouteSearch() {
-        this.router.navigate(['/route-search']);
-    }
-
-    navigateToTransportSearch() {
-        this.router.navigate(['/transport-search']);
-    }
-
-    navigateToSearchResult() {
-        this.router.navigate(['/search-result']);
-    }
-
-    navigateToProfile() {
-        this.router.navigate(['/profile']);
-    }
-
+    // navigation method to the home page
     navigateToHome() {
         this.router.navigate(['/home']);
     }
 
-    navigateToImpressum() {
-        this.router.navigate(['/impressum']);
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
-
-    navigateToDelivery() {
-        this.router.navigate(['/delivery']);
-    }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }

@@ -6,6 +6,9 @@ import {Router} from '@angular/router';
   templateUrl: './menu-header.page.html',
   styleUrls: ['./menu-header.page.scss'],
 })
+/**
+ * Menu sidebar for all pages
+ */
 export class MenuHeaderPage implements OnInit {
 
   constructor(private router: Router) { }
