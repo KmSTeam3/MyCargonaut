@@ -26,15 +26,17 @@ export class BookingsPage implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {
     this.subscription = this.authService.checkAuthState().subscribe(value => {
-      this.subscription1 = this.userService.getUser(value.uid).subscribe(user => {
-        this.user = user;
-        for ( const booking of this.user.bookings){
-          this.subscription3 = this.userService.getUser(booking.cargonaut).subscribe(cargonaut => {
-            booking.id = booking.cargonaut;
-            booking.cargonaut = cargonaut.fName + ' ' + cargonaut.lName;
-          });
+        if (value){
+            this.subscription1 = this.userService.getUser(value.uid).subscribe(user => {
+                this.user = user;
+                for ( const booking of this.user.bookings){
+                    this.subscription3 = this.userService.getUser(booking.cargonaut).subscribe(cargonaut => {
+                        booking.id = booking.cargonaut;
+                        booking.cargonaut = cargonaut.fName + ' ' + cargonaut.lName;
+                    });
+                }
+            });
         }
-      });
     });
   }
 
