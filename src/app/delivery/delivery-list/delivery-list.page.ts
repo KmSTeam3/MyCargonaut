@@ -83,7 +83,7 @@ export class DeliveryListPage implements OnInit {
     }
 
     /**
-     * Activated through delete btn. Deletes shipment through the shpimentService.delete() function
+     * Activated through delete btn. Deletes shipment through the shipmentService.delete() function
      * **/
 
     delete(shipId) {
