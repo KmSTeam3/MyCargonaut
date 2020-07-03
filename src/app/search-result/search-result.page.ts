@@ -6,6 +6,7 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
+import {Article} from "../shared/article";
 
 @Component({
     selector: 'app-search-result',
@@ -23,6 +24,7 @@ export class SearchResultPage implements OnInit {
     // shipment: Shipment;
 
     listShipments: Shipment[] = [];
+    article: Article;
 
     constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
@@ -30,6 +32,9 @@ export class SearchResultPage implements OnInit {
                 console.log(params);
                 console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
                 this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+                if (this.router.getCurrentNavigation().extras.state.article != null){
+                    this.article = this.router.getCurrentNavigation().extras.state.article;
+                }
                 console.log(this.listShipments);
             }
         });

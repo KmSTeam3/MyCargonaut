@@ -44,20 +44,9 @@ export class RouteSearchPage implements OnInit {
         ]
     };
     shipment: Shipment;
-    passenger: Person;
-    subscription: Subscription;
 
 
-    constructor(private toastController: ToastController, private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private shipmentService: ShipmentService, private authService: AuthService, private userService: UserService) {
-        this.subscription = this.authService.checkAuthState().subscribe((value) => {
-            if (value) {
-                this.userService.getUser(value.uid).subscribe( (user) => {
-                    if (user) {
-                        this.passenger = new Person(1, user);
-                    }
-                });
-            }
-        });
+    constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private shipmentService: ShipmentService) {
     }
 
 
@@ -77,12 +66,11 @@ export class RouteSearchPage implements OnInit {
 
     // Search method
     search(value) {
-        if (this.passenger != null){
             console.log('search called');
-            console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-            this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+            console.log(' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
+            this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
                 this.shipmentList = shipment;
-                const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList, passenger: this.passenger} };
+                const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList} };
                 this.router.navigate(['search-result'], navigationExtras);
                 console.log(shipment);
             });
@@ -90,26 +78,10 @@ export class RouteSearchPage implements OnInit {
             this.shipmentService.testAll().forEach(shipment => {
                 console.log(shipment);
             });
-        } else {
-            this.presentToast('Sie müssen eingeloggt sein um Routen zu suchen');
-        }
-
-    }
-
-    /**
-     * Method for presenting a toast
-     * @param msg message that is displayed in the toast
-     */
-    async presentToast(msg: string) {
-        const toast = await this.toastController.create({
-            message: msg,
-            duration: 2000
-        });
-        toast.present();
     }
 
     query(value) {
-        this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+        this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
             this.shipmentList = shipment;
             console.log(shipment);
         });
