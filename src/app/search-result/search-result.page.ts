@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
 import {Vehicle} from '../shared/vehicle';
@@ -6,33 +6,43 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
     selector: 'app-search-result',
     templateUrl: './search-result.page.html',
     styleUrls: ['./search-result.page.scss'],
 })
-export class SearchResultPage implements OnInit {
-    @Input() shipmentList: Shipment[];
-    // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-    // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-    // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
-    // passengerList: Person[] = [];
-    // person: Person = new Person(1, this.user2, '789101112');
-    // date: Date = new Date('2020-06-22');
-    // shipment: Shipment;
+export class SearchResultPage implements OnInit, OnDestroy {
+  @Input() shipmentList: Shipment[];
+  // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+  // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+  // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
+  // passengerList: Person[] = [];
+  // person: Person = new Person(1, this.user2, '789101112');
+  // date: Date = new Date('2020-06-22');
+  // shipment: Shipment;
 
-    listShipments: Shipment[] = [];
+  listShipments: Shipment[] = [];
+  user: firebase.User;
+  subscription: Subscription;
 
-    constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
-        this.route.queryParams.subscribe(params => {
-            if (this.router.getCurrentNavigation().extras.state) {
-                console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
-                this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
-                console.log(this.listShipments);
-            }
-        });
+  constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private authService: AuthService) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        console.log(params);
+        console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
+        this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+        console.log(this.listShipments);
+      }
+    });
+    this.subscription = this.authService.checkAuthState().subscribe(value => {
+      if (value){
+        this.user = value;
+      }
+    });
+
 
     }
 
@@ -52,9 +62,15 @@ export class SearchResultPage implements OnInit {
         // this.listShipments.push(this.shipment);
     }
 
-    navigateToLogin() {
-        this.router.navigate(['/login']);
-    }
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
+  }
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
 
     navigateToRegister() {
         this.router.navigate(['/register']);
@@ -84,7 +100,11 @@ export class SearchResultPage implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    navigateToImpressum() {
-        this.router.navigate(['/impressum']);
-    }
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

@@ -7,22 +7,28 @@
   <ion-toolbar>
     <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
     <ion-buttons slot="end" >
-      <ion-button (click)="signOut()">
+      <ion-button *ngIf="firebaseUser" (click)="signOut()">
         <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
-      <ion-menu-button auto-hide="false" slot="end" class="headerText"></ion-menu-button>
+      <ion-button *ngIf="!firebaseUser" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button *ngIf="!firebaseUser" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+      <ion-menu-button *ngIf="firebaseUser" auto-hide="false" slot="end" class="headerText"></ion-menu-button>
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!firebaseUser">
+    <app-unauthorized></app-unauthorized>
+</ion-content>
+
+<ion-content *ngIf="firebaseUser">
   <div class="background">
     <div>
-      <ion-grid>
+      <ion-grid *ngIf="isEdit">
         <ion-row>
-          <ion-col size="4"></ion-col>
-          <ion-col class="regForm" size="4">
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+          <ion-col class="regForm" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
             <form class="form" [formGroup]="validationsForm" (ngSubmit)="updateProfile(validationsForm.value)">
 
               <h1 class="ion-text-center">MyProfil</h1>
@@ -72,7 +78,7 @@
               </ion-row>
 
               <ion-row class="side">
-                <ion-col size="9">
+                <ion-col sizeLg="10" sizeMd="9" sizeSm="9" sizeXs="8">
                   <ion-item lines="none">
                     <ion-input  type="text" formControlName="street" class="form-control" required placeholder="Straße"></ion-input>
                   </ion-item>
@@ -85,7 +91,7 @@
                     </ng-container>
                   </div>
                 </ion-col>
-                <ion-col size="3">
+                <ion-col sizeLg="2" sizeMd="3" sizeSm="3" sizeXs="4">
                   <ion-item lines="none">
                     <ion-input  type="number" formControlName="housenumber" class="form-control" required placeholder="Nr."></ion-input>
                   </ion-item>
@@ -101,7 +107,7 @@
               </ion-row>
 
               <ion-row class="side">
-                <ion-col size="4">
+                <ion-col sizeLg="3" sizeMd="3" sizeSm="4" sizeXs="5">
                   <ion-item lines="none">
                     <ion-input  type="number" formControlName="postalcode" class="form-control" required placeholder="Postleitzahl"></ion-input>
                   </ion-item>
@@ -114,7 +120,7 @@
                     </ng-container>
                   </div>
                 </ion-col>
-                <ion-col size="8">
+                <ion-col sizeLg="9" sizeMd="9" sizeSm="8" sizeXs="7">
                   <ion-item lines="none">
                     <ion-input  type="text" formControlName="city" class="form-control" required placeholder="Stadt"></ion-input>
                   </ion-item>
@@ -145,34 +151,133 @@
                 </ion-col>
               </ion-row>
 
-              <ion-row class="side">
-                <ion-col>
-                  <ion-item lines="none">
-                    <ion-input type="password" formControlName="password" class="form-control" placeholder="Passwort"></ion-input>
-                  </ion-item>
-                  <div class="validation-errors">
-                    <ng-container *ngFor="let validation of VALIDATION_MESSAGES.password">
-                      <div class="error-message"
-                           *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
-                        {{ validation.message }}
-                      </div>
-                    </ng-container>
-                  </div>
-                </ion-col>
-              </ion-row>
-
-
               <ion-row class="ion-text-center">
                 <ion-col>
                   <ion-button type="submit" size="large" color="primary" class="submit-btn" [disabled]="!validationsForm.valid" style="margin-top: 10%">Speichern</ion-button>
-                  <label class="error-message">{{errorMessage}}</label>
-                  <label class="success-message">{{successMessage}}</label>
+                  <ion-button (click)="isEdit = false" color="danger" style="margin-top: 10%">Abbrechen</ion-button>
                 </ion-col>
               </ion-row>
 
             </form>
           </ion-col>
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+        </ion-row>
+      </ion-grid>
+
+<!-- Only view -->
+      <ion-grid *ngIf="!isEdit && user">
+        <ion-row>
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+          <ion-col class="regForm" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
+
+              <h1 class="ion-text-center">MyProfil</h1>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label position="stacked">Anrede: </ion-label>
+                    <ion-text>{{user.title}} </ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item >
+                    <ion-label position="stacked">Vorname: </ion-label>
+                    <ion-text>{{user.fName}}</ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label position="stacked">Nachname: </ion-label>
+                    <ion-text>{{user.lName}} </ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col size="9">
+                  <ion-item>
+                    <ion-label position="stacked">Straße: </ion-label>
+                    <ion-text>{{user.street}}</ion-text>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-item>
+                    <ion-label position="stacked">Nr.: </ion-label>
+                    <ion-text>{{user.housenumber}}</ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col sizeLg="3" sizeMd="3" sizeSm="4" sizeXs="5">
+                  <ion-item>
+                    <ion-label position="stacked">Postleitzahl: </ion-label>
+                    <ion-text>{{user.postalcode}}</ion-text>
+                  </ion-item>
+                </ion-col>
+                <ion-col sizeLg="9" sizeMd="9" sizeSm="8" sizeXs="7">
+                  <ion-item>
+                    <ion-label position="stacked">Stadt: </ion-label>
+                    <ion-text>{{user.city}}</ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="side">
+                <ion-col>
+                  <ion-item>
+                    <ion-label position="stacked">Email: </ion-label>
+                    <ion-text>{{user.email}}</ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col class="ion-text-center" sizeXl="4" sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
+                  <ion-button size="small" (click)="isEdit = true" color="primary">Profil bearbeiten</ion-button> <br>
+                  <label class="error-message">{{errorMessage}}</label>
+                  <label class="success-message">{{successMessage}}</label>
+                </ion-col>
+                <ion-col class="ion-text-center" sizeXl="4" sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
+                  <ion-button size="small" (click)="showInputAlert()" color="primary">Passwort ändern</ion-button>
+                </ion-col>
+                <ion-col class="ion-text-center" sizeXl="4" sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
+                  <ion-button (click)="showAlert('Sorry!', 'Diese Funktionalität wurde noch nicht implementiert')" size="small" color="danger">Profil löschen</ion-button>
+                </ion-col>
+              </ion-row>
+          </ion-col>
           <ion-col size="4"></ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 20px">
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+          <ion-col class="regForm" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
+            <h1 class="ion-text-center">MyBewertungen</h1>
+            <ion-item lines="none">
+              <ion-label>Durchschnittsbewertung:
+                <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, user.rating)}"></ion-icon>
+                <p style="padding-left: 10px" *ngIf="user.rating === 0">Noch keine oder nicht genügend Bewertungen verfügbar</p>
+              </ion-label>
+            </ion-item>
+            <ion-list>
+            <ion-card style="padding-left: 10px;" *ngFor="let rating of ratings">
+              <ion-card-header>
+                <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" [ngStyle]="{'color': getColor(num, rating.points)}"></ion-icon>
+              </ion-card-header>
+              <ion-card-content>
+                {{rating.description}}
+              </ion-card-content>
+            </ion-card>
+            </ion-list>
+          </ion-col>
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
         </ion-row>
       </ion-grid>
     </div>

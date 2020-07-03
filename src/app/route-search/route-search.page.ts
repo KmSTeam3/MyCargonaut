@@ -4,6 +4,8 @@ import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
+import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-route-search',
@@ -22,9 +24,11 @@ import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from
  */
 export class RouteSearchPage implements OnInit {
 
-    validationsForm: FormGroup;
-    errorMessage = '';
-    successMessage = '';
+  validationsForm: FormGroup;
+  errorMessage = '';
+  successMessage = '';
+  subscription: Subscription;
+  user: firebase.User;
 
     shipmentList: Shipment[] = [];
 
@@ -41,8 +45,13 @@ export class RouteSearchPage implements OnInit {
     shipment: Shipment;
 
 
-    constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private shipmentService: ShipmentService) {
-    }
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
+    this.subscription = this.authService.checkAuthState().subscribe((value => {
+      if (value) {
+        this.user = value;
+      }
+    }));
+  }
 
 
     ngOnInit() {
@@ -96,5 +105,11 @@ export class RouteSearchPage implements OnInit {
     navigateToHome() {
         this.router.navigate(['/home']);
     }
+
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
+  }
 
 }
