@@ -1,42 +1,39 @@
 language: node_js
 node_js:
-  - "14.1.0"
+- 14.1.0
 addons:
   chrome: stable
-
 before_install:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
+  &
 cache:
   directories:
-    - ./node_modules
-
-before_script:
-  — npm install -g ionic
-  — npm ci
-
+  - "./node_modules"
+before_script: "— npm install -g ionic — npm ci"
 jobs:
   include:
-    - stage: build
-      script: ionic build --prod -- --base-href ./
-    - stage: test
-      script: npm run test
-
+  - stage: build
+    script: ionic build --prod -- --base-href ./
+  - stage: test
+    script: npm run test
 deploy:
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    keep-history: true
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file_glob: true
-    file: "myCargonaut-*.tgz"
-    skip_cleanup: true
-    on:
-      branch: master
-      tags: true
-    local_dir: www
-  - provider: firebase
-    skip_cleanup: true
-    token:
-      secure: $FIREBASE_TOKEN
+- provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  keep-history: true
+- provider: releases
+  api_key: "$GITHUB_TOKEN"
+  file_glob: true
+  file: myCargonaut-*.tgz
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+  local_dir: www
+- provider: firebase
+  skip_cleanup: true
+  token:
+    secure: "$FIREBASE_TOKEN"
+env:
+  global:
+    secure: xN79YTnYO9nAcaQyXMycYrSOGbNgSCYgRSnxgUf5iMu/I/o8Rdp9ZCXFDja5HAi12Twy0MkHCVZBP/ISdaaHXePi1+rGx1IVvKL3Dd9tA5zymGgSnsLf++K7x6mIRc5k0TQf0CN8LA2EeVnWap5mNHInzWH11yj80UINhvsTkZUBWjSavOVCaOFxe8IPAuSrGbKFENGVxnOgCJvTu4E2rVuoWpK6jK2z6rCbUa4sLd47htwCwuRwASfitiruZAYoU1oc53KFE8X1qLRWTmJePCB5sGpotK3jY3rGH5kpwDx+H+mkIjUI+ZQz80LZbRUKjeZPpeW3Jq87hBd7arWkg1jp5f1cN0dNZW8cn+8x2rCkBbK78ODoj43moxoZ7Vb7YsBCiIBb4UKNQpQaKVI3kqyeZDie1kU5WyGLVMYJlIqtuzY0CVVlQK2ZwR2ciYOO4oXz4ZTrA119IMZAkm/lESwUJjczAQi60F9yAMpnX0M4RrohwBHYQEGcJxmA0jhQj1jCUWqlpMSurCJgnjqVVEJeNkXQILSBtViaCVuaM20SUl3mRGQBdXKJpSLzPW8k3rdTI+9U4BqxVSmagASDwapL3A9lA8QWQyjnAwqmTOB0jfSLUHjBlaKMosWhJLx8Kc8EGPyZcqdfzEMwNWS8kYHMD9TOaicZISaS3F6ZuEE=
