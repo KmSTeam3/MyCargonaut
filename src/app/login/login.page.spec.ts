@@ -16,7 +16,7 @@ describe('LoginPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],
-      imports: [IonicModule.forRoot(),
+      imports: [IonicModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         ReactiveFormsModule,
         FormsModule,
