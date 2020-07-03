@@ -59,6 +59,8 @@ export class TransportSearchPage implements OnInit {
       weight: new FormControl(''),
       height: new FormControl(''),
       length: new FormControl(''),
+      pallet: new FormControl(false),
+      fragile: new FormControl(false),
     });
   }
 
@@ -72,6 +74,7 @@ export class TransportSearchPage implements OnInit {
     this.shipmentService.searchTransport(value.startAddress, value.toAddress,  +value.weight, +value.height, +value.length).forEach( shipment => {
       this.shipmentList = shipment;
       this.article = new Article(value.article, this.pallet, 1, value.height, value.width, this.fragile, value.weight);
+      console.log(this.article.weight);
       const navigationExtras: NavigationExtras = { state: {shipmentList: this.shipmentList, article: this.article} };
       this.router.navigate(['/search-result'], navigationExtras);
       console.log(shipment);
