@@ -33,10 +33,12 @@ deploy:
     file: "myCargonaut-*.tgz"
     skip_cleanup: true
     on:
+      branch: master
       tags: true
   - provider: npm
     skip_cleanup: true
     email: "jan.niklas.martens@mni.thm.de"
     api_key: $NPM_API_KEY
     on:
+      branch: master
       tags: true
