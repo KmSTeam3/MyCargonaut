@@ -7,6 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
 import {Article} from "../shared/article";
+import {AuthService} from "../shared/auth.service";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -26,8 +28,9 @@ export class SearchResultPage implements OnInit {
 
     listShipments: Shipment[] = [];
     article: Article;
+    subscription: Subscription;
 
-    constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
+    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 console.log(params);

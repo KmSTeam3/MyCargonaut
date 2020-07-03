@@ -3,7 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
-import {Article} from "../shared/article";
+import {Article} from '../shared/article';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-transport-search',
