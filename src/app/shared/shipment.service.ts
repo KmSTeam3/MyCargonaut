@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Vehicle} from './vehicle';
-import {enumStatus, Shipment} from './shipment';
+import {enumStatus, Shipment, shipStatus} from './shipment';
 import {User} from './user';
 import {UserService} from './user.service';
 import {AuthService} from './auth.service';
@@ -37,8 +37,8 @@ export class ShipmentService {
         copy.articleList = copy.articleList || null;
         copy.passengerList = copy.passengerList || null;
         copy.startTime = copy.startTime || null;
+        copy.shipSatus= copy.shipSatus || null;
         copy.status = copy.status || null;
-
 
         return copy;
     }
@@ -49,15 +49,15 @@ export class ShipmentService {
 
     // create shipment
     persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-            pricePerKg: number, seat: number, pricePerSeat: number, status: number) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status);
+            pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus: number) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus);
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
     // update shipment
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-           pricePerKg: number, seat: number, pricePerSeat: number, status: number, id: string) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, id);
+           pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus:number, id: string) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 

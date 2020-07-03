@@ -4,7 +4,7 @@ import {ModalController} from "@ionic/angular";
 import {AuthService} from './../../shared/auth.service';
 import {Router} from '@angular/router';
 import {ShipmentService} from './../../shared/shipment.service';
-import {Shipment} from '../../shared/shipment';
+import {Shipment, shipStatus} from '../../shared/shipment';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class DeliveryListPage implements OnInit {
     holderId: string;
     // shipId: string= this.shipment.id;
     dataReturned: any;
+    status: shipStatus;
 
     setUserId() {
         this.authService.checkAuthState().subscribe((user) => {
@@ -85,5 +86,21 @@ export class DeliveryListPage implements OnInit {
         this.getShipment(this.shipId);
 
     }
+
+
+
+  async  onChange($event, shipmentId) {
+
+        this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList,
+              this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime,
+              this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat,
+              this.shipment.pricePerSeat, this.shipment.status, $event.target.value, this.shipment.id);
+
+  }
+
+
+
+       // this.shipmentService.update()
+
 
 }

@@ -5,7 +5,7 @@ import {
     ToastController,
 } from '@ionic/angular';
 import {AuthService} from '../../shared/auth.service';
-import {enumStatus, Shipment} from '../../shared/shipment';
+import {enumStatus, Shipment, shipStatus} from '../../shared/shipment';
 import {Vehicle} from '../../shared/vehicle';
 import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
@@ -36,6 +36,7 @@ export class ModalDeliveryEditPage implements OnInit {
         private shipmentService: ShipmentService,
         private userService: UserService,
     ) {
+
     }
 
     id: string;
@@ -54,6 +55,7 @@ export class ModalDeliveryEditPage implements OnInit {
     vehicle: Vehicle;
     passengerList: Person[];
     articleList: Article[];
+    shipStatus: shipStatus;
 
 
     currentID: string;
@@ -90,7 +92,7 @@ export class ModalDeliveryEditPage implements OnInit {
     }
 
     /**
-     * Function to collect modal form values and generate new shipment through call of shipment.service persist method
+     * Function to collect modal form values and update existing shipment through call of shipment.service update method
      */
     updateModal() {
 
@@ -98,7 +100,7 @@ export class ModalDeliveryEditPage implements OnInit {
             console.log("test")
             this.shipmentService.update(this.cargonaut, this.vehicle, this.passengerList, this.articleList,
                 this.start, this.goal, this.date, this.startTime, this.length, this.height,
-                this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status, this.id);
+                this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status,this.shipStatus, this.id);
 
             this.closeModal();
             this.presentToast('updated Delivery');

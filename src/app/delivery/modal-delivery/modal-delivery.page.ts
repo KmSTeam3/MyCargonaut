@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {
-    ModalController,
-    NavParams,
-    ToastController,
-} from '@ionic/angular';
+import {ModalController, NavParams, ToastController,} from '@ionic/angular';
 import {AuthService} from '../../shared/auth.service';
-import {enumStatus, Shipment} from '../../shared/shipment';
+import {enumStatus, Shipment, shipStatus} from '../../shared/shipment';
 import {Vehicle} from '../../shared/vehicle';
 import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
@@ -51,6 +47,7 @@ export class ModalDeliveryPage implements OnInit {
     vehicle: Vehicle;
     passengerList: Person[];
     articleList: Article[];
+    shipStatus: shipStatus;
 
 
     currentID: string;
@@ -95,7 +92,7 @@ export class ModalDeliveryPage implements OnInit {
 
             this.shipmentService.persist(this.cargonaut, this.vehicle, this.passengerList, this.articleList, this.start,
                                         this.goal, this.date, this.startTime, this.length, this.height, this.weight,
-                                        this.pricePerKg, this.seat, this.pricePerSeat, 0);
+                                        this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.pending);
             this.closeModal();
             this.presentToast('added Delivery');
         } else {
