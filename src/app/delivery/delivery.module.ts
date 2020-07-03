@@ -11,6 +11,8 @@ import { DeliveryPage } from './delivery.page';
 import { ModalDeliveryPageModule} from './modal-delivery/modal-delivery.module';
 import {DeliveryListPageModule} from './delivery-list/delivery-list.module';
 import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
+import {UnauthorizedPageModule} from '../unauthorized/unauthorized.module';
+
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
         DeliveryPageRoutingModule,
         ModalDeliveryPageModule,
         DeliveryListPageModule,
-        MenuHeaderPageModule
+        MenuHeaderPageModule,
+        UnauthorizedPageModule
     ],
   declarations: [DeliveryPage]
 })

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
 import {Vehicle} from '../shared/vehicle';
@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
 import {Article} from "../shared/article";
+
 
 @Component({
     selector: 'app-search-result',
@@ -57,9 +58,15 @@ export class SearchResultPage implements OnInit {
         // this.listShipments.push(this.shipment);
     }
 
-    navigateToLogin() {
-        this.router.navigate(['/login']);
-    }
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
+  }
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
 
     navigateToRegister() {
         this.router.navigate(['/register']);
@@ -89,7 +96,11 @@ export class SearchResultPage implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    navigateToImpressum() {
-        this.router.navigate(['/impressum']);
-    }
+  navigateToImpressum(){
+    this.router.navigate(['/impressum']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

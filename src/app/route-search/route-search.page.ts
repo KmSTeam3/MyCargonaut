@@ -10,6 +10,7 @@ import {Subscription} from 'rxjs';
 import {UserService} from '../shared/user.service';
 import {ToastController} from '@ionic/angular';
 
+
 @Component({
     selector: 'app-route-search',
     templateUrl: './route-search.page.html',
@@ -27,9 +28,11 @@ import {ToastController} from '@ionic/angular';
  */
 export class RouteSearchPage implements OnInit {
 
-    validationsForm: FormGroup;
-    errorMessage = '';
-    successMessage = '';
+  validationsForm: FormGroup;
+  errorMessage = '';
+  successMessage = '';
+  subscription: Subscription;
+  user: firebase.User;
 
     shipmentList: Shipment[] = [];
 
@@ -46,8 +49,13 @@ export class RouteSearchPage implements OnInit {
     shipment: Shipment;
 
 
-    constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router, private shipmentService: ShipmentService) {
-    }
+  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
+    this.subscription = this.authService.checkAuthState().subscribe((value => {
+      if (value) {
+        this.user = value;
+      }
+    }));
+  }
 
 
     ngOnInit() {
@@ -101,5 +109,11 @@ export class RouteSearchPage implements OnInit {
     navigateToHome() {
         this.router.navigate(['/home']);
     }
+
+  signOut(){
+    this.authService.SignOut().then(() => {
+      this.navigateToLogin();
+    });
+  }
 
 }

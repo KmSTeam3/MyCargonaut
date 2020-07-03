@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
@@ -21,11 +21,13 @@ import {Article} from "../shared/article";
  * - The height of the users article
  * - How long the users article is
  */
-export class TransportSearchPage implements OnInit {
+export class TransportSearchPage implements OnInit, OnDestroy {
 
   validationsForm: FormGroup;
   errorMessage = '';
   successMessage = '';
+  user: firebase.User;
+  subscription: Subscription;
 
   shipmentList: Shipment[] = [];
 
@@ -95,5 +97,9 @@ export class TransportSearchPage implements OnInit {
   // navigation method to the home page
   navigateToHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

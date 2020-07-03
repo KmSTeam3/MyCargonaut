@@ -10,8 +10,8 @@
 
     <ion-grid>
         <ion-row>
-            <ion-col size="4"></ion-col>
-            <ion-col class="ion-text-center" size="4">
+            <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+            <ion-col class="ion-text-center" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
                 <form class="form" [formGroup]="validationsForm" (ngSubmit)="login(validationsForm.value)">
                     <img alt="MyCargonaut Logo" src="assets/CargoLogo.PNG">
                     <h1 class="ion-text-center">Anmelden</h1>
@@ -43,12 +43,13 @@
                     </div>
 
                     <ion-button color="primary" type="submit" [disabled]="!validationsForm.valid">Anmelden</ion-button>
+                    <label class="error-message">{{errorMessage}}</label>
                     <h3 class="ion-text-center">oder registrieren</h3>
                     <ion-button (click)="navigateRegister()" color="primary">Cargonaut werden</ion-button>
                 </form>
             </ion-col>
 
-            <ion-col size="4"></ion-col>
+            <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
 
         </ion-row>
     </ion-grid>

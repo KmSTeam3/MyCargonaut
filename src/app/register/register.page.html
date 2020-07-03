@@ -11,8 +11,8 @@
     <div>
       <ion-grid>
         <ion-row>
-          <ion-col size="4"></ion-col>
-          <ion-col class="regForm" size="4">
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+          <ion-col class="regForm" sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
             <form class="form" [formGroup]="validationsForm" (ngSubmit)="register(validationsForm.value)">
 
               <h1 class="ion-text-center">Registrieren</h1>
@@ -62,7 +62,7 @@
               </ion-row>
 
               <ion-row class="side">
-                <ion-col size="9">
+                <ion-col sizeLg="10" sizeMd="9" sizeSm="9" sizeXs="8">
                   <ion-item lines="none">
                     <ion-input type="text" formControlName="street" class="form-control" required placeholder="Straße"></ion-input>
                   </ion-item>
@@ -75,7 +75,7 @@
                     </ng-container>
                   </div>
                 </ion-col>
-                <ion-col size="3">
+                <ion-col sizeLg="2" sizeMd="3" sizeSm="3" sizeXs="4">
                   <ion-item lines="none">
                     <ion-input type="number" formControlName="housenumber" class="form-control" required placeholder="Nr."></ion-input>
                   </ion-item>
@@ -91,7 +91,7 @@
               </ion-row>
 
               <ion-row class="side">
-                <ion-col size="4">
+                <ion-col sizeLg="3" sizeMd="3" sizeSm="4" sizeXs="5">
                   <ion-item lines="none">
                     <ion-input type="number" formControlName="postalcode" class="form-control" required placeholder="Postleitzahl"></ion-input>
                   </ion-item>
@@ -104,7 +104,7 @@
                     </ng-container>
                   </div>
                 </ion-col>
-                <ion-col size="8">
+                <ion-col sizeLg="9" sizeMd="9" sizeSm="8" sizeXs="7">
                   <ion-item lines="none">
                     <ion-input type="text" formControlName="city" class="form-control" required placeholder="Stadt"></ion-input>
                   </ion-item>
@@ -169,7 +169,7 @@
 
             </form>
           </ion-col>
-          <ion-col size="4"></ion-col>
+          <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
         </ion-row>
       </ion-grid>
     </div>
