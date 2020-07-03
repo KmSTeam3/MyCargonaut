@@ -88,9 +88,16 @@ export class BookingsPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscription1.unsubscribe();
-    this.subscription3.unsubscribe();
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
+    if (this.subscription1){
+      this.subscription1.unsubscribe();
+    }
+    if (this.subscription3){
+      this.subscription3.unsubscribe();
+    }
+
   }
 
 }

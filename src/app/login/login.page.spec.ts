@@ -48,7 +48,9 @@ describe('LoginPage', () => {
       if (value){
         user = value;
       }
-      expect(user).toBeDefined();
+      setTimeout(() => {
+        expect(user).toBeDefined();
+      }, 5000);
     });
   });
 
