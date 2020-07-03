@@ -37,5 +37,6 @@ deploy:
       tags: true
     local_dir: www
   - provider: firebase
+    skip_cleanup: true
     token:
-      secure: "1//09VaJKv20PlK4CgYIARAAGAkSNwF-L9IrXBP4u8p-PLt4XSMZxsWkGGLdyNmoc8V7MOtv3wbgkWp4zu2TyTJw3XCRFKBKyqNzu4A"
+      secure: $FIREBASE_TOKEN
