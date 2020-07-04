@@ -37,7 +37,7 @@ export class ShipmentService {
         copy.articleList = copy.articleList || null;
         copy.passengerList = copy.passengerList || null;
         copy.startTime = copy.startTime || null;
-        copy.shipSatus= copy.shipSatus || null;
+        copy.shipSatus = copy.shipSatus || null;
         copy.status = copy.status || null;
 
         return copy;
@@ -49,15 +49,15 @@ export class ShipmentService {
 
     // adds a new "shipment" document to the firestore collection "shipment"
     persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-            pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus: number) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus);
+            pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus);
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    //adds a new "shipment" document to the firestore collection "shipment"
+    // adds a new "shipment" document to the firestore collection "shipment"
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-           pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus:number, id: string) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus, id);
+           pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number, id: string) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 
