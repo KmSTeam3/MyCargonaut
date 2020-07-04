@@ -20,7 +20,7 @@ jobs:
     script: npm run test
 
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
+  - firebase deploy --project mycargonaut-7e61b --token $FIREBASE_TOKEN
 deploy:
 - provider: pages
   skip_cleanup: true
