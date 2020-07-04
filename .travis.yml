@@ -29,7 +29,8 @@ deploy:
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   keep-history: true
-  local_dir: www
+  local_dir: docs
+
 - provider: firebase
   skip_cleanup: true
   token:
