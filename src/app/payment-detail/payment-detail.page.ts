@@ -21,13 +21,11 @@ export class PaymentDetailPage implements OnInit {
     @Input() modalController: ModalController;
     @Input() shipment: Shipment;
     @Input() article: Article;
+    @Input() routeSearch: boolean;
+    @Input() user: User;
 
-    user: User;
 
     constructor(private router: Router, private userService: UserService) {
-        this.userService.getUser(this.shipment.cargonaut).subscribe( (user) => {
-            this.user = user;
-        });
     }
 
     ngOnInit() {
@@ -46,7 +44,7 @@ export class PaymentDetailPage implements OnInit {
      */
     navigateToPaymentChoice(modalController: ModalController) {
         this.dismissModal(modalController);
-        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article}};
+        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article, routeSearch: this.routeSearch}};
         console.log('navigations extra ' + navigationExtras);
         this.router.navigate(['/payment-choice'], navigationExtras);
     }

@@ -29,6 +29,7 @@ export class SearchResultPage implements OnInit {
 
     listShipments: Shipment[] = [];
     article: Article;
+    routeSearch: boolean;
     subscription: Subscription;
     user: firebase.User;
 
@@ -39,7 +40,12 @@ export class SearchResultPage implements OnInit {
                 console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
                 this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
                 if (this.router.getCurrentNavigation().extras.state.article != null) {
+                    console.log('Transport search');
                     this.article = this.router.getCurrentNavigation().extras.state.article;
+                }
+                if (this.router.getCurrentNavigation().extras.state.routeSearch != null) {
+                    console.log('Route search');
+                    this.routeSearch = true;
                 }
                 console.log(this.listShipments);
             }
@@ -54,6 +60,7 @@ export class SearchResultPage implements OnInit {
     };
 
     async sortList(event) {
+        console.log('Sort called');
         switch (event.detail.value) {
             case '0':
                 console.log(event.detail.value);
@@ -90,7 +97,7 @@ export class SearchResultPage implements OnInit {
                 console.log('Eingeloggt als: ' + this.user.uid);
             }
         });
-        console.log(this.listShipments);
+        console.log('Handed over shipment list' + this.listShipments);
     }
 
     signOut() {

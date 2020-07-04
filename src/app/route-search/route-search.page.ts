@@ -47,6 +47,7 @@ export class RouteSearchPage implements OnInit {
         ]
     };
     shipment: Shipment;
+    routeSearch: boolean;
 
 
   constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
@@ -70,6 +71,7 @@ export class RouteSearchPage implements OnInit {
             toAddress: new FormControl(''),
             date: new FormControl('')
         });
+        this.routeSearch = true;
     }
 
     // Search method
@@ -78,21 +80,14 @@ export class RouteSearchPage implements OnInit {
             console.log(' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
             this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
                 this.shipmentList = shipment;
-                const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList} };
+                const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList, routeSearch: this.routeSearch} };
                 this.router.navigate(['search-result'], navigationExtras);
-                console.log(shipment);
+                console.log('Query result= ' + shipment);
             });
 
             this.shipmentService.testAll().forEach(shipment => {
                 console.log(shipment);
             });
-    }
-
-    query(value) {
-        this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
-            this.shipmentList = shipment;
-            console.log(shipment);
-        });
     }
 
     // navigation method to the login page

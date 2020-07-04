@@ -23,6 +23,7 @@ export class PaymentChoicePage implements OnInit {
     currentPaymentChoice: number;
     passenger: Person;
     article: Article;
+    routeSearch: boolean;
     subscription: Subscription;
 
     constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
@@ -35,6 +36,9 @@ export class PaymentChoicePage implements OnInit {
                 if (this.router.getCurrentNavigation().extras.state.article != null){
                     this.article = this.router.getCurrentNavigation().extras.state.article;
                 }
+                if (this.router.getCurrentNavigation().extras.state.routeSearch != null){
+                    this.routeSearch = true;
+                }
                 console.log('Routing worked' + this.shipment);
             }
         });
@@ -45,7 +49,9 @@ export class PaymentChoicePage implements OnInit {
             if (value) {
                 this.userService.getUser(value.uid).subscribe( (user) => {
                     if (user) {
-                        this.passenger = new Person(1, user);
+                        if (this.routeSearch){
+                            this.passenger = new Person(1, user);
+                        }
                     }
                 });
             }
