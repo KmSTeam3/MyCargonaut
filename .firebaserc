@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "mycargonaut-7e61b"
+    "default": "mycargonaut-7e61b",
+    "staging": "mycargonaut-7e61b"
   }
 }
