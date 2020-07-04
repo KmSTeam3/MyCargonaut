@@ -140,6 +140,7 @@ export class PaymentChoicePage implements OnInit {
             this.router.navigate(['/payment-success'], navigationExtras);
         } else {
             this.presentToast('Sie müssen eingeloggt sein um Routen zu buchen');
+            console.log("test");
         }
     }
 
