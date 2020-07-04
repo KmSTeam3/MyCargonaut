@@ -17,6 +17,7 @@ export class ListResultPage implements OnInit, OnDestroy {
     @Input() shipment: Shipment;
     subscription: Subscription;
     user: User;
+    @Input() routeSearch: boolean;
 
     constructor(public modalController: ModalController, private router: Router, private userservice: UserService) {
 
@@ -44,6 +45,7 @@ export class ListResultPage implements OnInit, OnDestroy {
             componentProps: {
                 shipment: this.shipment,
                 user: this.user,
+                routeSearch: this.routeSearch,
         modalController: this.modalController
       }
     });

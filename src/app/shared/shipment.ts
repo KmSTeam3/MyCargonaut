@@ -57,7 +57,7 @@ export class Shipment {
      * @param pricePerSeat price per passenger
      * @param status which payment method the user has choosen
      * @param id identification of the shipment
-     * @param shipStatus
+     * @param shipStatus status of the shipment
      */
     constructor(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[],
                 start: string, goal: string, date: Date, startTime: string, length: number, height: number,

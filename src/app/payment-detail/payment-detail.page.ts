@@ -30,6 +30,7 @@ export class PaymentDetailPage implements OnInit {
 
     ngOnInit() {
         console.log('Modal shipment' + this.shipment.goal);
+        console.log(this.routeSearch);
     }
 
     // method for dismissing the payment detail modal

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Vehicle} from './vehicle';
-import {enumStatus, Shipment, shipStatus} from './shipment';
+import {Shipment} from './shipment';
 import {User} from './user';
 import {UserService} from './user.service';
 import {AuthService} from './auth.service';
@@ -9,7 +9,6 @@ import {Person} from './person';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Article} from './article';
-import {redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 @Injectable({
     providedIn: 'root'
