@@ -29,7 +29,7 @@ export class PaymentChoicePage implements OnInit, OnDestroy {
     subscription: Subscription;
     subscription2: Subscription;
 
-    constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService, private authService: AuthService, private userService: UserService) {
+    constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
         // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
@@ -106,7 +106,7 @@ export class PaymentChoicePage implements OnInit, OnDestroy {
         if (this.passenger != null){
             this.shipment.passengerList.push(this.passenger);
             if (this.article != null){this.shipment.articleList.push(this.article); }
-            this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice,this.shipment.shipSatus, this.shipment.id);
+            this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice, this.shipment.shipSatus, this.shipment.id);
             this.user.bookings.push(this.shipment);
             this.userService.update(this.user);
             const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
