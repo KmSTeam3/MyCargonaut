@@ -54,7 +54,7 @@ export class PaymentChoicePage implements OnInit {
                 this.loginState = true;
                 this.userService.getUser(value.uid).subscribe( (user) => {
                     if (user) {
-                            this.passenger = new Person(1, user);
+                            this.passenger = {amount: 1, client: user};
                     }
                 });
             }
@@ -118,6 +118,7 @@ export class PaymentChoicePage implements OnInit {
                 }
 
             }
+            console.log(this.shipment);
             this.shipmentService.update(
                 this.shipment.cargonaut,
                 this.shipment.vehicle,
