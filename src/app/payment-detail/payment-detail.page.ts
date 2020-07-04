@@ -30,7 +30,7 @@ export class PaymentDetailPage implements OnInit {
 
     ngOnInit() {
         console.log('Modal shipment' + this.shipment.goal);
-        console.log(this.routeSearch);
+        console.log('Route Search weiter gegeben: ' + this.routeSearch);
     }
 
     // method for dismissing the payment detail modal
@@ -45,7 +45,7 @@ export class PaymentDetailPage implements OnInit {
      */
     navigateToPaymentChoice(modalController: ModalController) {
         this.dismissModal(modalController);
-        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article, routeSearch: this.routeSearch}};
+        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article, routeSearch: this.routeSearch }};
         console.log('navigations extra ' + navigationExtras);
         this.router.navigate(['/payment-choice'], navigationExtras);
     }
