@@ -6,6 +6,7 @@ import {ModalController} from '@ionic/angular';
 import {Subscription} from 'rxjs';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/user';
+import {Article} from '../../shared/article';
 
 @Component({
     selector: 'app-list-result',
@@ -18,6 +19,8 @@ export class ListResultPage implements OnInit, OnDestroy {
     subscription: Subscription;
     user: User;
     @Input() routeSearch: boolean;
+    @Input() article: Article;
+    price = 0;
 
     constructor(public modalController: ModalController, private router: Router, private userservice: UserService) {
 
@@ -28,6 +31,13 @@ export class ListResultPage implements OnInit, OnDestroy {
             this.user = value;
             this.user.rating = Math.round(this.user.rating);
         }));
+        if (this.routeSearch != null){
+            this.price = this.shipment.pricePerSeat;
+        }
+        if (this.article != null){
+            this.price += this.shipment.pricePerKg * this.article.weight;
+            console.log('Ergebniss ist: ' + (this.shipment.pricePerKg * this.article.weight));
+        }
     }
 
     navigateToPayment() {
@@ -46,6 +56,7 @@ export class ListResultPage implements OnInit, OnDestroy {
                 shipment: this.shipment,
                 user: this.user,
                 routeSearch: this.routeSearch,
+                price: this.price,
         modalController: this.modalController
       }
     });

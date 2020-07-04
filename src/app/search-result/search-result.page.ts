@@ -40,8 +40,8 @@ export class SearchResultPage implements OnInit {
                 console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
                 this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
                 if (this.router.getCurrentNavigation().extras.state.article != null) {
-                    console.log('Transport search');
                     this.article = this.router.getCurrentNavigation().extras.state.article;
+                    console.log('Transport search' + this.article.weight);
                 }
                 if (this.router.getCurrentNavigation().extras.state.routeSearch != null) {
                     console.log('Route search');

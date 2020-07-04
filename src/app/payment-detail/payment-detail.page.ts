@@ -23,6 +23,7 @@ export class PaymentDetailPage implements OnInit {
     @Input() article: Article;
     @Input() routeSearch: boolean;
     @Input() user: User;
+    @Input() price: number;
 
 
     constructor(private router: Router, private userService: UserService) {
