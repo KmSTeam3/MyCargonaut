@@ -132,7 +132,7 @@ export class ShipmentService {
             map(actions => actions.map( a => {
                 const data = a.payload.doc.data();
                 data.id = a.payload.doc.id;
-                if (data.weight <= weight){
+                if (data.weight >= weight){
                     return{...data} as Shipment;
                 }
             }))

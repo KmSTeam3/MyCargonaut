@@ -100,7 +100,7 @@ export class PaymentChoicePage implements OnInit {
     /**
      * Payment method that updates the payment status of the shipment and continues with the selected choice or directs to the success page
      */
-    async pay() {
+     pay() {
         if (this.loginState){
             if (this.shipment.passengerList == null){
                 this.passengerList.push(this.passenger);
@@ -140,7 +140,7 @@ export class PaymentChoicePage implements OnInit {
             this.router.navigate(['/payment-success'], navigationExtras);
         } else {
             this.presentToast('Sie müssen eingeloggt sein um Routen zu buchen');
-            console.log("test");
+            console.log('test');
         }
     }
 
