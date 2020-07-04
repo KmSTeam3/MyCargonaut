@@ -82,9 +82,6 @@ export class ModalDeliveryEditPage implements OnInit {
     ngOnInit() {
 
         this.setUserId();
-        this.getShipment(this.shipmentId);
-
-        console.log('Aktuell eingeloggt als:' + this.cargonaut);
     }
 
     getVehicles(uId: string) {
@@ -93,6 +90,10 @@ export class ModalDeliveryEditPage implements OnInit {
             this.vehicles = vehiclesList;
         });
     }
+
+    compareFn(e1: Vehicle, e2: Vehicle): boolean {
+        return e1 && e2 ? e1.licensePlate === e2.licensePlate : e1 === e2;
+      }
 
     getSelectValue(event) {
         this.vehicles.forEach(vehicle => {
@@ -116,8 +117,7 @@ export class ModalDeliveryEditPage implements OnInit {
      */
     updateModal() {
 
-        if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
-            console.log("test")
+        if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut && this.selectedVehicle) {
             this.shipmentService.update(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList,
                 this.start, this.goal, this.date, this.startTime, this.length, this.height,
                 this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status,this.shipStatus, this.id);
@@ -133,7 +133,6 @@ export class ModalDeliveryEditPage implements OnInit {
 
     getShipment(shipId: string) {
         this.shipmentService.getShipment(shipId).subscribe(data => {
-            //console.log( data);
             this.shipment = data;
         });
     }
