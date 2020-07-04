@@ -19,10 +19,18 @@ export class DeleteVehiclePage implements OnInit {
     this.findVehicle(this.id, this.uId);
   }
 
+  /**
+   * Send delete to VehicleService with current vehicle and User ID
+   */
   deleteVehicle(){
     this.vehicleService.delete(this.vehicle, this.uId);
   }
 
+  /**
+   * Search for selected Vehicle
+   * @param licensePlate Current vehicle ID
+   * @param id Current user ID
+   */
   findVehicle(licensePlate: string, id: string){
     this.vehicleService.getVehicle(licensePlate, id).subscribe(data => {
      this.vehicle = data;

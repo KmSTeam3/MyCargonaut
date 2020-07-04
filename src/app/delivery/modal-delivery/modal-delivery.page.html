@@ -1,35 +1,35 @@
 <!-- my-modal.page.html -->
 <ion-header>
-    <ion-toolbar color="dark">
+    <ion-toolbar>
         <ion-title>Neue Lieferung hinzufügen</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <!-- [(ngModel)]="finish"   //insert into <ion-input> -->
 
-<ion-content class="ion-padding" color="dark">
+<ion-content class="ion-padding" >
     <ion-row>
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">von</ion-label>
                 <ion-input type="text" [(ngModel)]="start"></ion-input>
             </ion-item>
         </ion-col>
 
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">nach</ion-label>
                 <ion-input type="text" [(ngModel)]="goal" ></ion-input>
             </ion-item>
         </ion-col>
     </ion-row>
 
-    <ion-item color="dark">
+    <ion-item >
         <ion-label>Datum</ion-label>
         <ion-input type="date" [(ngModel)]="date"></ion-input>
     </ion-item>
 
-    <ion-item color="dark">
+    <ion-item >
         <ion-label position="floating">Fahrzeug</ion-label>
         <ion-select [(ngModel)]="selectedVehicle" (ionChange)="getSelectValue($event)">
             <ion-select-option *ngFor="let vehicle of vehicles" value="{{vehicle.licensePlate}}"> {{vehicle.licensePlate}}  </ion-select-option>
@@ -38,15 +38,15 @@
 
 
     <ion-row>
-        <ion-col size="6">
-            <ion-item color="dark">
+        <ion-col >
+            <ion-item>
                 <ion-label position="floating">verfügbare Länge in cm</ion-label>
                 <ion-input type="number" [(ngModel)]="length"></ion-input>
             </ion-item>
         </ion-col>
 
-        <ion-col size="6">
-            <ion-item color="dark">
+        <ion-col >
+            <ion-item>
                 <ion-label position="floating">verfügbare Höhe in cm</ion-label>
                 <ion-input type="number" [(ngModel)]="height" ></ion-input>
             </ion-item>
@@ -55,14 +55,14 @@
 
     <ion-row>
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">verfügbares Gewicht</ion-label>
                 <ion-input type="number" [(ngModel)]="weight"></ion-input>
             </ion-item>
         </ion-col>
 
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">€ pro Kg</ion-label>
                 <ion-input type="number" [(ngModel)]="pricePerKg"></ion-input>
             </ion-item>
@@ -70,14 +70,14 @@
     </ion-row>
     <ion-row>
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">Sitzplätze</ion-label>
                 <ion-input type="number" [(ngModel)]="seat" ></ion-input>
             </ion-item>
         </ion-col>
 
         <ion-col size="6">
-            <ion-item color="dark">
+            <ion-item >
                 <ion-label position="floating">€ pro Sitzplatz</ion-label>
                 <ion-input type="number" [(ngModel)]="pricePerSeat" ></ion-input>
             </ion-item>

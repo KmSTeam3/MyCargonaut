@@ -24,7 +24,10 @@ export class EModalPage implements OnInit {
   ngOnInit() {
   }
 
-
+  /**
+   * Popup a Toast at page bottom
+   * @param msg Message to be displayed.
+   */
   async presentToast(msg: string){
     const toast = await this.toastController.create({
       message: msg,
@@ -33,6 +36,9 @@ export class EModalPage implements OnInit {
     toast.present();
   }
 
+  /**
+   * Send changed Data to vehicleService to be set in Database
+   */
   saveModal(){
     //this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
 
@@ -47,6 +53,9 @@ export class EModalPage implements OnInit {
     }
   }
 
+  /**
+   * Close Modal
+   */
   dismissModal(){
     this.modal.dismiss();
   }

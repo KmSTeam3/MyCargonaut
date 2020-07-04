@@ -6,43 +6,50 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
-import {Subscription} from 'rxjs';
+import {Article} from '../shared/article';
 import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
+import {UserService} from '../shared/user.service';
+
 
 @Component({
     selector: 'app-search-result',
     templateUrl: './search-result.page.html',
     styleUrls: ['./search-result.page.scss'],
 })
-export class SearchResultPage implements OnInit, OnDestroy {
-  @Input() shipmentList: Shipment[];
-  // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
-  // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
-  // passengerList: Person[] = [];
-  // person: Person = new Person(1, this.user2, '789101112');
-  // date: Date = new Date('2020-06-22');
-  // shipment: Shipment;
+export class SearchResultPage implements OnInit {
+    @Input() shipmentList: Shipment[];
+    // user: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+    // user2: User = new User('123456789', 'testSubject#1', 'test#1', 'tester#1', 'teststreet', 1, 12345, 'testcity', 'test@test.de');
+    // vehicle: Vehicle = new Vehicle('32156487', 'LKW 1', 'this.user', 100, 1000, 100, 4, 4);
+    // passengerList: Person[] = [];
+    // person: Person = new Person(1, this.user2, '789101112');
+    // date: Date = new Date('2020-06-22');
+    // shipment: Shipment;
 
-  listShipments: Shipment[] = [];
-  user: firebase.User;
-  subscription: Subscription;
+    listShipments: Shipment[] = [];
+    article: Article;
+    routeSearch: boolean;
+    subscription: Subscription;
+    user: firebase.User;
 
-  constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private authService: AuthService) {
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        console.log(params);
-        console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
-        this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
-        console.log(this.listShipments);
-      }
-    });
-    this.subscription = this.authService.checkAuthState().subscribe(value => {
-      if (value){
-        this.user = value;
-      }
-    });
-
+    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService) {
+        this.route.queryParams.subscribe(params => {
+            if (this.router.getCurrentNavigation().extras.state) {
+                console.log(params);
+                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
+                this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+                if (this.router.getCurrentNavigation().extras.state.article != null) {
+                    console.log('Transport search');
+                    this.article = this.router.getCurrentNavigation().extras.state.article;
+                }
+                if (this.router.getCurrentNavigation().extras.state.routeSearch != null) {
+                    console.log('Route search');
+                    this.routeSearch = true;
+                }
+                console.log(this.listShipments);
+            }
+        });
 
     }
 
@@ -52,59 +59,67 @@ export class SearchResultPage implements OnInit, OnDestroy {
         message: 'Only select your favorite flower'
     };
 
-    ngOnInit() {
-        // this.passengerList[0] = this.person;
-        // this.user.rating = 1;
-        // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
-        // this.shipmentService.query('price');
-        // this.listShipments = this.dataHelper.tranportData;
-        console.log(this.listShipments);
-        // this.listShipments.push(this.shipment);
+    async sortList(event) {
+        console.log('Sort called');
+        switch (event.detail.value) {
+            case '0':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => (a.pricePerKg > b.pricePerKg) ? 1 : ((b.pricePerKg > a.pricePerKg) ? -1 : 0));
+                break;
+            case '1':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => {
+                    const tempA = this.getRating(a);
+                    const tempB = this.getRating(b);
+                    if (tempA < tempB) {
+                        return -1;
+                    }
+                    if (tempA > tempB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                break;
+        }
     }
 
-  signOut(){
-    this.authService.SignOut().then(() => {
-      this.navigateToLogin();
-    });
-  }
 
-  navigateToLogin(){
-    this.router.navigate(['/login']);
-  }
+    async getRating(shipment: Shipment) {
+        this.userService.getUser(shipment.cargonaut).subscribe((value => {
+            return Math.round(value.rating);
+        }));
+    }
+
+    ngOnInit() {
+        this.subscription = this.authService.checkAuthState().subscribe((user) => {
+            if (user) {
+                this.user = user;
+                console.log('Eingeloggt als: ' + this.user.uid);
+            }
+        });
+        console.log('Handed over shipment list' + this.listShipments);
+    }
+
+    signOut() {
+        this.authService.SignOut().then(() => {
+            this.navigateToLogin();
+        });
+    }
+
+    navigateToLogin() {
+        this.router.navigate(['/login']);
+    }
 
     navigateToRegister() {
         this.router.navigate(['/register']);
     }
 
-    navigateToMangeVehicle() {
-        this.router.navigate(['/manage-vehicle']);
-    }
-
-    navigateToRouteSearch() {
-        this.router.navigate(['/route-search']);
-    }
-
-    navigateToTransportSearch() {
-        this.router.navigate(['/transport-search']);
-    }
-
-    navigateToSearchResult() {
-        this.router.navigate(['/search-result']);
-    }
-
-    navigateToProfile() {
-        this.router.navigate(['/profile']);
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     navigateToHome() {
         this.router.navigate(['/home']);
     }
 
-  navigateToImpressum(){
-    this.router.navigate(['/impressum']);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }

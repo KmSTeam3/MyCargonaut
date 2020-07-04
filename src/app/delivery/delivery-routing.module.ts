@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'delivery-list',
     loadChildren: () => import('./delivery-list/delivery-list.module').then( m => m.DeliveryListPageModule)
+  },
+  {
+    path: 'modal-delivery-edit',
+    loadChildren: () => import('./modal-delivery-edit/modal-delivery-edit.module').then( m => m.ModalDeliveryEditPageModule)
   }
 
 ];

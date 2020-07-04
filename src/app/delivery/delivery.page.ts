@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ModalDeliveryPage} from './modal-delivery/modal-delivery.page';
 import {Test} from 'tslint';
-import {VehicleService} from './../shared/vehicle.service';
-import {User} from './../shared/user';
-import {Vehicle} from './../shared/vehicle';
-import {AuthService} from './../shared/auth.service';
+import {VehicleService} from '../shared/vehicle.service';
+import {User} from '../shared/user';
+import {Vehicle} from '../shared/vehicle';
+import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
@@ -22,13 +22,16 @@ import {Subscription} from 'rxjs';
 export class DeliveryPage implements OnInit, OnDestroy {
 
     shipmentList: Shipment[] = [];
+
+    constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) {
+    }
+
     holderId: string;
+
     dataReturned: any;
     user: firebase.User;
     subscription: Subscription;
 
-    constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) {
-    }
 
     setUserId() {
         this.subscription = this.authService.checkAuthState().subscribe((user) => {
@@ -48,7 +51,8 @@ export class DeliveryPage implements OnInit, OnDestroy {
     }
 
     /**
-     *  Modal page for adding a delivery is created
+     *  Modal page for adding a delivery.
+     *  Calls modal-delivery
      */
     async openModal() {
         const modal = await this.modalController.create({

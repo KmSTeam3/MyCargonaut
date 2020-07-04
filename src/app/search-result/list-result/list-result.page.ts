@@ -47,7 +47,7 @@ export class ListResultPage implements OnInit, OnDestroy {
         modalController: this.modalController
       }
     });
-    return await modal.present();
+        return await modal.present();
   }
 
     async dismissModal() {
@@ -64,10 +64,10 @@ export class ListResultPage implements OnInit, OnDestroy {
             GREY = '#E0E0E0',
             PRIMARY = '#3B6863',
     }
-    if (index > points){
+        if (index > points){
       return colors.GREY;
     }
-    switch (points) {
+        switch (points) {
       case 1:
       case 2:
       case 3:

@@ -12,6 +12,9 @@ export class AddVehiclePage {
 
   constructor(public modalController: ModalController) {}
 
+  /**
+   * Open Modal and Pass vehicle holder ID.
+   */
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalPage,
@@ -22,6 +25,9 @@ export class AddVehiclePage {
     return await modal.present();
   }
 
+  /**
+   * Close Modal
+   */
   dismissModal() {
     this.modalController.dismiss();
   }

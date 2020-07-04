@@ -4,8 +4,12 @@ import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
+import {Person} from '../shared/person';
 import {AuthService} from '../shared/auth.service';
 import {Subscription} from 'rxjs';
+import {UserService} from '../shared/user.service';
+import {ToastController} from '@ionic/angular';
+
 
 @Component({
     selector: 'app-route-search',
@@ -43,6 +47,7 @@ export class RouteSearchPage implements OnInit {
         ]
     };
     shipment: Shipment;
+    routeSearch: boolean;
 
 
   constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
@@ -66,29 +71,23 @@ export class RouteSearchPage implements OnInit {
             toAddress: new FormControl(''),
             date: new FormControl('')
         });
+        this.routeSearch = true;
     }
 
     // Search method
     search(value) {
-        console.log('search called');
-        console.log('Seats ' + value.seats + ' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
-        this.shipmentService.searchRoute(+value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
-            this.shipmentList = shipment;
-            const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList}};
-            this.router.navigate(['search-result'], navigationExtras);
-            console.log(shipment);
-        });
+            console.log('search called');
+            console.log(' StartAddress ' + value.startAddress + ' toAddress ' + value.toAddress + ' Date ' + value.date);
+            this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
+                this.shipmentList = shipment;
+                const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList, routeSearch: this.routeSearch} };
+                this.router.navigate(['search-result'], navigationExtras);
+                console.log('Query result= ' + shipment);
+            });
 
-        this.shipmentService.testAll().forEach(shipment => {
-            console.log(shipment);
-        });
-    }
-
-    query(value) {
-        this.shipmentService.searchRoute(value.seats, value.startAddress, value.toAddress, value.date).forEach(shipment => {
-            this.shipmentList = shipment;
-            console.log(shipment);
-        });
+            this.shipmentService.testAll().forEach(shipment => {
+                console.log(shipment);
+            });
     }
 
     // navigation method to the login page

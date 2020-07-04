@@ -24,7 +24,7 @@ export class ModalPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.holderId);
+        //console.log(this.holderId);
     }
 
     async presentToast(msg: string) {
@@ -35,11 +35,12 @@ export class ModalPage implements OnInit {
         toast.present();
     }
 
-    saveModal() {
-        // this.holderId = "zllP1FQQQoMnlSL0Memkcy0PkPo2";
+    /**
+     * Check if parameters are set and send to vehicleService
+     */
 
-        const vehicle: Vehicle = new Vehicle(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
-        console.log(vehicle);
+    saveModal() {
+
         if (this.licensePlate && this.name && this.holderId && this.load && this.maxLoad && this.volume && this.seats && this.maxSeats) {
             this.vehicleService.persist(this.licensePlate, this.name, this.holderId, this.load, this.maxLoad, this.volume, this.seats, this.maxSeats);
             this.presentToast('Fahrzeug erstellt!');
@@ -49,6 +50,9 @@ export class ModalPage implements OnInit {
         }
     }
 
+    /**
+     * Close Modal
+     */
     dismissModal() {
         this.modal.dismiss();
     }

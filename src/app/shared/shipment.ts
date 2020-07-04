@@ -10,6 +10,11 @@ export enum enumStatus {
     PAYPAL,
     VORKASSE
 }
+export enum shipStatus {
+    wartend,
+    lierfernd,
+    fertig,
+}
 
 /**
  *  Shipment object class -
@@ -32,6 +37,7 @@ export class Shipment {
     vehicle: Vehicle;
     passengerList: Person[];
     articleList: Article[];
+    shipSatus: shipStatus;
 
     /**
      * Constructor for the shipment object
@@ -51,10 +57,12 @@ export class Shipment {
      * @param pricePerSeat price per passenger
      * @param status which payment method the user has choosen
      * @param id identification of the shipment
+     * @param shipStatus
      */
     constructor(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[],
                 start: string, goal: string, date: Date, startTime: string, length: number, height: number,
-                weight: number, pricePerKg: number, seat: number, pricePerSeat: number, status?: number, id?: string) {
+                weight: number, pricePerKg: number, seat: number, pricePerSeat: number, status?: number,
+                shipStatus?: number, id?: string) {
         this.start = start;
         this.goal = goal;
         this.date = date;
@@ -71,5 +79,6 @@ export class Shipment {
         this.articleList = articleList;
         this.id = id;
         this.status = status;
+        this.shipSatus= shipStatus;
     }
 }

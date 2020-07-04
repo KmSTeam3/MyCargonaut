@@ -1,43 +1,58 @@
- <ion-card color="dark" style="width: 70%">
+<ion-card style="width: 90%">
 
     <ion-row class="ion-align-items-start">
-      <ion-col size="3">
-        <ion-item color="dark"> <img src="../../../assets/img/car_placeholder_img.png" > </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item color="dark"> <h2>Route Id</h2> </ion-item>
-      </ion-col>
-      <ion-item color="dark">von: {{shipment.start}} </ion-item>
-      <ion-col>
-        <ion-chip color="success">
-          <ion-label>Durchgeführt</ion-label>
-        </ion-chip>
+        <ion-col size="3">
+            <ion-item><img src="../../../assets/img/car_placeholder_img.png"></ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item><h2>Route Id</h2></ion-item>
+        </ion-col>
 
-      </ion-col>
-      <ion-col>
-        <ion-button>Edit</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="danger">Delete</ion-button>
-      </ion-col>
+        <ion-col size="3">
+            <ion-item>
+                <ion-label >Status:</ion-label>
+                <ion-select interface="popover" placeholder="{{shipment.shipSatus}}" (ionChange)="onChange($event, shipment.id)">
+                    <ion-select-option value="pending">pending</ion-select-option>
+                    <ion-select-option value="shipping">shipping</ion-select-option>
+                    <ion-select-option value="deliverd">deliverd</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>von: {{shipment.start}} </ion-item>
+        </ion-col>
+
+        <ion-col size="1">
+            <ion-button class="ion-float-right" [id]="shipment.id" (click)="openEditModal(shipment.id)"><ion-icon name="create"></ion-icon></ion-button>
+        </ion-col>
+
+        <ion-col size="1" >
+            <ion-button class="ion-float-right" color="danger" [id]="shipment.id" (click)="delete(shipment.id)">  <ion-icon name="remove-circle"></ion-icon></ion-button>
+        </ion-col>
+
     </ion-row>
-
     <!-- <ion-item color="dark"> </ion-item> -->
     <ion-row>
-      <ion-col>
-        <ion-item color="dark">mit : {{shipment.vehicle.name}} </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item color="dark" > <ion-badge color="success" > Aufträge: 3</ion-badge> </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item color="dark">nach: {{shipment.goal}} </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item color="dark">am {{shipment.date}} </ion-item>
-      </ion-col>
-
-
+        <ion-col size="3">
+            <ion-item>mit : {{shipment.vehicle.licensePlate}} </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-item>
+                <ion-badge> Mitfahrer: {{shipment.passengerList}}</ion-badge>
+            </ion-item>
+        </ion-col>
+        <ion-col size="3">
+            <ion-item>
+                <ion-badge> Objekete: {{shipment.articleList}}</ion-badge>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>nach: {{shipment.goal}} </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>am: {{shipment.date}} </ion-item>
+        </ion-col>
     </ion-row>
 
-  </ion-card>
+</ion-card>
+

@@ -22,7 +22,7 @@ describe('LoginPage', () => {
         FormsModule,
         RouterTestingModule.withRoutes([])],
       providers: [
-          LoginPage,
+        LoginPage,
         {provide: AuthService}
       ]
     }).compileComponents();

@@ -20,21 +20,8 @@
     <ion-col>
       <form class="form" [formGroup]="validationsForm" (ngSubmit)="search(validationsForm.value)">
         <ion-row>
-          <ion-col>
-            <ion-row>
-              <h3 opacity="1">Anzahl:</h3>
-            </ion-row>
 
-            <ion-row class="formControl">
-              <ion-select placeholder="1" formControlName="seats">
-                <ion-select-option value="1">1</ion-select-option>
-                <ion-select-option value="2">2</ion-select-option>
-                <ion-select-option value="3">3</ion-select-option>
-                <ion-select-option value="4">4</ion-select-option>
-              </ion-select>
-            </ion-row>
-          </ion-col>
-          <ion-col size="1"></ion-col>
+
           <ion-col>
             <ion-row>
               <h3 style="opacity: revert">von:</h3>
@@ -54,37 +41,91 @@
               <ion-input type="text" required placeholder="Stadt, PLZ" formControlName="toAddress"></ion-input>
             </ion-row>
           </ion-col>
-         </ion-row>
-
-        <ion-row>
-      <ion-col>
-        <ion-row>
-          <h3 style="opacity: revert">Datum:</h3>
-        </ion-row>
-
-        <ion-row class="formControl">
-          <ion-input type="text" required placeholder="YYYY-MM-DD" formControlName="date"></ion-input>
-        </ion-row>
-      </ion-col>
-
-          <ion-col size="2"></ion-col>
-
+          <ion-col size="1"></ion-col>
           <ion-col>
             <ion-row>
-              <h3 opacity="1">Anzahl:</h3>
+              <h3 style="opacity: revert">Datum:</h3>
             </ion-row>
 
             <ion-row class="formControl">
-              <ion-select placeholder="1" formControlName="seats">
-                <ion-select-option value="1">1</ion-select-option>
-                <ion-select-option value="2">2</ion-select-option>
-                <ion-select-option value="3">3</ion-select-option>
-                <ion-select-option value="4">4</ion-select-option>
-              </ion-select>
+              <ion-input type="text" required placeholder="YYYY-MM-DD" formControlName="date"></ion-input>
+            </ion-row>
+          </ion-col>
+         </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+            <ion-row>
+              <h3 style="opacity: 1">Zu liefernder Artikel:</h3>
+            </ion-row>
+
+            <ion-row class="formControl">
+              <ion-input type="text" required
+                         placeholder="Piano, Tisch, Eurpalette... etc." formControlName="article"></ion-input>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                  <div class="error-message"
+                       *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
             </ion-row>
           </ion-col>
 
+          <ion-col>
+            <ion-row>
+              <h3 opacity="1">Gewicht der Lieferung:</h3>
+            </ion-row>
+
+            <ion-row class="formControl">
+              <ion-input type="number" required placeholder="Gewicht in kg" formControlName="weight"></ion-input>
+            </ion-row>
+          </ion-col>
     </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+            <ion-row>
+              <h3 style="opacity: revert">Maße der Lieferung</h3>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="formControl">
+                <ion-input type="text" required placeholder="Höhe" formControlName="height"></ion-input>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+
+              </ion-col>
+              <ion-col size="1"></ion-col>
+
+              <ion-col class="formControl">
+                <ion-input type="text" required placeholder="Breite" formControlName="length"></ion-input>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
+                    <div class="error-message"
+                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+
+
+        </ion-row>
+
+
         <ion-row>
           <ion-col size="5"></ion-col>
           <ion-col size="2">

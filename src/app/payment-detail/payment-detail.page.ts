@@ -2,7 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
 import {Shipment} from '../shared/shipment';
+import {Article} from '../shared/article';
+import {UserService} from '../shared/user.service';
 import {User} from '../shared/user';
+
 
 @Component({
     selector: 'app-payment-detail',
@@ -15,11 +18,14 @@ import {User} from '../shared/user';
  */
 export class PaymentDetailPage implements OnInit {
 
-  @Input() modalController: ModalController;
-  @Input() shipment: Shipment;
-  @Input() user: User;
-  constructor(private router: Router) {
+    @Input() modalController: ModalController;
+    @Input() shipment: Shipment;
+    @Input() article: Article;
+    @Input() routeSearch: boolean;
+    @Input() user: User;
 
+
+    constructor(private router: Router, private userService: UserService) {
     }
 
     ngOnInit() {
@@ -38,7 +44,7 @@ export class PaymentDetailPage implements OnInit {
      */
     navigateToPaymentChoice(modalController: ModalController) {
         this.dismissModal(modalController);
-        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
+        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article, routeSearch: this.routeSearch}};
         console.log('navigations extra ' + navigationExtras);
         this.router.navigate(['/payment-choice'], navigationExtras);
     }

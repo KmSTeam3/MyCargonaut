@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { TransportSearchPage } from './transport-search.page';
-import {AngularFirestore} from "@angular/fire/firestore";
-import {ShipmentService} from "../shared/shipment.service";
-import {AngularFireModule} from "@angular/fire";
-import {environment} from "../../environments/environment.prod";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterTestingModule} from "@angular/router/testing";
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ShipmentService} from '../shared/shipment.service';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment.prod';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('TransportSearchPage', () => {
   let component: TransportSearchPage;
