@@ -5,7 +5,7 @@
 <div class="ion-page" id="main-content">
 
 <ion-header [translucent]="true">
-    <ion-toolbar>
+    <ion-toolbar >
             <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
         <ion-buttons slot="primary">
             <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
@@ -22,7 +22,7 @@
 <ion-content *ngIf="user" [fullscreen]="true" class="ion-padding">
 
 
-    <ion-card color="dark" style="height: 100%; width: 80%; margin: auto" >
+    <ion-card style="min-height: 100%; width: 80%; margin: auto" >
 
         <ion-card-header>
             <ion-card-title >

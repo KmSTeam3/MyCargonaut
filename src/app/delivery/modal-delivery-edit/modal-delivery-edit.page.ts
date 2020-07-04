@@ -1,6 +1,9 @@
-import {VehicleService} from '../../shared/vehicle.service';
-import {Component, OnInit} from '@angular/core';
-import {ModalController, NavParams, ToastController,} from '@ionic/angular';
+import {Component, Input, OnInit} from '@angular/core';
+import {
+    ModalController,
+    NavParams,
+    ToastController,
+} from '@ionic/angular';
 import {AuthService} from '../../shared/auth.service';
 import {enumStatus, Shipment, shipStatus} from '../../shared/shipment';
 import {Vehicle} from '../../shared/vehicle';
@@ -8,17 +11,23 @@ import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
 import {ShipmentService} from '../../shared/shipment.service';
 import {UserService} from '../../shared/user.service';
+import {DeliveryListPage} from "../delivery-list/delivery-list.page";
+import {EModalPage} from "../../manage-vehicle/e-modal/e-modal.page";
+import {VehicleService} from "../../shared/vehicle.service";
+
 
 @Component({
-    selector: 'app-modal-delivery',
-    templateUrl: './modal-delivery.page.html',
-    styleUrls: ['./modal-delivery.page.scss'],
+    selector: 'app-modal-delivery-edit',
+    templateUrl: './modal-delivery-edit.page.html',
+    styleUrls: ['./modal-delivery-edit.page.scss'],
 })
 /**
  * Modal page for adding new shipment
  */
-export class ModalDeliveryPage implements OnInit {
+export class ModalDeliveryEditPage implements OnInit {
 
+    @Input() shipmentId: string;
+    shipment: Shipment;
 
     constructor(
         private modalController: ModalController,
@@ -28,7 +37,9 @@ export class ModalDeliveryPage implements OnInit {
         private shipmentService: ShipmentService,
         private userService: UserService,
         private vehicleService: VehicleService,
-    ) {}
+   ) {
+
+    }
 
     id: string;
     start: string;
@@ -46,8 +57,9 @@ export class ModalDeliveryPage implements OnInit {
     vehicles: Vehicle[];
     passengerList: Person[];
     articleList: Article[];
-    shipSatus: shipStatus;
+    shipStatus: shipStatus;
     selectedVehicle: Vehicle;
+
 
     currentID: string;
 
@@ -68,15 +80,13 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     ngOnInit() {
+
         this.setUserId();
+        this.getShipment(this.shipmentId);
+
         console.log('Aktuell eingeloggt als:' + this.cargonaut);
     }
 
-
-    /**
-     * Will fetch all available vehicles registered by current User
-     * @param uId User ID from logged in User.
-     */
     getVehicles(uId: string) {
         this.vehicles = [];
         this.vehicleService.findAll(uId).subscribe((vehiclesList) => {
@@ -102,26 +112,30 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     /**
-     * Function to collect modal form values and generate new shipment through call of shipment.service persist method
+     * Function to collect modal form values and update existing shipment through call of shipment.service update method
      */
-    saveModal() {
-        if (this.selectedVehicle === undefined || null || '') {
-            this.presentToast('Please select a Vehicle.');
+    updateModal() {
+
+        if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
+            console.log("test")
+            this.shipmentService.update(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList,
+                this.start, this.goal, this.date, this.startTime, this.length, this.height,
+                this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status,this.shipStatus, this.id);
+
+            this.closeModal();
+            this.presentToast('updated Delivery');
         } else {
-            const shipment: Shipment = new Shipment(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status, this.shipSatus);
-            console.log(shipment);
-            if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
-
-                this.shipmentService.persist(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start,
-                    this.goal, this.date, this.startTime, this.length, this.height, this.weight,
-                    this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.wartend);
-                this.closeModal();
-                this.presentToast('added Delivery');
-            } else {
-                this.presentToast('something went wrong');
-            }
-
+            this.presentToast('all Fields must be added');
         }
+
+
+    }
+
+    getShipment(shipId: string) {
+        this.shipmentService.getShipment(shipId).subscribe(data => {
+            //console.log( data);
+            this.shipment = data;
+        });
     }
 
     /**

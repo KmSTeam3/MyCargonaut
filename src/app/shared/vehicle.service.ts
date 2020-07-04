@@ -11,7 +11,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Vehicle Service connects the
+ * **/
 export class VehicleService {
+    /**
+     * adds connection to Firestore Collection "Vehicle" and "User"
+     * **/
 
   vehicleCollection: AngularFirestoreCollection<Vehicle>;
   userCollection: AngularFirestoreCollection<User>;
