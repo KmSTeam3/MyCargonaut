@@ -93,7 +93,7 @@ export class PaymentChoicePage implements OnInit {
         if (this.passenger != null){
             this.shipment.passengerList.push(this.passenger);
             if (this.article != null){this.shipment.articleList.push(this.article); }
-            this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice, this.shipment.id);
+            this.shipmentService.update(this.shipment.cargonaut, this.shipment.vehicle, this.shipment.passengerList, this.shipment.articleList, this.shipment.start, this.shipment.goal, this.shipment.date, this.shipment.startTime, this.shipment.length, this.shipment.height, this.shipment.weight, this.shipment.pricePerKg, this.shipment.seat, this.shipment.pricePerSeat, this.currentPaymentChoice,this.shipment.shipSatus, this.shipment.id);
             const navigationExtras: NavigationExtras = {state: {shipment: this.shipment}};
             this.router.navigate(['/payment-success'], navigationExtras);
         } else {
