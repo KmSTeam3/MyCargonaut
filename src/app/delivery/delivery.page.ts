@@ -32,8 +32,6 @@ export class DeliveryPage implements OnInit, OnDestroy {
     user: firebase.User;
     subscription: Subscription;
 
-    constructor(public modalController: ModalController, private authService: AuthService, private router: Router, private shipmentService: ShipmentService) {
-    }
 
     setUserId() {
         this.subscription = this.authService.checkAuthState().subscribe((user) => {

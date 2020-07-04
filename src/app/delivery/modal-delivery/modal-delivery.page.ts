@@ -1,16 +1,13 @@
-import { VehicleService } from './../../shared/vehicle.service';
-
+import {VehicleService} from '../../shared/vehicle.service';
 import {Component, OnInit} from '@angular/core';
 import {ModalController, NavParams, ToastController,} from '@ionic/angular';
 import {AuthService} from '../../shared/auth.service';
-import {enumStatus, Shipment} from '../../shared/shipment';
+import {enumStatus, Shipment, shipStatus} from '../../shared/shipment';
 import {Vehicle} from '../../shared/vehicle';
 import {Person} from '../../shared/person';
 import {Article} from '../../shared/article';
 import {ShipmentService} from '../../shared/shipment.service';
 import {UserService} from '../../shared/user.service';
-import { Vehicle } from 'src/app/shared/vehicle';
-
 
 @Component({
     selector: 'app-modal-delivery',
@@ -23,7 +20,6 @@ import { Vehicle } from 'src/app/shared/vehicle';
 export class ModalDeliveryPage implements OnInit {
 
 
-
     constructor(
         private modalController: ModalController,
         private navParams: NavParams,
@@ -31,9 +27,8 @@ export class ModalDeliveryPage implements OnInit {
         private authService: AuthService,
         private shipmentService: ShipmentService,
         private userService: UserService,
-        private vehicleService: VehicleService
-    ) {
-    }
+        private vehicleService: VehicleService,
+    ) {}
 
     id: string;
     start: string;
@@ -51,7 +46,7 @@ export class ModalDeliveryPage implements OnInit {
     vehicles: Vehicle[];
     passengerList: Person[];
     articleList: Article[];
-
+    shipSatus: shipStatus;
     selectedVehicle: Vehicle;
 
     currentID: string;
@@ -61,9 +56,9 @@ export class ModalDeliveryPage implements OnInit {
 
 
     setUserId() {
-        this.authService.checkAuthState().subscribe( (user) => {
+        this.authService.checkAuthState().subscribe((user) => {
             //  this.renderList( user.uid);
-            if (user){
+            if (user) {
                 this.currentID = user.uid;
                 console.log('Eingeloggt als: ' + this.currentID);
                 this.cargonaut = this.currentID;
@@ -73,11 +68,7 @@ export class ModalDeliveryPage implements OnInit {
     }
 
     ngOnInit() {
-        /*  console.table(this.navParams);
-          this.modelId = this.navParams.data.paramID;
-          this.modalTitle = this.navParams.data.paramTitle; */
         this.setUserId();
-
         console.log('Aktuell eingeloggt als:' + this.cargonaut);
     }
 
@@ -86,16 +77,16 @@ export class ModalDeliveryPage implements OnInit {
      * Will fetch all available vehicles registered by current User
      * @param uId User ID from logged in User.
      */
-    getVehicles(uId: string){
+    getVehicles(uId: string) {
         this.vehicles = [];
-        this.vehicleService.findAll(uId).subscribe( (vehiclesList) => {
+        this.vehicleService.findAll(uId).subscribe((vehiclesList) => {
             this.vehicles = vehiclesList;
         });
     }
 
-    getSelectValue(event){
-        this.vehicles.forEach( vehicle => {
-            if ( event.detail.value === vehicle.licensePlate) {
+    getSelectValue(event) {
+        this.vehicles.forEach(vehicle => {
+            if (event.detail.value === vehicle.licensePlate) {
                 this.selectedVehicle = vehicle;
                 //console.log( 'vehicle: ' + this.selectedVehicle);
             }
@@ -114,21 +105,21 @@ export class ModalDeliveryPage implements OnInit {
      * Function to collect modal form values and generate new shipment through call of shipment.service persist method
      */
     saveModal() {
-        if ( this.selectedVehicle === undefined || null || '') {
+        if (this.selectedVehicle === undefined || null || '') {
             this.presentToast('Please select a Vehicle.');
-        }else{
-        const shipment: Shipment = new Shipment(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat);
-        console.log(shipment);
-        if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
-
-            this.shipmentService.persist(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start,
-                                        this.goal, this.date, this.startTime, this.length, this.height, this.weight,
-                                        this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.wartend);
-            this.closeModal();
-            this.presentToast('added Delivery');
         } else {
-            this.presentToast('something went wrong');
-        }
+            const shipment: Shipment = new Shipment(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start, this.goal, this.date, this.startTime, this.length, this.height, this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status, this.shipSatus);
+            console.log(shipment);
+            if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
+
+                this.shipmentService.persist(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList, this.start,
+                    this.goal, this.date, this.startTime, this.length, this.height, this.weight,
+                    this.pricePerKg, this.seat, this.pricePerSeat, 0, shipStatus.wartend);
+                this.closeModal();
+                this.presentToast('added Delivery');
+            } else {
+                this.presentToast('something went wrong');
+            }
 
         }
     }

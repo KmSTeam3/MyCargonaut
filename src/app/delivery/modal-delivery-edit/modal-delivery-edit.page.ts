@@ -13,6 +13,7 @@ import {ShipmentService} from '../../shared/shipment.service';
 import {UserService} from '../../shared/user.service';
 import {DeliveryListPage} from "../delivery-list/delivery-list.page";
 import {EModalPage} from "../../manage-vehicle/e-modal/e-modal.page";
+import {VehicleService} from "../../shared/vehicle.service";
 
 
 @Component({
@@ -35,7 +36,8 @@ export class ModalDeliveryEditPage implements OnInit {
         private authService: AuthService,
         private shipmentService: ShipmentService,
         private userService: UserService,
-    ) {
+        private vehicleService: VehicleService,
+   ) {
 
     }
 
@@ -52,10 +54,11 @@ export class ModalDeliveryEditPage implements OnInit {
     seat: number;
     pricePerSeat: number;
     cargonaut: string;
-    vehicle: Vehicle;
+    vehicles: Vehicle[];
     passengerList: Person[];
     articleList: Article[];
     shipStatus: shipStatus;
+    selectedVehicle: Vehicle;
 
 
     currentID: string;
@@ -71,6 +74,7 @@ export class ModalDeliveryEditPage implements OnInit {
                 this.currentID = user.uid;
                 console.log('Eingeloggt als: ' + this.currentID);
                 this.cargonaut = this.currentID;
+                this.getVehicles(this.currentID);
             }
         });
     }
@@ -81,6 +85,22 @@ export class ModalDeliveryEditPage implements OnInit {
         this.getShipment(this.shipmentId);
 
         console.log('Aktuell eingeloggt als:' + this.cargonaut);
+    }
+
+    getVehicles(uId: string) {
+        this.vehicles = [];
+        this.vehicleService.findAll(uId).subscribe((vehiclesList) => {
+            this.vehicles = vehiclesList;
+        });
+    }
+
+    getSelectValue(event) {
+        this.vehicles.forEach(vehicle => {
+            if (event.detail.value === vehicle.licensePlate) {
+                this.selectedVehicle = vehicle;
+                //console.log( 'vehicle: ' + this.selectedVehicle);
+            }
+        });
     }
 
     async presentToast(msg: string) {
@@ -98,7 +118,7 @@ export class ModalDeliveryEditPage implements OnInit {
 
         if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut) {
             console.log("test")
-            this.shipmentService.update(this.cargonaut, this.vehicle, this.passengerList, this.articleList,
+            this.shipmentService.update(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList,
                 this.start, this.goal, this.date, this.startTime, this.length, this.height,
                 this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status,this.shipStatus, this.id);
 
