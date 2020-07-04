@@ -25,7 +25,7 @@
             </ion-row>
 
             <ion-row class="formRow">
-                <ion-col size="3"></ion-col>
+                <ion-col size="2"></ion-col>
                 <ion-col>
 
 
@@ -99,6 +99,16 @@
                                     <ion-input type="number" required placeholder="Gewicht in kg" formControlName="weight"></ion-input>
                                 </ion-row>
                             </ion-col>
+
+                            <ion-col>
+                                <ion-row>
+                                    <h3>Datum:</h3>
+                                </ion-row>
+
+                                <ion-row class="formControl">
+                                    <ion-input type="number" required placeholder="YYYY-MM-DD"></ion-input>
+                                </ion-row>
+                            </ion-col>
                         </ion-row>
 
                         <ion-row>
@@ -121,6 +131,7 @@
                                         </div>
 
                                     </ion-col>
+                                    <ion-col size="1"></ion-col>
 
                                     <ion-col class="formControl">
                                         <ion-input type="text" required placeholder="Breite" formControlName="length"></ion-input>
@@ -146,7 +157,6 @@
                                 <ion-label class="text">zerbrechlich</ion-label>
                                 <ion-checkbox color="primary" [ngModel]="pallet"  formControlName="pallet" (ionChange)="pallet"></ion-checkbox>
                             </ion-col>
-
                             <ion-col>
                                 <ion-label class="text">stapelbar</ion-label>
                                 <ion-checkbox color="primary" [ngModel]="fragile" formControlName="fragile" (ionChange)="fragile"></ion-checkbox>
@@ -156,7 +166,7 @@
 
 
                 </ion-col>
-                <ion-col size="3"></ion-col>
+                <ion-col size="2"></ion-col>
             </ion-row>
 
             <ion-row>
