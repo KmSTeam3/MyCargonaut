@@ -12,10 +12,6 @@ describe('EditVehiclePage', () => {
       declarations: [ EditVehiclePage ]
     });
 
-  
   }));
 
-  it('should be true', () => {
-    expect(true).toBeTruthy();
-  });
 });

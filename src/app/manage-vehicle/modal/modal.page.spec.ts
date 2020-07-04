@@ -10,10 +10,6 @@ describe('ModalPage', () => {
     TestBed.configureTestingModule({
       declarations: [ ModalPage ]
     });
-    
   }));
 
-  it('should do nothing', () => {
-    expect(true).toBeTrue();
-  });
 });

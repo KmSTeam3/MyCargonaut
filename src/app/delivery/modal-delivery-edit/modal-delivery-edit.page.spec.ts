@@ -10,7 +10,7 @@ describe('ModalDeliveryEditPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalDeliveryEditPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ModalDeliveryEditPage);

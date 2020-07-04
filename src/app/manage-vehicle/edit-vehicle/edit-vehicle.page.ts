@@ -23,6 +23,9 @@ export class EditVehiclePage implements OnInit {
     this.getVehicle(this.id, this.uId);
   }
 
+  /**
+   * Open Modal and pass Parameter to e-Modal Page
+   */
   async presentModal() {
     console.log( this.vehicle) ;
     const modal = await this.modalController.create({
@@ -34,11 +37,19 @@ export class EditVehiclePage implements OnInit {
         maxLoad: this.vehicle.maxLoad,
         seats: this.vehicle.seats,
         maxSeats: this.vehicle.maxSeats,
-        volume: this.vehicle.volume
+        volume: this.vehicle.volume,
+        holderId: this.uId
       }
     });
     return await modal.present();
   }
+
+  /**
+   * Get selected Vehicle of Current User
+   * Set Current Vehicle from Database
+   * @param licensePlate Vehicle ID
+   * @param id User ID
+   */
 
   getVehicle(licensePlate: string, id: string){
      this.vehicleService.getVehicle(licensePlate, id).subscribe(data => {
@@ -47,7 +58,9 @@ export class EditVehiclePage implements OnInit {
     });
   }
 
-
+  /**
+   * Close Modal
+   */
   dismissModal() {
     this.modalController.dismiss();
   }

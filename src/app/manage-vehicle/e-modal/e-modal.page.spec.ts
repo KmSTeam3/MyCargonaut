@@ -28,10 +28,4 @@ describe('EModalPage', () => {
         }).compileComponents();
     }));
 
-    it('should create', () => {
-        component = TestBed.inject(EModalPage);
-        angularFireStore = TestBed.inject(AngularFirestore);
-
-        expect(component).toBeTruthy();
-    });
 });
