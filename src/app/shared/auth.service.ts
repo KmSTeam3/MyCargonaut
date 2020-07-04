@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private auth: AngularFireAuth, private userservice: UserService, private router: Router){
+  constructor(private auth: AngularFireAuth, private userservice: UserService){
   }
 
 

@@ -5,9 +5,9 @@
         <ion-toolbar>
             <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
             <ion-buttons slot="primary">
-                <ion-button (click)="navigateToLogin()">Login</ion-button>
-                <ion-button id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
-                <ion-menu-button auto-hide="false"></ion-menu-button>
+                <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+                <ion-button *ngIf="!user" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+                <ion-menu-button *ngIf="user" auto-hide="false"></ion-menu-button>
             </ion-buttons>
         </ion-toolbar>
     </ion-header>
@@ -15,12 +15,16 @@
     <ion-content class="padding" id="ion-content">
 
         <ion-list-header>
-            Aktuelle Angebote...
-            <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Filter...">
-                <ion-select-option value="1">Distance</ion-select-option>
-                <ion-select-option value="2">Price</ion-select-option>
-                <ion-select-option value="3">Rating</ion-select-option>
+            <ion-label>
+                <ion-text>
+                    Aktuelle Angebote...
+                </ion-text>
+            </ion-label>
+            <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Filter..." (ionChange)="sortList($event)">
+                <ion-select-option value="0">Price</ion-select-option>
+                <ion-select-option value="1">Rating</ion-select-option>
             </ion-select>
+
 
         </ion-list-header>
         <app-list-result *ngFor="let shipment of this.listShipments" [shipment]="shipment"></app-list-result>

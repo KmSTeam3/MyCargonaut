@@ -81,7 +81,7 @@ export class RegisterPage implements OnInit {
    */
   register(value){
     if (value.password !== value.confirmPW){
-      this.errorMessage = 'Passwörter stimmen nicht über eivn';
+      this.errorMessage = 'Passwörter stimmen nicht über ein';
     } else if (value.postalcode < 10000 || value.postalcode > 99999){
       this.errorMessage = 'Keine gültige Postleitzahl';
     }  else {
@@ -89,10 +89,6 @@ export class RegisterPage implements OnInit {
       this.authservice.register(value).then(res => {
         this.errorMessage = '';
         this.successMessage = 'Konto wurde erstellt';
-        // TODO Eventuell direkte Weiterleitung nach Registrierung
-        /*this.authservice.login(value).then(res1 => {
-          this.router.navigate(['game-select']);
-        });*/
       }, err => {
         this.successMessage = '';
         this.errorMessage = err.message;

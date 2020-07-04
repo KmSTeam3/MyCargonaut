@@ -8,6 +8,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
+import {UnauthorizedPageModule} from '../unauthorized/unauthorized.module';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {MenuHeaderPageModule} from '../menu-header/menu-header.module';
         IonicModule,
         ReactiveFormsModule,
         ProfilePageRoutingModule,
-        MenuHeaderPageModule
+        MenuHeaderPageModule,
+        UnauthorizedPageModule
     ],
   declarations: [ProfilePage]
 })

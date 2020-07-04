@@ -12,8 +12,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4">
+      <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+      <ion-col sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
         <div>
           <ion-item class="ion-text-center"  lines="none" *ngIf="user">
             <ion-label color="primary">
@@ -23,11 +23,11 @@
           </ion-item>
         </div>
       </ion-col>
-      <ion-col size="4"></ion-col>
+      <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="3"></ion-col>
-      <ion-col size="6">
+      <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
+      <ion-col sizeLg="6" sizeMd="8" sizeSm="8" sizeXs="10">
         <ion-list>
           <ion-card *ngFor="let rating of ratings">
             <ion-card-header><ion-item lines="none">
@@ -37,7 +37,7 @@
           </ion-card>
         </ion-list>
       </ion-col>
-      <ion-col size="3"></ion-col>
+      <ion-col sizeLg="3" sizeMd="2" sizeSm="2" sizeXs="1"></ion-col>
     </ion-row>
   </ion-grid>
 

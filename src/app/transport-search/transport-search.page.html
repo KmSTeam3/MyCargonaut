@@ -6,9 +6,9 @@
         <ion-toolbar>
             <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
             <ion-buttons slot="primary">
-                <ion-button (click)="navigateToLogin()">Login</ion-button>
-                <ion-button id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
-                <ion-menu-button auto-hide="false"></ion-menu-button>
+                <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+                <ion-button *ngIf="!user" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+                <ion-menu-button *ngIf="user" auto-hide="false"></ion-menu-button>
             </ion-buttons>
         </ion-toolbar>
     </ion-header>
@@ -96,12 +96,7 @@
                                 </ion-row>
 
                                 <ion-row class="formControl">
-                                    <ion-select placeholder="Gewicht in kg" formControlName="weight">
-                                        <ion-select-option value="1">1</ion-select-option>
-                                        <ion-select-option value="2">2</ion-select-option>
-                                        <ion-select-option value="3">3</ion-select-option>
-                                        <ion-select-option value="4">4</ion-select-option>
-                                    </ion-select>
+                                    <ion-input type="number" required placeholder="Gewicht in kg" formControlName="weight"></ion-input>
                                 </ion-row>
                             </ion-col>
                         </ion-row>
@@ -149,12 +144,12 @@
 
                             <ion-col>
                                 <ion-label class="text">zerbrechlich</ion-label>
-                                <ion-checkbox color="primary"></ion-checkbox>
+                                <ion-checkbox color="primary" [ngModel]="pallet"  formControlName="pallet" (ionChange)="pallet"></ion-checkbox>
                             </ion-col>
 
                             <ion-col>
                                 <ion-label class="text">stapelbar</ion-label>
-                                <ion-checkbox color="primary"></ion-checkbox>
+                                <ion-checkbox color="primary" [ngModel]="fragile" formControlName="fragile" (ionChange)="fragile"></ion-checkbox>
                             </ion-col>
 
                         </ion-row>

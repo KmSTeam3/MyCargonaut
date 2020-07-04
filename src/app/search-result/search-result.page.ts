@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
 import {Vehicle} from '../shared/vehicle';
@@ -6,6 +6,11 @@ import {Person} from '../shared/person';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShipmentService} from '../shared/shipment.service';
 import {DataHelperService} from '../shared/data-helper.service';
+import {Article} from '../shared/article';
+import {AuthService} from '../shared/auth.service';
+import {Subscription} from 'rxjs';
+import {UserService} from '../shared/user.service';
+
 
 @Component({
     selector: 'app-search-result',
@@ -23,13 +28,19 @@ export class SearchResultPage implements OnInit {
     // shipment: Shipment;
 
     listShipments: Shipment[] = [];
+    article: Article;
+    subscription: Subscription;
+    user: firebase.User;
 
-    constructor(private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute) {
+    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService) {
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 console.log(params);
                 console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
                 this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
+                if (this.router.getCurrentNavigation().extras.state.article != null) {
+                    this.article = this.router.getCurrentNavigation().extras.state.article;
+                }
                 console.log(this.listShipments);
             }
         });
@@ -42,14 +53,50 @@ export class SearchResultPage implements OnInit {
         message: 'Only select your favorite flower'
     };
 
+    async sortList(event) {
+        switch (event.detail.value) {
+            case '0':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => (a.pricePerKg > b.pricePerKg) ? 1 : ((b.pricePerKg > a.pricePerKg) ? -1 : 0));
+                break;
+            case '1':
+                console.log(event.detail.value);
+                this.listShipments.sort((a, b) => {
+                    const tempA = this.getRating(a);
+                    const tempB = this.getRating(b);
+                    if (tempA < tempB) {
+                        return -1;
+                    }
+                    if (tempA > tempB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                break;
+        }
+    }
+
+
+    async getRating(shipment: Shipment) {
+        this.userService.getUser(shipment.cargonaut).subscribe((value => {
+            return Math.round(value.rating);
+        }));
+    }
+
     ngOnInit() {
-        // this.passengerList[0] = this.person;
-        // this.user.rating = 1;
-        // this.shipment = new Shipment(this.user, this.vehicle, this.passengerList, null, 'Berlin', 'Warschau', this.date, '14:00');
-        // this.shipmentService.query('price');
-        // this.listShipments = this.dataHelper.tranportData;
+        this.subscription = this.authService.checkAuthState().subscribe((user) => {
+            if (user) {
+                this.user = user;
+                console.log('Eingeloggt als: ' + this.user.uid);
+            }
+        });
         console.log(this.listShipments);
-        // this.listShipments.push(this.shipment);
+    }
+
+    signOut() {
+        this.authService.SignOut().then(() => {
+            this.navigateToLogin();
+        });
     }
 
     navigateToLogin() {
@@ -60,31 +107,12 @@ export class SearchResultPage implements OnInit {
         this.router.navigate(['/register']);
     }
 
-    navigateToMangeVehicle() {
-        this.router.navigate(['/manage-vehicle']);
-    }
-
-    navigateToRouteSearch() {
-        this.router.navigate(['/route-search']);
-    }
-
-    navigateToTransportSearch() {
-        this.router.navigate(['/transport-search']);
-    }
-
-    navigateToSearchResult() {
-        this.router.navigate(['/search-result']);
-    }
-
-    navigateToProfile() {
-        this.router.navigate(['/profile']);
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     navigateToHome() {
         this.router.navigate(['/home']);
     }
 
-    navigateToImpressum() {
-        this.router.navigate(['/impressum']);
-    }
 }

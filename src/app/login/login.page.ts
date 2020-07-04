@@ -33,21 +33,18 @@ export class LoginPage implements OnInit {
 
   constructor(private authservice: AuthService, private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
 
+  /**
+   * Method to log in user with given credentials from form
+   * @param value Contains email and password values
+   */
 
   login(value){
     this.errorMessage = '';
     this.authservice.login(value).then(() => {
       console.log('Login erfolgreich');
-      if (this.authservice.checkAuthState()){
-        this.userService.setLogin();
-      }else{
-        this.userService.setLogout();
-      }
-
-      this.router.navigate(['/home']);
+      this.navigateToHome();
         }, error => {
-      this.errorMessage = 'Überprüfe deine Login Daten';
-
+      this.errorMessage = 'Anmeldung fehlgeschlagen! Überprüfe deine Login Daten';
         }
     );
   }
@@ -70,7 +67,7 @@ export class LoginPage implements OnInit {
   }
 
   navigateToHome(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['home']);
   }
 
 }

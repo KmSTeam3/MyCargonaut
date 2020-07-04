@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
+import {Article} from '../shared/article';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-transport-search',
@@ -20,11 +22,13 @@ import {ShipmentService} from '../shared/shipment.service';
  * - The height of the users article
  * - How long the users article is
  */
-export class TransportSearchPage implements OnInit {
+export class TransportSearchPage implements OnInit, OnDestroy {
 
   validationsForm: FormGroup;
   errorMessage = '';
   successMessage = '';
+  user: firebase.User;
+  subscription: Subscription;
 
   shipmentList: Shipment[] = [];
 
@@ -37,6 +41,11 @@ export class TransportSearchPage implements OnInit {
       {type: 'required', message: 'Datum ist erforderlich.'},
     ]
   };
+
+  article: Article;
+  pallet: boolean;
+  fragile: boolean;
+
 
   constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService) { }
 
@@ -53,6 +62,8 @@ export class TransportSearchPage implements OnInit {
       weight: new FormControl(''),
       height: new FormControl(''),
       length: new FormControl(''),
+      pallet: new FormControl(false),
+      fragile: new FormControl(false),
     });
   }
 
@@ -65,7 +76,9 @@ export class TransportSearchPage implements OnInit {
     console.log('Start Address ' + value.startAddress + ' toAddress ' + value.toAddress + ' Article ' + value.article + ' weight ' + value.weight + ' height ' + value.height + ' length ' + value.length);
     this.shipmentService.searchTransport(value.startAddress, value.toAddress,  +value.weight, +value.height, +value.length).forEach( shipment => {
       this.shipmentList = shipment;
-      const navigationExtras: NavigationExtras = { state: {shipmentList: this.shipmentList} };
+      this.article = new Article(value.article, this.pallet, 1, value.height, value.width, this.fragile, value.weight);
+      console.log(this.article.weight);
+      const navigationExtras: NavigationExtras = { state: {shipmentList: this.shipmentList, article: this.article} };
       this.router.navigate(['/search-result'], navigationExtras);
       console.log(shipment);
     });
@@ -85,5 +98,9 @@ export class TransportSearchPage implements OnInit {
   // navigation method to the home page
   navigateToHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
