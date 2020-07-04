@@ -25,6 +25,7 @@ export class HomePage implements OnDestroy{
     this.subscription = this.authService.checkAuthState().subscribe(value => {
       if (value){
         this.user = value;
+        console.log('Logged in as ' + this.user.uid);
       }
     });
   }

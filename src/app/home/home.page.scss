@@ -14,11 +14,8 @@ h3 {
   color: white;
 }
 
-
-
-
-.heading{
-  margin-top: 70px;
+ion-menu-button {
+  margin-right: 2%;
 }
 
 ion-toolbar{
@@ -35,11 +32,11 @@ ion-toolbar{
   font-weight: bold;
 }
 
+
 .optionCol{
-  background: #000000;
+  background: rgba(3, 3, 3, 0.8);
   border-radius: 20px;
   margin-top: 15px;
   margin-left: 60px;
   margin-right: 60px;
-  opacity: 0.7;
 }
