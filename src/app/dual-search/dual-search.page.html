@@ -61,16 +61,7 @@
             </ion-row>
 
             <ion-row class="formControl">
-              <ion-input type="text" required
-                         placeholder="Piano, Tisch, Eurpalette... etc." formControlName="article"></ion-input>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
-                  <div class="error-message"
-                       *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
+              <ion-input type="text" required placeholder="Piano, Tisch, Eurpalette... etc." formControlName="article"></ion-input>
             </ion-row>
           </ion-col>
 
@@ -95,40 +86,35 @@
             <ion-row>
               <ion-col class="formControl">
                 <ion-input type="text" required placeholder="Höhe" formControlName="height"></ion-input>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
-                    <div class="error-message"
-                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-
               </ion-col>
               <ion-col size="1"></ion-col>
 
               <ion-col class="formControl">
                 <ion-input type="text" required placeholder="Breite" formControlName="length"></ion-input>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of VALIDATION_MESSAGES.postalCode">
-                    <div class="error-message"
-                         *ngIf="validationsForm.get('postalcode').hasError(validation.type) && (validationsForm.get('postalcode').dirty || validationsForm.get('postalcode').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
               </ion-col>
             </ion-row>
 
           </ion-col>
 
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+            <ion-label class="text">zerbrechlich</ion-label>
+            <ion-checkbox color="primary" [ngModel]="pallet"  formControlName="pallet" (ionChange)="pallet"></ion-checkbox>
+          </ion-col>
+          <ion-col>
+            <ion-label class="text">stapelbar</ion-label>
+            <ion-checkbox color="primary" [ngModel]="fragile" formControlName="fragile" (ionChange)="fragile"></ion-checkbox>
+          </ion-col>
 
         </ion-row>
 
 
         <ion-row>
-          <ion-col size="5"></ion-col>
-          <ion-col size="2">
+          <ion-col size="4"></ion-col>
+          <ion-col size="3">
             <ion-button type="submit" expand="block" class="submit-btn">Angaben zu Objekt</ion-button>
           </ion-col>
           <ion-col size="4"></ion-col>

@@ -37,7 +37,7 @@ export class ModalDeliveryEditPage implements OnInit {
         private shipmentService: ShipmentService,
         private userService: UserService,
         private vehicleService: VehicleService,
-   ) {
+    ) {
 
     }
 
@@ -59,14 +59,12 @@ export class ModalDeliveryEditPage implements OnInit {
     articleList: Article[];
     shipStatus: shipStatus;
     selectedVehicle: Vehicle;
-
-
     currentID: string;
 
     modalTitle: string;
     modelId: number;
 
-
+    /** gets ID of current logged in user by checking the session through authService **/
     setUserId() {
         this.authService.checkAuthState().subscribe((user) => {
             //  this.renderList( user.uid);
@@ -80,7 +78,6 @@ export class ModalDeliveryEditPage implements OnInit {
     }
 
     ngOnInit() {
-
         this.setUserId();
     }
 
@@ -93,7 +90,7 @@ export class ModalDeliveryEditPage implements OnInit {
 
     compareFn(e1: Vehicle, e2: Vehicle): boolean {
         return e1 && e2 ? e1.licensePlate === e2.licensePlate : e1 === e2;
-      }
+    }
 
     getSelectValue(event) {
         this.vehicles.forEach(vehicle => {
@@ -104,6 +101,7 @@ export class ModalDeliveryEditPage implements OnInit {
         });
     }
 
+    /** Handels the toast message duration and appearance **/
     async presentToast(msg: string) {
         const toast = await this.toastController.create({
             message: msg,
@@ -120,7 +118,7 @@ export class ModalDeliveryEditPage implements OnInit {
         if (this.start && this.goal && this.date && this.length && this.height && this.weight && this.pricePerKg && this.seat && this.pricePerSeat && this.cargonaut && this.selectedVehicle) {
             this.shipmentService.update(this.cargonaut, this.selectedVehicle, this.passengerList, this.articleList,
                 this.start, this.goal, this.date, this.startTime, this.length, this.height,
-                this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status,this.shipStatus, this.id);
+                this.weight, this.pricePerKg, this.seat, this.pricePerSeat, this.status, this.shipStatus, this.id);
 
             this.closeModal();
             this.presentToast('updated Delivery');

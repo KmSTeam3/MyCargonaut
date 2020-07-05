@@ -9,19 +9,9 @@ export class Article implements DeliveryObject{
     width: number;
     fragile: boolean;
     weight: number;
+    client: User;
 
-
-    get client(): User {
-        return this._client;
-    }
-
-    set client(value: User) {
-        this._client = value;
-    }
-
-    private _client: User;
-
-    constructor(name: string, pallet: boolean, amount: number, height: number, width: number, fragile: boolean, weight: number) {
+    constructor(name: string, pallet: boolean, amount: number, height: number, width: number, fragile: boolean, weight: number, client?: User) {
         this.name = name;
         this.pallet = pallet;
         this.amount = amount;
@@ -29,5 +19,6 @@ export class Article implements DeliveryObject{
         this.width = width;
         this.fragile = fragile;
         this.weight = weight;
+        this.client = client;
     }
 }

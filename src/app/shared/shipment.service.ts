@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Vehicle} from './vehicle';
-import {enumStatus, Shipment, shipStatus} from './shipment';
+import {Shipment} from './shipment';
 import {User} from './user';
 import {UserService} from './user.service';
 import {AuthService} from './auth.service';
@@ -9,7 +9,6 @@ import {Person} from './person';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Article} from './article';
-import {redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 @Injectable({
     providedIn: 'root'
@@ -37,7 +36,7 @@ export class ShipmentService {
         copy.articleList = copy.articleList || null;
         copy.passengerList = copy.passengerList || null;
         copy.startTime = copy.startTime || null;
-        copy.shipSatus= copy.shipSatus || null;
+        copy.shipSatus = copy.shipSatus || null;
         copy.status = copy.status || null;
 
         return copy;
@@ -49,15 +48,15 @@ export class ShipmentService {
 
     // adds a new "shipment" document to the firestore collection "shipment"
     persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-            pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus: number) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus);
+            pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus);
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    //adds a new "shipment" document to the firestore collection "shipment"
+    // updates the selected shipment in the firestore document: "shipment.id" in the collection "shipment"
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
-           pricePerKg: number, seat: number, pricePerSeat: number, status: number,shipStatus:number, id: string) {
-        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status,shipStatus, id);
+           pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number, id: string) {
+        const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 
@@ -133,7 +132,9 @@ export class ShipmentService {
             map(actions => actions.map( a => {
                 const data = a.payload.doc.data();
                 data.id = a.payload.doc.id;
-                return{...data} as Shipment;
+                if (data.weight >= weight){
+                    return{...data} as Shipment;
+                }
             }))
         );
     }
