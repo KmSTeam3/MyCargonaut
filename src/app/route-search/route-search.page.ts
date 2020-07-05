@@ -9,6 +9,7 @@ import {AuthService} from '../shared/auth.service';
 import {Subscription} from 'rxjs';
 import {UserService} from '../shared/user.service';
 import {ToastController} from '@ionic/angular';
+import {SessionService} from "../shared/session.service";
 
 
 @Component({
@@ -50,7 +51,7 @@ export class RouteSearchPage implements OnInit {
     routeSearch: boolean;
 
 
-  constructor(private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
+  constructor(private sessionsService: SessionService, private firestore: AngularFirestore, private formBuilder: FormBuilder, private router: Router,  private shipmentService: ShipmentService, private authService: AuthService) {
     this.subscription = this.authService.checkAuthState().subscribe((value => {
       if (value) {
         this.user = value;
@@ -81,6 +82,8 @@ export class RouteSearchPage implements OnInit {
             this.shipmentService.searchRoute(1, value.startAddress, value.toAddress, value.date).forEach(shipment => {
                 this.shipmentList = shipment;
                 const navigationExtras: NavigationExtras = {state: {shipmentList: this.shipmentList, routeSearch: this.routeSearch} };
+                this.sessionsService.data = [];
+                this.sessionsService.data.push({shipmentList: this.shipmentList, routeSearch: this.routeSearch});
                 this.router.navigate(['search-result'], navigationExtras);
                 console.log('Query result= ' + shipment);
             });

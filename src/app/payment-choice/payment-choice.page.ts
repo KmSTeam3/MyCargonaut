@@ -1,3 +1,5 @@
+import { SessionService } from './../shared/session.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {enumStatus, Shipment} from '../shared/shipment';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
@@ -32,22 +34,26 @@ export class PaymentChoicePage implements OnInit, OnDestroy {
     subscription: Subscription;
     subscription2: Subscription;
 
-    constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService) {
+    constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService, private sessionService: SessionService) {
+        this.article = this.sessionService.data[0].article;
+
+        this.routeSearch = this.sessionService.data[0].routeSearch;
+
         // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
-            if (this.router.getCurrentNavigation().extras.state) {
-                console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.state.shipment);
-                this.shipment = this.router.getCurrentNavigation().extras.state.shipment;
-                if (this.router.getCurrentNavigation().extras.state.article != null){
-                    this.article = this.router.getCurrentNavigation().extras.state.article;
-                }
-                if (this.router.getCurrentNavigation().extras.state.routeSearch != null){
-                    console.log('Payment Choice from route search' + this.router.getCurrentNavigation().extras.state.routeSearch);
-                    this.routeSearch = true;
-                }
-                console.log('Routing worked' + this.shipment);
-            }
+            if (this.router.getCurrentNavigation().extras.queryParams) {
+               // console.log(params);
+               // console.log(this.router.getCurrentNavigation().extras.queryParams.shipment);
+                this.shipment = this.router.getCurrentNavigation().extras.queryParams.shipment;
+        //        if (this.router.getCurrentNavigation().extras.state.article != null){
+        //            this.article = this.router.getCurrentNavigation().extras.state.article;
+        //        }
+        //        if (this.router.getCurrentNavigation().extras.state.routeSearch != null){
+        //            console.log('Payment Choice from route search' + this.router.getCurrentNavigation().extras.state.routeSearch);
+        //            this.routeSearch = true;
+        //        }
+        //        console.log('Routing worked' + this.shipment);
+          }
         });
     }
 
@@ -109,15 +115,20 @@ export class PaymentChoicePage implements OnInit, OnDestroy {
      */
      pay() {
         if (this.loginState){
-            if (this.shipment.passengerList == null){
-                this.passengerList.push(this.passenger);
-                this.shipment.passengerList = this.passengerList;
-            } else {
-                this.shipment.passengerList.push(this.passenger);
+            if (this.routeSearch){
+                if (this.shipment.passengerList == null){
+                    this.passengerList.push(this.passenger);
+                    this.shipment.passengerList = this.passengerList;
+                } else {
+                    this.shipment.passengerList.push(this.passenger);
+                }
             }
 
             if (this.article != null){
                 if (this.shipment.articleList == null){
+                    this.article.fragile = false;
+                    this.article.pallet = false;
+                    this.article.width = 0;
                     this.articleList.push(this.article);
                     this.shipment.articleList = this.articleList;
                 } else {

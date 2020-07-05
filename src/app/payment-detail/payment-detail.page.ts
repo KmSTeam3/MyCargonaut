@@ -46,7 +46,7 @@ export class PaymentDetailPage implements OnInit {
      */
     navigateToPaymentChoice(modalController: ModalController) {
         this.dismissModal(modalController);
-        const navigationExtras: NavigationExtras = {state: {shipment: this.shipment, article: this.article, routeSearch: this.routeSearch }};
+        const navigationExtras: NavigationExtras = {queryParams: {shipment: this.shipment}};
         console.log('navigations extra ' + navigationExtras);
         this.router.navigate(['/payment-choice'], navigationExtras);
     }
