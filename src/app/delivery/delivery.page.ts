@@ -32,7 +32,7 @@ export class DeliveryPage implements OnInit, OnDestroy {
     user: firebase.User;
     subscription: Subscription;
 
-
+    //gets the User ID from the current session and returns it
     setUserId() {
         this.subscription = this.authService.checkAuthState().subscribe((user) => {
             //  this.renderList( user.uid);
@@ -70,10 +70,12 @@ export class DeliveryPage implements OnInit, OnDestroy {
 
     }
 
+    //triggers on first call and calls setUserId()
     ngOnInit(): void {
         this.setUserId();
     }
 
+    //signs User out
     signOut(){
         this.authService.SignOut().then(() => {
             this.navigateToLogin();
