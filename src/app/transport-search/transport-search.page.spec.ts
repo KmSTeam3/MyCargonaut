@@ -15,6 +15,9 @@ describe('TransportSearchPage', () => {
   let shipmentService: ShipmentService;
   let angularFirestore: AngularFirestore;
 
+  // const article = {name: 'Piano', pallet: false, amount: 1, height: 10, width: 10, fragile: false, weight: 10, client: null};
+
+  const value = { startAddress: 'test', toAddress: 'testing', date: '2020-07-07', weight: 10,  height: 10, width: 10};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,7 +39,9 @@ describe('TransportSearchPage', () => {
     component = TestBed.inject(TransportSearchPage);
     shipmentService = TestBed.inject(ShipmentService);
     angularFirestore = TestBed.inject(AngularFirestore);
-
-    expect(true).toBeTruthy();
+    async( () => {
+        component.search(value);
+        expect(component.shipmentList.length).toBeGreaterThan(0);
+    });
   });
 });

@@ -17,7 +17,7 @@ describe('RouteSearchPage', () => {
     let shipmentService: ShipmentService;
     let angularFirestore: AngularFirestore;
 
-    const value = {seats: 1, startAddress: 'Gießen', toAddress: 'Berlin', date: '2020-07-01'};
+    const value = {seats: 1, startAddress: 'test', toAddress: 'testing', date: '2020-07-07'};
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
