@@ -85,11 +85,11 @@
             <ion-item lines="none">
               <ion-label position="stacked">    </ion-label>
               <ion-button *ngIf="shipment.status !== 3" (click)="navigateToRating(shipment)">
-                Bewerte {{shipment.cargonaut}}
+                Bewerte {{shipment.startTime}}
                 <ion-icon name="star"></ion-icon>
               </ion-button>
               <ion-button disabled="true" *ngIf="shipment.status === 3">
-                Du hast {{shipment.cargonaut}} bereits bewertet
+                Du hast {{shipment.startTime}} bereits bewertet
               </ion-button>
             </ion-item>
           </ion-col>
