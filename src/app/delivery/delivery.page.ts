@@ -16,9 +16,7 @@ import {Subscription} from 'rxjs';
     templateUrl: './delivery.page.html',
     styleUrls: ['./delivery.page.scss'],
 })
-/**
- * Delivery Page, shows shipment history of logged in user and option to create new shipments
- */
+/** Delivery Page, shows shipment history of logged in user and option to create new shipments **/
 export class DeliveryPage implements OnInit, OnDestroy {
 
     shipmentList: Shipment[] = [];
@@ -32,7 +30,7 @@ export class DeliveryPage implements OnInit, OnDestroy {
     user: firebase.User;
     subscription: Subscription;
 
-    //gets the User ID from the current session and returns it
+    /** gets the User ID from the current session and returns it **/
     setUserId() {
         this.subscription = this.authService.checkAuthState().subscribe((user) => {
             //  this.renderList( user.uid);
@@ -70,28 +68,28 @@ export class DeliveryPage implements OnInit, OnDestroy {
 
     }
 
-    //triggers on first call and calls setUserId()
+    /** triggers on first call and calls setUserId() **/
     ngOnInit(): void {
         this.setUserId();
     }
 
-    //signs User out
+    /** signs User out **/
     signOut(){
         this.authService.SignOut().then(() => {
             this.navigateToLogin();
         });
     }
-    // navigation to homepage
+    /** navigation to homepage **/
     navigateToHome() {
         this.router.navigate(['/home']);
     }
 
-    // navigation to login
+    /** navigation to login **/
     navigateToLogin() {
         this.router.navigate(['/login']);
     }
 
-    // navigation to login
+    /** navigation to login **/
     navigateToRegister() {
         this.router.navigate(['/register']);
     }

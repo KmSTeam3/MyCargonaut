@@ -15,9 +15,19 @@ ion-card {
 }
 
 ion-button {
-  --background: rgba(250,130,160,0.9);
+  --background: #025C53;
 }
 
 .overview {
   background: rgba(245,245,246,0.9)
+}
+
+h1{
+  color: #025C53;
+  font-family: 'Leckerli One', cursive;
+}
+
+a{
+  color: #025C53;
+  font-family: 'Leckerli One', cursive;
 }

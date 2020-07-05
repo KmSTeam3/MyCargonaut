@@ -21,9 +21,7 @@ import {VehicleService} from "../../shared/vehicle.service";
     templateUrl: './modal-delivery-edit.page.html',
     styleUrls: ['./modal-delivery-edit.page.scss'],
 })
-/**
- * Modal page for adding new shipment
- */
+/** Modal page for adding new shipment **/
 export class ModalDeliveryEditPage implements OnInit {
 
     @Input() shipmentId: string;
@@ -81,6 +79,7 @@ export class ModalDeliveryEditPage implements OnInit {
         this.setUserId();
     }
 
+    /** Prepares Vehicles to be injected into ion select html element **/
     getVehicles(uId: string) {
         this.vehicles = [];
         this.vehicleService.findAll(uId).subscribe((vehiclesList) => {
@@ -92,6 +91,7 @@ export class ModalDeliveryEditPage implements OnInit {
         return e1 && e2 ? e1.licensePlate === e2.licensePlate : e1 === e2;
     }
 
+    /** Called on when vehicle selection is made in html and preps new selection to be added to updateModal()**/
     getSelectValue(event) {
         this.vehicles.forEach(vehicle => {
             if (event.detail.value === vehicle.licensePlate) {

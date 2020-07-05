@@ -17,10 +17,13 @@
                         <ion-row>
                             <ion-col>
                                 <ion-text align="center">
-                                    <h2>Shipment</h2>
-                                    <p>{{shipment.id}}</p>
-                                    <p>{{shipment.vehicle}}</p>
-                                    <p>{{shipment.cargonaut}}</p>
+                                    <h2><a>My</a> Buchung</h2>
+                                    <p>Ihre Buchungs ID: <br>
+                                        {{shipment.id}}</p>
+                                    <p>Ihr Fahrzeug:<br>
+                                        {{shipment.vehicle}}</p>
+                                    <p>Ihr Cargonaut: <br>
+                                        {{shipment.cargonaut}}</p>
                                 </ion-text>
                             </ion-col>
 
@@ -58,11 +61,11 @@
                     </ion-col>
 
 
-                    <ion-col>
+                    <ion-col align="center">
                         <ion-row>
                             <ion-col></ion-col>
                             <ion-col>
-                                <img src="assets/img/klarna.gif">
+                                <img id="celebration" src="assets/img/celebration.gif">
                             </ion-col>
                             <ion-col></ion-col>
                         </ion-row>
@@ -70,8 +73,11 @@
                         <ion-row>
                             <ion-col>
                                 <ion-text align="center">
-                                    <h1>Thank you</h1>
-                                    <p>The merchant will receive a confirmation of the transaction and can process your order immediately</p>
+                                    <h1>Vielen Dank für Ihre Buchung!</h1>
+                                    <p>Ihr Cargonaut wird über ihre Buchung informiert, wir wünschen ihnen eine angehneme Erfahrung. Wenn ihre Buchung vollendet wurde <br> lassen
+                                    sie ihrem Cargonauten gerne eine Review um andere darüber zu informieren wie dieser Cargonaut einzuschätzen ist <br>
+                                    My Cargonaut trägt keine Verantwortung für beschädigte Ware. Für Risiken und Nebenwirkungen Fragen sie ihren Arzt oder Apotheker
+                                    </p>
                                 </ion-text>
                             </ion-col>
                         </ion-row>
@@ -85,7 +91,7 @@
                         <ion-row>
                             <ion-col></ion-col>
                             <ion-col>
-                                <ion-button size="large" (click)="navigateToHome()">Back to Merchant</ion-button>
+                                <ion-button size="large" (click)="navigateToHome()">Weitere Fahrten Entdecken</ion-button>
                             </ion-col>
                             <ion-col></ion-col>
                         </ion-row>

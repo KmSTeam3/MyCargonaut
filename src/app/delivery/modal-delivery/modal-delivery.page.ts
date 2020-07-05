@@ -48,9 +48,7 @@ export class ModalDeliveryPage implements OnInit {
     articleList: Article[];
     shipSatus: shipStatus;
     selectedVehicle: Vehicle;
-
     currentID: string;
-
     modalTitle: string;
     modelId: number;
 

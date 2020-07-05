@@ -46,21 +46,21 @@ export class ShipmentService {
         this.shipmentCollection = afs.collection<Shipment>('shipment');
     }
 
-    // adds a new "shipment" document to the firestore collection "shipment"
+    /** adds a new "shipment" document to the firestore collection "shipment" **/
     persist(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
             pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number) {
         const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus);
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    // updates the selected shipment in the firestore document: "shipment.id" in the collection "shipment"
+    /** updates the selected shipment in the firestore document: "shipment.id" in the collection "shipment" **/
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
            pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number, id: string) {
         const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus, id);
         return this.shipmentCollection.doc(shipment.id).update(ShipmentService.prepare(shipment));
     }
 
-    // deletes a document "shipment" in Firestore Collection "Shipment"
+    /** deletes a document "shipment" in Firestore Collection "Shipment" **/
     delete(shipmentId: string) {
         this.shipmentCollection.doc(shipmentId).delete();
     }
@@ -75,7 +75,7 @@ export class ShipmentService {
         );
     }
 
-    // collect all shipments from the collection
+    /** collect all shipments from the collection **/
     testAll(): Observable<Shipment[]>{
         const changeActions: Observable<DocumentChangeAction<Shipment>[]> =  this.shipmentCollection.snapshotChanges();
         return changeActions.pipe(
@@ -87,7 +87,7 @@ export class ShipmentService {
         );
     }
 
-    // test call with predefined parameter
+    /** test call with predefined parameter **/
     testQuery(): Observable<Shipment[]>{
         const changeActions: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('seat', '>=', 1).
@@ -104,7 +104,7 @@ export class ShipmentService {
         );
     }
 
-    // method for getting shipments where the user wants to be a passenger
+    /**  method for getting shipments where the user wants to be a passenger **/
     searchRoute(seats: number, start: string, goal: string, date: string): Observable<Shipment[]> {
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> =  this.afs.collection<Shipment>('shipment', ref => ref.
         where('seat', '>=', seats).
@@ -121,7 +121,7 @@ export class ShipmentService {
         );
     }
 
-    // method for getting shipments for articles
+    /**  method for getting shipments for articles **/
     searchTransport(start: string, goal: string, weight: number, height: number, length: number): Observable<Shipment[]>{
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('start', '==', start).
@@ -139,7 +139,7 @@ export class ShipmentService {
         );
     }
 
-    // method for getting shipments where the user can be a passenger and let articles be transported
+    /** method for getting shipments where the user can be a passenger and let articles be transported **/
     searchBoth(start: string, goal: string, date: string, seats: number){
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('start', '==', start).
@@ -156,7 +156,7 @@ export class ShipmentService {
         );
     }
 
-    // get all shipments of a specific user
+    /** get all shipments of a specific user **/
     getShipments(cargonaut: string) {
         const queryBase: Observable<DocumentChangeAction<Shipment>[]> = this.afs.collection<Shipment>('shipment', ref => ref.
         where('cargonaut', '==', cargonaut)).snapshotChanges();
