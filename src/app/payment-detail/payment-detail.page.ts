@@ -1,3 +1,4 @@
+import { SessionService } from './../shared/session.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {ModalController} from '@ionic/angular';
@@ -26,7 +27,7 @@ export class PaymentDetailPage implements OnInit {
     @Input() price: number;
 
 
-    constructor(private router: Router, private userService: UserService) {
+    constructor(private router: Router, private userService: UserService, private sessionService: SessionService) {
     }
 
     ngOnInit() {
@@ -45,10 +46,11 @@ export class PaymentDetailPage implements OnInit {
      * @param modalController modal controller form search result page to access modal from this page
      */
     navigateToPaymentChoice(modalController: ModalController) {
+        const puffer =  this.sessionService.data;
+        this.sessionService.data = [];
+        this.sessionService.data.push({shipment: this.shipment, user: this.user, article: this.article, price: this.price, routeSearch: this.routeSearch});
         this.dismissModal(modalController);
-        const navigationExtras: NavigationExtras = {queryParams: {shipment: this.shipment}};
-        console.log('navigations extra ' + navigationExtras);
-        this.router.navigate(['/payment-choice'], navigationExtras);
+        this.router.navigate(['/payment-choice']);
     }
     /**
      * Determines the color of the stars depending on rating

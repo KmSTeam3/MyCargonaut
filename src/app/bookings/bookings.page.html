@@ -43,7 +43,7 @@
   </div> -->
 
   <div *ngIf="user">
-    <ion-item *ngFor="let shipment of user.bookings" lines="none" class="ionListItems">
+    <ion-item *ngFor="let shipment of this.shipmentList" lines="none" class="ionListItems">
       <ion-grid>
         <ion-row>
           <ion-col>

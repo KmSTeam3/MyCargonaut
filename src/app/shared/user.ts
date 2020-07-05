@@ -15,7 +15,7 @@ export class User {
     city: string;
     email: string;
     rating: number;
-    bookings: Shipment[] = [];
+    bookings: string[] = [];
 
 
     constructor(id: string, title: string, fName: string, lName: string, street: string, housenumber: number, postalcode: number, city: string, email: string) {

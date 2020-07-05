@@ -56,7 +56,9 @@ export class UserService {
    * updates user
    * @param user User to be updated
    */
+   counter: number = 0;
   update(user: User){
+    console.log(user);
     return this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 

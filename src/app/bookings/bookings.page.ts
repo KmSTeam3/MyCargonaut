@@ -1,3 +1,4 @@
+import { ShipmentService } from './../shared/shipment.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
 import {UserService} from '../shared/user.service';
@@ -23,16 +24,16 @@ export class BookingsPage implements OnInit, OnDestroy {
   subscription3: Subscription;
   user: User;
   cargonaut: User;
+  shipmentList: Shipment[] = [];
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private shipmentService: ShipmentService, private router: Router) {
     this.subscription = this.authService.checkAuthState().subscribe(value => {
         if (value){
             this.subscription1 = this.userService.getUser(value.uid).subscribe(user => {
                 this.user = user;
                 for ( const booking of this.user.bookings){
-                    this.subscription3 = this.userService.getUser(booking.cargonaut).subscribe(cargonaut => {
-                        booking.id = booking.cargonaut;
-                        booking.cargonaut = cargonaut.fName + ' ' + cargonaut.lName;
+                    this.subscription3 = this.shipmentService.getShipment(booking).subscribe(shipment => {
+                        this.shipmentList.push(shipment);
                     });
                 }
             });
