@@ -66,6 +66,8 @@ export class TransportSearchPage implements OnInit, OnDestroy {
       pallet: new FormControl(false),
       fragile: new FormControl(false),
     });
+    this.pallet = false;
+    this.fragile = false;
   }
 
   /**
