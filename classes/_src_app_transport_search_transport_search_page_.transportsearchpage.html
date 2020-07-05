@@ -98,11 +98,13 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#article" class="tsd-kind-icon">article</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#errormessage" class="tsd-kind-icon">error<wbr>Message</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#formbuilder" class="tsd-kind-icon">form<wbr>Builder</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#fragile" class="tsd-kind-icon">fragile</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#pallet" class="tsd-kind-icon">pallet</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#sessionservice" class="tsd-kind-icon">session<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#shipmentlist" class="tsd-kind-icon">shipment<wbr>List</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#shipmentservice" class="tsd-kind-icon">shipment<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#subscription" class="tsd-kind-icon">subscription</a></li>
@@ -137,17 +139,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Transport<wbr>Search<wbr>Page<span class="tsd-signature-symbol">(</span>router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, formBuilder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FormBuilder</span>, shipmentService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html" class="tsd-signature-type">TransportSearchPage</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Transport<wbr>Search<wbr>Page<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, formBuilder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FormBuilder</span>, shipmentService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a>, sessionService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html" class="tsd-signature-type">TransportSearchPage</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L47">src/app/transport-search/transport-search.page.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L49">src/app/transport-search/transport-search.page.ts:49</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>authService: <a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
 								<li>
 									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
@@ -156,6 +161,9 @@
 								</li>
 								<li>
 									<h5>shipmentService: <a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a></h5>
+								</li>
+								<li>
+									<h5>sessionService: <a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html" class="tsd-signature-type">TransportSearchPage</a></h4>
@@ -171,7 +179,17 @@
 					<div class="tsd-signature tsd-kind-icon">article<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_article_.article.html" class="tsd-signature-type">Article</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L45">src/app/transport-search/transport-search.page.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L47">src/app/transport-search/transport-search.page.ts:47</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="authservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> auth<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L28">src/app/transport-search/transport-search.page.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L30">src/app/transport-search/transport-search.page.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">form<wbr>Builder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">FormBuilder</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L50">src/app/transport-search/transport-search.page.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">fragile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L47">src/app/transport-search/transport-search.page.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L49">src/app/transport-search/transport-search.page.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">pallet<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L46">src/app/transport-search/transport-search.page.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L48">src/app/transport-search/transport-search.page.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,7 +239,17 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L50">src/app/transport-search/transport-search.page.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="sessionservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> session<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">session<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">shipment<wbr>List<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_shipment_.shipment.html" class="tsd-signature-type">Shipment</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L33">src/app/transport-search/transport-search.page.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L35">src/app/transport-search/transport-search.page.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -241,7 +269,7 @@
 					<div class="tsd-signature tsd-kind-icon">shipment<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L50">src/app/transport-search/transport-search.page.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,7 +279,7 @@
 					<div class="tsd-signature tsd-kind-icon">subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L31">src/app/transport-search/transport-search.page.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L33">src/app/transport-search/transport-search.page.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +289,7 @@
 					<div class="tsd-signature tsd-kind-icon">success<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L29">src/app/transport-search/transport-search.page.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L31">src/app/transport-search/transport-search.page.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -271,7 +299,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">User</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L30">src/app/transport-search/transport-search.page.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L32">src/app/transport-search/transport-search.page.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -281,7 +309,7 @@
 					<div class="tsd-signature tsd-kind-icon">validations<wbr>Form<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">FormGroup</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L27">src/app/transport-search/transport-search.page.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L29">src/app/transport-search/transport-search.page.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -298,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L99">src/app/transport-search/transport-search.page.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L111">src/app/transport-search/transport-search.page.ts:111</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -315,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L89">src/app/transport-search/transport-search.page.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L101">src/app/transport-search/transport-search.page.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -332,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L94">src/app/transport-search/transport-search.page.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L106">src/app/transport-search/transport-search.page.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -349,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L103">src/app/transport-search/transport-search.page.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L115">src/app/transport-search/transport-search.page.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -366,7 +394,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L52">src/app/transport-search/transport-search.page.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L60">src/app/transport-search/transport-search.page.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -383,7 +411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L74">src/app/transport-search/transport-search.page.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L84">src/app/transport-search/transport-search.page.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -413,7 +441,7 @@
 					<div class="tsd-signature tsd-kind-icon">VALIDATION_<wbr>MESSAGES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L35">src/app/transport-search/transport-search.page.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L37">src/app/transport-search/transport-search.page.ts:37</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -422,7 +450,7 @@
 						<div class="tsd-signature tsd-kind-icon">datum<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [{type: &#x27;required&#x27;, message: &#x27;Datum ist erforderlich.&#x27;},]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L40">src/app/transport-search/transport-search.page.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L42">src/app/transport-search/transport-search.page.ts:42</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -432,7 +460,7 @@
 						<div class="tsd-signature tsd-kind-icon">postal<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [{type: &#x27;required&#x27;, message: &#x27;Postleitzahl ist erforderlich.&#x27;},{type: &#x27;minlength&#x27;, message: &#x27;Postleitzahl muss mindestens 5 Zahlen enthalten&#x27;}]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/transport-search/transport-search.page.ts#L36">src/app/transport-search/transport-search.page.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/transport-search/transport-search.page.ts#L38">src/app/transport-search/transport-search.page.ts:38</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -463,6 +491,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#article" class="tsd-kind-icon">article</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#errormessage" class="tsd-kind-icon">error<wbr>Message</a>
 							</li>
@@ -477,6 +508,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#sessionservice" class="tsd-kind-icon">session<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_app_transport_search_transport_search_page_.transportsearchpage.html#shipmentlist" class="tsd-kind-icon">shipment<wbr>List</a>

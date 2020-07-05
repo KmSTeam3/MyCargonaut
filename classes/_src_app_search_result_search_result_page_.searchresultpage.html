@@ -103,6 +103,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#route" class="tsd-kind-icon">route</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#routesearch" class="tsd-kind-icon">route<wbr>Search</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#sessionservice" class="tsd-kind-icon">session<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#shipmentlist" class="tsd-kind-icon">shipment<wbr>List</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#shipmentservice" class="tsd-kind-icon">shipment<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_app_search_result_search_result_page_.searchresultpage.html#subscription" class="tsd-kind-icon">subscription</a></li>
@@ -138,13 +139,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<wbr>Result<wbr>Page<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, shipmentService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a>, dataHelper<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_data_helper_service_.datahelperservice.html" class="tsd-signature-type">DataHelperService</a>, route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRoute</span>, userService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_user_service_.userservice.html" class="tsd-signature-type">UserService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_app_search_result_search_result_page_.searchresultpage.html" class="tsd-signature-type">SearchResultPage</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<wbr>Result<wbr>Page<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, shipmentService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a>, dataHelper<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_data_helper_service_.datahelperservice.html" class="tsd-signature-type">DataHelperService</a>, route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRoute</span>, userService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_user_service_.userservice.html" class="tsd-signature-type">UserService</a>, sessionService<span class="tsd-signature-symbol">: </span><a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_app_search_result_search_result_page_.searchresultpage.html" class="tsd-signature-type">SearchResultPage</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L34">src/app/search-result/search-result.page.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L35">src/app/search-result/search-result.page.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -167,6 +168,9 @@
 								<li>
 									<h5>userService: <a href="_src_app_shared_user_service_.userservice.html" class="tsd-signature-type">UserService</a></h5>
 								</li>
+								<li>
+									<h5>sessionService: <a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_app_search_result_search_result_page_.searchresultpage.html" class="tsd-signature-type">SearchResultPage</a></h4>
 						</li>
@@ -181,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">article<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_article_.article.html" class="tsd-signature-type">Article</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L31">src/app/search-result/search-result.page.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L32">src/app/search-result/search-result.page.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>Helper<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_data_helper_service_.datahelperservice.html" class="tsd-signature-type">DataHelperService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">list<wbr>Shipments<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_shipment_.shipment.html" class="tsd-signature-type">Shipment</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L30">src/app/search-result/search-result.page.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L31">src/app/search-result/search-result.page.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,7 +225,7 @@
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActivatedRoute</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">route<wbr>Search<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L32">src/app/search-result/search-result.page.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L33">src/app/search-result/search-result.page.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -241,7 +245,17 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="sessionservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> session<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">session<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_session_service_.sessionservice.html" class="tsd-signature-type">SessionService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,7 +265,7 @@
 					<div class="tsd-signature tsd-kind-icon">shipment<wbr>List<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_shipment_.shipment.html" class="tsd-signature-type">Shipment</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L21">src/app/search-result/search-result.page.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L22">src/app/search-result/search-result.page.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">shipment<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_shipment_service_.shipmentservice.html" class="tsd-signature-type">ShipmentService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -271,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L33">src/app/search-result/search-result.page.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L34">src/app/search-result/search-result.page.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -281,7 +295,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">User</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L34">src/app/search-result/search-result.page.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L35">src/app/search-result/search-result.page.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -291,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_src_app_shared_user_service_.userservice.html" class="tsd-signature-type">UserService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L36">src/app/search-result/search-result.page.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L37">src/app/search-result/search-result.page.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -308,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L87">src/app/search-result/search-result.page.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L98">src/app/search-result/search-result.page.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -331,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L121">src/app/search-result/search-result.page.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L132">src/app/search-result/search-result.page.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -348,7 +362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L109">src/app/search-result/search-result.page.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L120">src/app/search-result/search-result.page.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -365,7 +379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L113">src/app/search-result/search-result.page.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L124">src/app/search-result/search-result.page.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -382,7 +396,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L117">src/app/search-result/search-result.page.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L128">src/app/search-result/search-result.page.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -399,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L93">src/app/search-result/search-result.page.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L104">src/app/search-result/search-result.page.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -416,7 +430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L103">src/app/search-result/search-result.page.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L114">src/app/search-result/search-result.page.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -433,7 +447,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L62">src/app/search-result/search-result.page.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L73">src/app/search-result/search-result.page.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -455,7 +469,7 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Popover<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L56">src/app/search-result/search-result.page.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L67">src/app/search-result/search-result.page.ts:67</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -464,7 +478,7 @@
 						<div class="tsd-signature tsd-kind-icon">header<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Filter search result&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L57">src/app/search-result/search-result.page.ts:57</a></li>
+								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L68">src/app/search-result/search-result.page.ts:68</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -474,7 +488,7 @@
 						<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Only select your favorite flower&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L59">src/app/search-result/search-result.page.ts:59</a></li>
+								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L70">src/app/search-result/search-result.page.ts:70</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -484,7 +498,7 @@
 						<div class="tsd-signature tsd-kind-icon">sub<wbr>Header<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Select your attribute&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/7421105/src/app/search-result/search-result.page.ts#L58">src/app/search-result/search-result.page.ts:58</a></li>
+								<li>Defined in <a href="https://github.com/KmSTeam3/MyCargonaut/blob/08eaf2b/src/app/search-result/search-result.page.ts#L69">src/app/search-result/search-result.page.ts:69</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -532,6 +546,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_app_search_result_search_result_page_.searchresultpage.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_app_search_result_search_result_page_.searchresultpage.html#sessionservice" class="tsd-kind-icon">session<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_app_search_result_search_result_page_.searchresultpage.html#shipmentlist" class="tsd-kind-icon">shipment<wbr>List</a>
