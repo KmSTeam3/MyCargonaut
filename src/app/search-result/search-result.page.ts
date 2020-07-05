@@ -35,14 +35,17 @@ export class SearchResultPage implements OnInit {
     user: firebase.User;
 
     constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService, private sessionService: SessionService) {
-        
+
         this.listShipments = this.sessionService.data[0].shipmentList;
         this.article = this.sessionService.data[0].article;
-        console.log("shipmentslsit" , this.listShipments);
-        console.log("article", this.article);
-        //this.route.queryParams.subscribe(params => {
+        this.routeSearch = this.sessionService.data[0].routeSearch;
 
-            //if (params) {
+        console.log('shipmentslsit ' , this.listShipments);
+        console.log('Routesearch ' + this.routeSearch);
+        console.log('article ', this.article);
+        // this.route.queryParams.subscribe(params => {
+
+            // if (params) {
             //    console.log(params);
             //    this.listShipments = params.shipmentList;
             //    if (params.article != null) {
@@ -56,8 +59,8 @@ export class SearchResultPage implements OnInit {
             //    }
             //    console.log(this.listShipments);
             //    console.log("wait2")
-            //}
-        //});
+            // }
+        // });
 
     }
 

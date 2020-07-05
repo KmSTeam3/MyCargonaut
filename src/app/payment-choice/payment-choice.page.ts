@@ -32,6 +32,7 @@ export class PaymentChoicePage implements OnInit {
 
     constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService, private sessionService: SessionService) {
         this.articleList.push(this.sessionService.data[0].article);
+        this.routeSearch = this.sessionService.data[0].routeSearch;
         
         // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
@@ -105,11 +106,13 @@ export class PaymentChoicePage implements OnInit {
      */
      pay() {
         if (this.loginState){
-            if (this.shipment.passengerList == null){
-                this.passengerList.push(this.passenger);
-                this.shipment.passengerList = this.passengerList;
-            } else {
-                this.shipment.passengerList.push(this.passenger);
+            if (this.routeSearch){
+                if (this.shipment.passengerList == null){
+                    this.passengerList.push(this.passenger);
+                    this.shipment.passengerList = this.passengerList;
+                } else {
+                    this.shipment.passengerList.push(this.passenger);
+                }
             }
 
             if (this.article != null){
