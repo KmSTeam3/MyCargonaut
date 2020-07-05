@@ -32,7 +32,7 @@
                         <ion-row>
                             <ion-col>
                                 <ion-text align="center">
-                                    <h1>1.00€</h1>
+                                    <h1>{{price}} €</h1>
                                     <p>See more</p>
                                 </ion-text>
                             </ion-col>
@@ -50,7 +50,7 @@
 
                         <ion-row>
                             <ion-col>
-                                <ion-text align="center">
+                                <ion-text *ngIf="cargonaut" align="center">
                                     <h3>{{cargonaut.fName}} {{cargonaut.lName}}</h3>
                                     <p>{{cargonaut.rating}}</p>
                                 </ion-text>

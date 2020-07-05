@@ -82,9 +82,9 @@ export class TransportSearchPage implements OnInit, OnDestroy {
       this.article = {name: value.article, pallet: this.pallet, amount: 1, height: value.height, width: value.width, fragile: this.fragile, weight: value.weight, client: null};
       console.log("Artikel: " + this.article);
       console.log(this.article.weight);
-      const navigationExtras: NavigationExtras = { queryParams: {shipmentList: "this.shipmentList", article: "this.article"} };
-      this.sessionService.data.push({shipmentList: this.shipmentList, article: this.article});
-      this.router.navigate(['/search-result'], navigationExtras);
+      this.sessionService.data = [];
+      this.sessionService.data.push({shipmentList: this.shipmentList, article: this.article, routeSearch: false});
+      this.router.navigate(['/search-result']);
       console.log(shipment);
     });
   }

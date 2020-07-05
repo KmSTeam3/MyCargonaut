@@ -1,3 +1,4 @@
+import { SessionService } from './../shared/session.service';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {Shipment} from '../shared/shipment';
@@ -17,18 +18,12 @@ export class PaymentSuccessPage implements OnInit {
 
     shipment: Shipment;
     cargonaut: User;
+    price: number;
 
 
-    constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {
-        // method call collects passed data (shipment object) from previous page
-        this.route.queryParams.subscribe(params => {
-            if (this.router.getCurrentNavigation().extras.state) {
-                console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.state.shipment);
-                this.shipment = this.router.getCurrentNavigation().extras.state.shipment;
-                console.log(this.shipment);
-            }
-        });
+    constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private authService: AuthService, private sessinoService: SessionService) {
+        this.shipment = this.sessinoService.data[0].shipment;
+        this.price = this.sessinoService.data[0].price;
     }
 
     ngOnInit() {
@@ -43,7 +38,4 @@ export class PaymentSuccessPage implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    navigateToSearchResult() {
-        this.router.navigate(['/search-result']);
-    }
 }

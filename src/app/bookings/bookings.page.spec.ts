@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { UnauthorizedPage } from './unauthorized.page';
+import { BookingsPage } from './bookings.page';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
 import {RouterTestingModule} from '@angular/router/testing';
 
-describe('UnauthorizedPage', () => {
-  let component: UnauthorizedPage;
-  let fixture: ComponentFixture<UnauthorizedPage>;
+describe('BookingsPage', () => {
+  let component: BookingsPage;
+  let fixture: ComponentFixture<BookingsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UnauthorizedPage ],
+      declarations: [ BookingsPage ],
       imports: [IonicModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         RouterTestingModule.withRoutes([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UnauthorizedPage);
+    fixture = TestBed.createComponent(BookingsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

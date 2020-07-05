@@ -87,6 +87,10 @@ const routes: Routes = [
     loadChildren: () => import('./dual-search/dual-search.module').then( m => m.DualSearchPageModule)
   },
   {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
+  {
     path: 'unauthorized',
     loadChildren: () => import('./unauthorized/unauthorized.module').then( m => m.UnauthorizedPageModule)
   },

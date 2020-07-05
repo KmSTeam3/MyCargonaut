@@ -36,6 +36,7 @@ export class UserService {
     copy.city = copy.city || null;
     copy.email = copy.email || null;
     copy.rating = copy.rating || null;
+    copy.bookings = copy.bookings || null;
     return copy;
   }
 
@@ -55,7 +56,9 @@ export class UserService {
    * updates user
    * @param user User to be updated
    */
+   counter: number = 0;
   update(user: User){
+    console.log(user);
     return this.userCollection.doc(user.id).update(UserService.prepare(user));
   }
 

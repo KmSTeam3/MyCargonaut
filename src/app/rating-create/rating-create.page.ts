@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Rating} from '../shared/rating';
 import {RatingService} from '../shared/rating.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-rating-create',
@@ -17,8 +18,8 @@ export class RatingCreatePage implements OnInit {
   description: string;
   userID: string;
 
-  constructor(private ratingService: RatingService) {
-    this.userID = 'tGVWto1bYHWeq6wtjFN5pGYXInG3';
+  constructor(private ratingService: RatingService, private route: ActivatedRoute, private router: Router) {
+    this.userID = this.route.snapshot.paramMap.get('uid');
   }
 
   ngOnInit() {
@@ -29,9 +30,8 @@ export class RatingCreatePage implements OnInit {
    */
   submit() {
     const rating: Rating = new Rating(this.points, this.description);
-    // TODO Dummy ID needs to be replaced with ID of the user whose shipment is being rated. Probably pass it over URL when selecting shipment to rate
     this.ratingService.persist(rating, this.userID);
-    // TODO Navigate back to shipment list
+    this.router.navigate(['bookings']);
   }
 
   /**

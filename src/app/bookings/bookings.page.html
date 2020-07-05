@@ -1,0 +1,105 @@
+<app-menu-header></app-menu-header>
+
+
+<div class="ion-page" id="main-content">
+<ion-header>
+  <ion-toolbar>
+    <img src="assets/CargoLogo.PNG" (click)="navigateToHome()" class="logo">
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button *ngIf="!user" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="ion-content">
+  <ion-list-header>
+    Deine Buchungen
+  </ion-list-header>
+
+  <!-- <div *ngIf="user">
+  <ion-item *ngFor="let shipment of user.bookings" lines="none" class="ionListItems">
+    <ion-label>
+      <ion-text color="primary">
+        <h2>Durchgeführt von: {{shipment.cargonaut}}</h2>
+      </ion-text>
+      <p>am {{shipment.date | date: 'dd/MM/yyyy'}}</p>
+    </ion-label>
+    <ion-label>
+      <ion-text>
+        <p>von: {{shipment.start}}</p>
+        <p>nach: {{shipment.goal}}</p>
+        <p>mit: {{shipment.vehicle.name}}</p>
+      </ion-text>
+    </ion-label>
+
+    <ion-button slot="end">
+      Bewerte {{shipment.cargonaut}}
+      <ion-icon name="star"></ion-icon>
+    </ion-button>
+
+  </ion-item>
+  </div> -->
+
+  <div *ngIf="user">
+    <ion-item *ngFor="let shipment of this.shipmentList" lines="none" class="ionListItems">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-label position="stacked">
+                Durchgeführt von:
+              </ion-label>
+              <ion-text>{{shipment.cargonaut}}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label position="stacked">
+                Am:
+              </ion-label>
+              <ion-text>{{shipment.date | date: 'dd/MM/yyyy'}}</ion-text>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-label position="stacked">
+                Von:
+              </ion-label>
+              <ion-text>{{shipment.start}}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label position="stacked">
+                Nach:
+              </ion-label>
+              <ion-text>{{shipment.goal}}</ion-text>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+
+            <ion-item lines="none">
+              <ion-label position="stacked">
+                Mit:
+              </ion-label>
+              <ion-text>{{shipment.vehicle.name}}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label position="stacked">    </ion-label>
+              <ion-button *ngIf="shipment.status !== 3" (click)="navigateToRating(shipment)">
+                Bewerte {{shipment.cargonaut}}
+                <ion-icon name="star"></ion-icon>
+              </ion-button>
+              <ion-button disabled="true" *ngIf="shipment.status === 3">
+                Du hast {{shipment.cargonaut}} bereits bewertet
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+    </ion-item>
+  </div>
+
+
+</ion-content>
+</div>
