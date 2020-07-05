@@ -33,7 +33,10 @@ export class BookingsPage implements OnInit, OnDestroy {
                 this.user = user;
                 for ( const booking of this.user.bookings){
                     this.subscription3 = this.shipmentService.getShipment(booking).subscribe(shipment => {
+                      this.userService.getUser(shipment.cargonaut).subscribe(user1 => {
+                        shipment.startTime = user1.fName + ' ' + user1.lName;
                         this.shipmentList.push(shipment);
+                      });
                     });
                 }
             });
@@ -70,8 +73,12 @@ export class BookingsPage implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * navigates to rating page for rating the cargonaut
+   * @param shipment shipment of the cargonaut who should be rated
+   */
   navigateToRating(shipment: Shipment){
-    this.router.navigate(['rating-create', {uid: shipment.id }]);
+    this.router.navigate(['rating-create', {uid: shipment.cargonaut }]);
     shipment.status = 3;
     this.userService.update(this.user);
   }
