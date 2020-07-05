@@ -31,14 +31,15 @@ export class PaymentChoicePage implements OnInit {
     subscription: Subscription;
 
     constructor(private userService: UserService, private authService: AuthService, private router: Router, private toastController: ToastController, private route: ActivatedRoute, private shipmentService: ShipmentService, private sessionService: SessionService) {
-        this.articleList.push(this.sessionService.data[0].article);
+        this.article = this.sessionService.data[0].article;
+        
         this.routeSearch = this.sessionService.data[0].routeSearch;
         
         // method call collects passed data (shipment object) from previous page
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.queryParams) {
-                console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.queryParams.shipment);
+               // console.log(params);
+               // console.log(this.router.getCurrentNavigation().extras.queryParams.shipment);
                 this.shipment = this.router.getCurrentNavigation().extras.queryParams.shipment;
         //        if (this.router.getCurrentNavigation().extras.state.article != null){
         //            this.article = this.router.getCurrentNavigation().extras.state.article;
@@ -117,6 +118,9 @@ export class PaymentChoicePage implements OnInit {
 
             if (this.article != null){
                 if (this.shipment.articleList == null){
+                    this.article.fragile = false;
+                    this.article.pallet = false;
+                    this.article.width = 0;
                     this.articleList.push(this.article);
                     this.shipment.articleList = this.articleList;
                 } else {
