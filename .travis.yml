@@ -34,5 +34,4 @@ deploy:
 - provider: firebase
   skip_cleanup: true
   token:
-    secure: "$FIREBASE_TOKEN"
-  project: "mycargonaut-7e61b"
+    secure: "1//09lL4ujGoFUVYCgYIARAAGAkSNwF-L9IrcydhtmZEPKATAteFUkRg5fCZMDw-1BG6BtiqkYRxL74_XK53hVfce6j-v7Svwuvzo1U"
