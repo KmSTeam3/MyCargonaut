@@ -1,3 +1,4 @@
+import { SessionService } from './../shared/session.service';
 import {Component, OnInit} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -34,7 +35,7 @@ export class DualSearchPage implements OnInit {
     shipment: Shipment;
     routeSearch = true;
 
-    constructor(private router: Router, private firestore: AngularFirestore, private formBuilder: FormBuilder, private shipmentService: ShipmentService) {
+    constructor(private router: Router, private firestore: AngularFirestore, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService) {
     }
 
     ngOnInit() {
@@ -46,10 +47,12 @@ export class DualSearchPage implements OnInit {
             date: new FormControl(''),
             weight: new FormControl(''),
             height: new FormControl(''),
-            length: new FormControl(''),
+            width: new FormControl(''),
             pallet: new FormControl(false),
             fragile: new FormControl(false),
         });
+        this.pallet = false;
+        this.fragile = false;
     }
 
     // Search method
@@ -57,12 +60,12 @@ export class DualSearchPage implements OnInit {
         console.log('search called ');
         this.shipmentService.searchBoth(value.startAddress, value.toAddress, value.date, 1).forEach(shipment => {
             this.shipmentList = shipment;
-            this.article = new Article(value.article, this.pallet, 1, value.height, value.width, this.fragile, value.weight);
+            this.article = {name: value.article, pallet: this.pallet, amount: 1, height: value.height, width: value.width, fragile: this.fragile, weight: value.weight, client: null};
+            this.sessionService.data = [];
+            this.sessionService.data.push({article: this.article, routeSearch: this.routeSearch, shipmentList: this.shipmentList });
             const navigationExtras: NavigationExtras = {
-                state: {
+                queryParams: {
                     shipmentList: this.shipmentList,
-                    article: this.article,
-                    routeSearch: this.routeSearch
                 }
             };
             this.router.navigate(['search-result'], navigationExtras);
