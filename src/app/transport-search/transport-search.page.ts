@@ -6,6 +6,7 @@ import {Shipment} from '../shared/shipment';
 import {ShipmentService} from '../shared/shipment.service';
 import {Article} from '../shared/article';
 import {Subscription} from 'rxjs';
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-transport-search',
@@ -48,7 +49,13 @@ export class TransportSearchPage implements OnInit, OnDestroy {
   fragile: boolean;
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService) {
+    this.subscription = this.authService.checkAuthState().subscribe(value => {
+      if (value){
+        this.user = value;
+      }
+    });
+  }
 
   ngOnInit() {
     // Initiation of the form fields value variables

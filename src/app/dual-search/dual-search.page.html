@@ -7,9 +7,9 @@
   <ion-toolbar>
     <img src="assets/CargoLogo.PNG" (click)="navigateToHome()">
     <ion-buttons slot="primary">
-      <ion-button (click)="navigateToLogin()">Login</ion-button>
-      <ion-button id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
-      <ion-menu-button auto-hide="false"></ion-menu-button>
+      <ion-button *ngIf="!user" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button *ngIf="!user" id="regBtn" (click)="navigateToRegister()">Registieren</ion-button>
+      <ion-menu-button *ngIf="user" auto-hide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

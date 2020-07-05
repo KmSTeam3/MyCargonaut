@@ -1,18 +1,20 @@
 import { SessionService } from './../shared/session.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Shipment} from '../shared/shipment';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ShipmentService} from '../shared/shipment.service';
 import {Article} from '../shared/article';
+import {Subscription} from "rxjs";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
     selector: 'app-dual-search',
     templateUrl: './dual-search.page.html',
     styleUrls: ['./dual-search.page.scss'],
 })
-export class DualSearchPage implements OnInit {
+export class DualSearchPage implements OnInit, OnDestroy {
 
     validationsForm: FormGroup;
     errorMessage = '';
@@ -34,8 +36,15 @@ export class DualSearchPage implements OnInit {
     article: Article;
     shipment: Shipment;
     routeSearch = true;
+    user: firebase.User;
+    subscription: Subscription;
 
-    constructor(private router: Router, private firestore: AngularFirestore, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService) {
+    constructor(private router: Router, private firestore: AngularFirestore, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService, private authService: AuthService) {
+        this.subscription = this.authService.checkAuthState().subscribe(value => {
+            if (value){
+                this.user = value;
+            }
+        });
     }
 
     ngOnInit() {
@@ -87,5 +96,9 @@ export class DualSearchPage implements OnInit {
     // navigation method to the home page
     navigateToHome() {
         this.router.navigate(['/home']);
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 }
