@@ -41,12 +41,17 @@
           Suchergebnisse
         </ion-label>
       </ion-item>
-    </ion-list>
 
-    <ion-item (click)="navigateToImpressum()" button="true">
+      <ion-item (click)="signOut()" button="true">
+        <ion-label class="ion-text-wrap">Ausloggen</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-item (click)="navigateToImpressum()" button="true" class="ion-align-item-baseline">
       <ion-label class="ion-text-wrap">
         Impressum
       </ion-label>
     </ion-item>
-  </ion-content>
+  </ion-footer>
 </ion-menu>

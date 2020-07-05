@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'app-menu-header',
@@ -8,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class MenuHeaderPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -66,5 +67,11 @@ export class MenuHeaderPage implements OnInit {
   // navigation to bookings
   navigateToBookings(){
     this.router.navigate(['bookings']);
+  }
+
+  signOut() {
+    this.authService.SignOut().then(() => {
+      this.router.navigate(['login']);
+    });
   }
 }
