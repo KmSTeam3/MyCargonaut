@@ -53,7 +53,7 @@ export class ShipmentService {
         return this.shipmentCollection.add(ShipmentService.prepare(shipment));
     }
 
-    // updates the specific shipment
+    // updates the selected shipment in the firestore document: "shipment.id" in the collection "shipment"
     update(cargonaut: string, vehicle: Vehicle, passengerList: Person[], articleList: Article[], start: string, goal: string, date: Date, startTime: string, length: number, height: number, weight: number,
            pricePerKg: number, seat: number, pricePerSeat: number, status: number, shipStatus: number, id: string) {
         const shipment: Shipment = new Shipment(cargonaut, vehicle, passengerList, articleList, start, goal, date, startTime, length, height, weight, pricePerKg, seat, pricePerSeat, status, shipStatus, id);
