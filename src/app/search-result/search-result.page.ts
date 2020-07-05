@@ -1,3 +1,4 @@
+import { SessionService } from './../shared/session.service';
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {User} from '../shared/user';
 import {Shipment} from '../shared/shipment';
@@ -33,23 +34,30 @@ export class SearchResultPage implements OnInit {
     subscription: Subscription;
     user: firebase.User;
 
-    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService) {
-        this.route.queryParams.subscribe(params => {
-            if (this.router.getCurrentNavigation().extras.state) {
-                console.log(params);
-                console.log(this.router.getCurrentNavigation().extras.state.shipmentList);
-                this.listShipments = this.router.getCurrentNavigation().extras.state.shipmentList;
-                if (this.router.getCurrentNavigation().extras.state.article != null) {
-                    this.article = this.router.getCurrentNavigation().extras.state.article;
-                    console.log('Transport search' + this.article.weight);
-                }
-                if (this.router.getCurrentNavigation().extras.state.routeSearch != null) {
-                    console.log('Route search');
-                    this.routeSearch = true;
-                }
-                console.log(this.listShipments);
-            }
-        });
+    constructor(private authService: AuthService, private router: Router, private shipmentService: ShipmentService, private dataHelper: DataHelperService, private route: ActivatedRoute, private userService: UserService, private sessionService: SessionService) {
+        
+        this.listShipments = this.sessionService.data[0].shipmentList;
+        this.article = this.sessionService.data[0].article;
+        console.log("shipmentslsit" , this.listShipments);
+        console.log("article", this.article);
+        //this.route.queryParams.subscribe(params => {
+
+            //if (params) {
+            //    console.log(params);
+            //    this.listShipments = params.shipmentList;
+            //    if (params.article != null) {
+            //        this.article = params.article;
+            //        console.log(this.article.amount);
+            //        console.log("Wait")
+            //    }
+            //    if (this.router.getCurrentNavigation().extras.state.routeSearch != null || undefined) {
+            //        console.log('Route search');
+            //        this.routeSearch = true;
+            //    }
+            //    console.log(this.listShipments);
+            //    console.log("wait2")
+            //}
+        //});
 
     }
 

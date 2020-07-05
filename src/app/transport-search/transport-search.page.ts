@@ -1,3 +1,4 @@
+import { SessionService } from './../shared/session.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
@@ -47,7 +48,7 @@ export class TransportSearchPage implements OnInit, OnDestroy {
   fragile: boolean;
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private shipmentService: ShipmentService, private sessionService: SessionService) { }
 
   ngOnInit() {
     // Initiation of the form fields value variables
@@ -77,8 +78,10 @@ export class TransportSearchPage implements OnInit, OnDestroy {
     this.shipmentService.searchTransport(value.startAddress, value.toAddress,  +value.weight, +value.height, +value.length).forEach( shipment => {
       this.shipmentList = shipment;
       this.article = {name: value.article, pallet: this.pallet, amount: 1, height: value.height, width: value.width, fragile: this.fragile, weight: value.weight, client: null};
+      console.log("Artikel: " + this.article)
       console.log(this.article.weight);
-      const navigationExtras: NavigationExtras = { state: {shipmentList: this.shipmentList, article: this.article} };
+      const navigationExtras: NavigationExtras = { queryParams: {shipmentList: "this.shipmentList", article: "this.article"} };
+      this.sessionService.data.push({shipmentList: this.shipmentList, article: this.article});
       this.router.navigate(['/search-result'], navigationExtras);
       console.log(shipment);
     });
