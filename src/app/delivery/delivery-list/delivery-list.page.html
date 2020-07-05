@@ -46,6 +46,11 @@
                 <ion-badge> Objekete: {{shipment.articleList.length}}</ion-badge>
             </ion-item>
         </ion-col>
+        <ion-col *ngIf="paymentStatus">
+            <ion-item>
+                <ion-badge>{{this.paymentStatus}}</ion-badge>
+            </ion-item>
+        </ion-col>
         <ion-col>
             <ion-item>nach: {{shipment.goal}} </ion-item>
         </ion-col>

@@ -30,14 +30,16 @@ export class ListResultPage implements OnInit, OnDestroy {
         this.subscription = this.userservice.getUser(this.shipment.cargonaut).subscribe((value => {
             this.user = value;
             this.user.rating = Math.round(this.user.rating);
+
+            if (this.routeSearch != null){
+                console.log('Seat price: ' + this.shipment.pricePerSeat);
+                this.price = this.shipment.pricePerSeat;
+            }
+            if (this.article != null){
+                this.price += this.shipment.pricePerKg * this.article.weight;
+                console.log('Ergebniss ist: ' + (this.shipment.pricePerKg * this.article.weight));
+            }
         }));
-        if (this.routeSearch != null){
-            this.price = this.shipment.pricePerSeat;
-        }
-        if (this.article != null){
-            this.price += this.shipment.pricePerKg * this.article.weight;
-            console.log('Ergebniss ist: ' + (this.shipment.pricePerKg * this.article.weight));
-        }
     }
 
     navigateToPayment() {

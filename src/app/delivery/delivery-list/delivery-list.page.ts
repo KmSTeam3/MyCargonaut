@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ModalDeliveryEditPage } from "../modal-delivery-edit/modal-delivery-edit.page";
-import { ModalController } from "@ionic/angular";
-import { ToastController } from "@ionic/angular";
-import { AuthService } from "../../shared/auth.service";
-import { Router } from "@angular/router";
-import { ShipmentService } from "../../shared/shipment.service";
-import { Shipment, shipStatus } from "../../shared/shipment";
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalDeliveryEditPage } from '../modal-delivery-edit/modal-delivery-edit.page';
+import { ModalController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { AuthService } from '../../shared/auth.service';
+import { Router } from '@angular/router';
+import { ShipmentService } from '../../shared/shipment.service';
+import {enumStatus, Shipment, shipStatus} from '../../shared/shipment';
 
 @Component({
-  selector: "app-delivery-list",
-  templateUrl: "./delivery-list.page.html",
-  styleUrls: ["./delivery-list.page.scss"],
+  selector: 'app-delivery-list',
+  templateUrl: './delivery-list.page.html',
+  styleUrls: ['./delivery-list.page.scss'],
 })
 /**
  * Delivery List, are the generated cards that are generated in deliver.html. It allows the user to update
@@ -31,6 +31,7 @@ export class DeliveryListPage implements OnInit {
   holderId: string;
   dataReturned: any;
   status: shipStatus;
+  paymentStatus: string;
 
   setUserId() {
     this.authService.checkAuthState().subscribe((user) => {
@@ -42,15 +43,24 @@ export class DeliveryListPage implements OnInit {
           console.log(this.holderId);
           console.log(shipment);
         });
-        console.log("Not modal" + this.holderId);
+        console.log('Not modal' + this.holderId);
+        switch (this.shipment.status) {
+          case enumStatus.BAR: this.paymentStatus = 'Bar';
+                               break;
+          case enumStatus.PAYPAL: this.paymentStatus = 'PayPal';
+                                  break;
+          case enumStatus.VORKASSE: this.paymentStatus = 'Vorkasse';
+                                    break;
+          default: this.paymentStatus = null;
+        }
       }
     });
   }
 
   getShipment(shipId: string) {
-    console.log("List delivery: " + shipId);
+    console.log('List delivery: ' + shipId);
     this.shipmentService.getShipment(shipId).subscribe((data) => {
-      //console.log( data);
+      // console.log( data);
       this.shipment = data;
     });
   }
@@ -92,7 +102,7 @@ export class DeliveryListPage implements OnInit {
 
   delete(shipId) {
     this.shipmentService.delete(shipId);
-    this.presentToast("successfully deleted shippment");
+    this.presentToast('successfully deleted shippment');
   }
 
   /**
@@ -130,6 +140,6 @@ export class DeliveryListPage implements OnInit {
 
   ngOnInit() {
     this.setUserId();
-    //this.getShipment(this.shipId); unnecessary?
+    // this.getShipment(this.shipId); unnecessary?
   }
 }
