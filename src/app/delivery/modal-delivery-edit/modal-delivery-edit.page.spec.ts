@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {IonicModule, ModalController, NavParams} from '@ionic/angular';
 
 import { ModalDeliveryEditPage } from './modal-delivery-edit.page';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../../environments/environment.prod';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ModalDeliveryEditPage', () => {
   let component: ModalDeliveryEditPage;
@@ -10,15 +13,20 @@ describe('ModalDeliveryEditPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalDeliveryEditPage ],
-      imports: [IonicModule]
+      imports: [IonicModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        RouterTestingModule.withRoutes([])
+      ],
+      providers: [
+          ModalDeliveryEditPage,
+          ModalController,
+          NavParams,
+      ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(ModalDeliveryEditPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
+    component = TestBed.inject(ModalDeliveryEditPage);
     expect(component).toBeTruthy();
   });
 });
