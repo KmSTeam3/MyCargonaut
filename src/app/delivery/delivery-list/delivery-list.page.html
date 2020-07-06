@@ -41,9 +41,14 @@
                 <ion-badge> Mitfahrer:   {{shipment.passengerList.length}}</ion-badge>
             </ion-item>
         </ion-col>
-        <ion-col size="3" *ngIf="shipment.articleList">
+        <ion-col size="2" *ngIf="shipment.articleList">
             <ion-item>
                 <ion-badge> Objekete: {{shipment.articleList.length}}</ion-badge>
+            </ion-item>
+        </ion-col>
+        <ion-col *ngIf="paymentStatus">
+            <ion-item>
+                <ion-badge>{{this.paymentStatus}}</ion-badge>
             </ion-item>
         </ion-col>
         <ion-col>
